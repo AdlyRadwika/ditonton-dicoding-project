@@ -1,7 +1,7 @@
-import 'package:ditonton/data/datasources/db/database_helper.dart';
-import 'package:ditonton/data/datasources/movie_local_data_source.dart';
-import 'package:ditonton/data/datasources/movie_remote_data_source.dart';
-import 'package:ditonton/data/repositories/movie_repository_impl.dart';
+import 'package:ditonton/data/datasources/db/movie/movie_database_helper.dart';
+import 'package:ditonton/data/datasources/movie/movie_local_data_source.dart';
+import 'package:ditonton/data/datasources/movie/movie_remote_data_source.dart';
+import 'package:ditonton/data/repositories/movie/movie_repository_impl.dart';
 import 'package:ditonton/domain/repositories/movie_repository.dart';
 import 'package:ditonton/domain/usecases/get_movie_detail.dart';
 import 'package:ditonton/domain/usecases/get_movie_recommendations.dart';
