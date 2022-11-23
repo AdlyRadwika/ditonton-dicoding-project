@@ -187,11 +187,11 @@ class MockMovieLocalDataSource extends _i1.Mock
       as _i7.Future<List<_i14.MovieTable>>);
 }
 
-/// A class which mocks [DatabaseHelper].
+/// A class which mocks [MovieDatabaseHelper].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockDatabaseHelper extends _i1.Mock implements _i15.DatabaseHelper {
-  MockDatabaseHelper() {
+class MockMovieDatabaseHelper extends _i1.Mock implements _i15.MovieDatabaseHelper {
+  MockMovieDatabaseHelper() {
     _i1.throwOnMissingStub(this);
   }
 

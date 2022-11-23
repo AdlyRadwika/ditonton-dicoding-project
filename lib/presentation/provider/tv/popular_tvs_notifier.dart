@@ -3,10 +3,10 @@ import 'package:ditonton/domain/entities/tv/tv.dart';
 import 'package:ditonton/domain/usecases/tv/get_popular_tvs.dart';
 import 'package:flutter/foundation.dart';
 
-class PopulartvsNotifier extends ChangeNotifier {
+class PopularTvsNotifier extends ChangeNotifier {
   final GetPopularTvs getPopularTvs;
 
-  PopulartvsNotifier(this.getPopularTvs);
+  PopularTvsNotifier(this.getPopularTvs);
 
   RequestState _state = RequestState.Empty;
   RequestState get state => _state;
@@ -17,7 +17,7 @@ class PopulartvsNotifier extends ChangeNotifier {
   String _message = '';
   String get message => _message;
 
-  Future<void> fetchPopulartvs() async {
+  Future<void> fetchPopularTvs() async {
     _state = RequestState.Loading;
     notifyListeners();
 
