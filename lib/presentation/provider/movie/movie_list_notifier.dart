@@ -9,8 +9,8 @@ class MovieListNotifier extends ChangeNotifier {
   var _nowPlayingMovies = <Movie>[];
   List<Movie> get nowPlayingMovies => _nowPlayingMovies;
 
-  RequestState _nowPlayingState = RequestState.Empty;
-  RequestState get nowPlayingState => _nowPlayingState;
+  RequestState _nowPlayingMoviesState = RequestState.Empty;
+  RequestState get nowPlayingMoviesState => _nowPlayingMoviesState;
 
   var _popularMovies = <Movie>[];
   List<Movie> get popularMovies => _popularMovies;
@@ -38,18 +38,18 @@ class MovieListNotifier extends ChangeNotifier {
   final GetTopRatedMovies getTopRatedMovies;
 
   Future<void> fetchNowPlayingMovies() async {
-    _nowPlayingState = RequestState.Loading;
+    _nowPlayingMoviesState = RequestState.Loading;
     notifyListeners();
 
     final result = await getNowPlayingMovies.execute();
     result.fold(
       (failure) {
-        _nowPlayingState = RequestState.Error;
+        _nowPlayingMoviesState = RequestState.Error;
         _message = failure.message;
         notifyListeners();
       },
       (moviesData) {
-        _nowPlayingState = RequestState.Loaded;
+        _nowPlayingMoviesState = RequestState.Loaded;
         _nowPlayingMovies = moviesData;
         notifyListeners();
       },

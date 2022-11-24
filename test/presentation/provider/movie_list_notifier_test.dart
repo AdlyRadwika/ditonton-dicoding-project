@@ -53,7 +53,7 @@ void main() {
 
   group('now playing movies', () {
     test('initialState should be Empty', () {
-      expect(provider.nowPlayingState, equals(RequestState.Empty));
+      expect(provider.nowPlayingMoviesState, equals(RequestState.Empty));
     });
 
     test('should get data from the usecase', () async {
@@ -73,7 +73,7 @@ void main() {
       // act
       provider.fetchNowPlayingMovies();
       // assert
-      expect(provider.nowPlayingState, RequestState.Loading);
+      expect(provider.nowPlayingMoviesState, RequestState.Loading);
     });
 
     test('should change movies when data is gotten successfully', () async {
@@ -83,7 +83,7 @@ void main() {
       // act
       await provider.fetchNowPlayingMovies();
       // assert
-      expect(provider.nowPlayingState, RequestState.Loaded);
+      expect(provider.nowPlayingMoviesState, RequestState.Loaded);
       expect(provider.nowPlayingMovies, tMovieList);
       expect(listenerCallCount, 2);
     });
@@ -95,7 +95,7 @@ void main() {
       // act
       await provider.fetchNowPlayingMovies();
       // assert
-      expect(provider.nowPlayingState, RequestState.Error);
+      expect(provider.nowPlayingMoviesState, RequestState.Error);
       expect(provider.message, 'Server Failure');
       expect(listenerCallCount, 2);
     });
