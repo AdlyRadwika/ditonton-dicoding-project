@@ -3,7 +3,7 @@ import 'package:ditonton/common/utils.dart';
 import 'package:ditonton/presentation/pages/about_page.dart';
 import 'package:ditonton/presentation/pages/entertaiment_detail_page.dart';
 import 'package:ditonton/presentation/pages/home_page.dart';
-import 'package:ditonton/presentation/pages/popular_movies_page.dart';
+import 'package:ditonton/presentation/pages/popular_entertaiments_page.dart';
 import 'package:ditonton/presentation/pages/search_page.dart';
 import 'package:ditonton/presentation/pages/top_rated_movies_page.dart';
 import 'package:ditonton/presentation/pages/watchlist_movies_page.dart';
@@ -85,8 +85,12 @@ class MyApp extends StatelessWidget {
           switch (settings.name) {
             case '/home':
               return MaterialPageRoute(builder: (_) => HomePage());
-            case PopularMoviesPage.ROUTE_NAME:
-              return CupertinoPageRoute(builder: (_) => PopularMoviesPage());
+            case PopularEntertaimentsPage.ROUTE_NAME:
+              final isTV = settings.arguments as bool; 
+              return CupertinoPageRoute(
+                builder: (_) => PopularEntertaimentsPage(isTV: isTV),
+                settings: settings,
+              );
             case TopRatedMoviesPage.ROUTE_NAME:
               return CupertinoPageRoute(builder: (_) => TopRatedMoviesPage());
             case EntertaimentDetailPage.ROUTE_NAME:

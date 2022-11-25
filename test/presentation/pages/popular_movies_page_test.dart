@@ -1,6 +1,6 @@
 import 'package:ditonton/common/state_enum.dart';
 import 'package:ditonton/domain/entities/movie/movie.dart';
-import 'package:ditonton/presentation/pages/popular_movies_page.dart';
+import 'package:ditonton/presentation/pages/popular_entertaiments_page.dart';
 import 'package:ditonton/presentation/provider/movie/popular_movies_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -34,7 +34,7 @@ void main() {
     final progressBarFinder = find.byType(CircularProgressIndicator);
     final centerFinder = find.byType(Center);
 
-    await tester.pumpWidget(_makeTestableWidget(PopularMoviesPage()));
+    await tester.pumpWidget(_makeTestableWidget(PopularEntertaimentsPage(isTV: false,)));
 
     expect(centerFinder, findsOneWidget);
     expect(progressBarFinder, findsOneWidget);
@@ -47,7 +47,7 @@ void main() {
 
     final listViewFinder = find.byType(ListView);
 
-    await tester.pumpWidget(_makeTestableWidget(PopularMoviesPage()));
+    await tester.pumpWidget(_makeTestableWidget(PopularEntertaimentsPage(isTV: false,)));
 
     expect(listViewFinder, findsOneWidget);
   });
@@ -59,7 +59,7 @@ void main() {
 
     final textFinder = find.byKey(Key('error_message'));
 
-    await tester.pumpWidget(_makeTestableWidget(PopularMoviesPage()));
+    await tester.pumpWidget(_makeTestableWidget(PopularEntertaimentsPage(isTV: false,)));
 
     expect(textFinder, findsOneWidget);
   });

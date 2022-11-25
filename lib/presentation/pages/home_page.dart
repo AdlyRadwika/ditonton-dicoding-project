@@ -4,7 +4,7 @@ import 'package:ditonton/domain/entities/movie/movie.dart';
 import 'package:ditonton/domain/entities/tv/tv.dart';
 import 'package:ditonton/presentation/pages/about_page.dart';
 import 'package:ditonton/presentation/pages/entertaiment_detail_page.dart';
-import 'package:ditonton/presentation/pages/popular_movies_page.dart';
+import 'package:ditonton/presentation/pages/popular_entertaiments_page.dart';
 import 'package:ditonton/presentation/pages/search_page.dart';
 import 'package:ditonton/presentation/pages/top_rated_movies_page.dart';
 import 'package:ditonton/presentation/pages/watchlist_movies_page.dart';
@@ -97,7 +97,11 @@ class _HomePageState extends State<HomePage> {
               _buildSubHeading(
                 title: 'Popular Movies',
                 onTap: () =>
-                    Navigator.pushNamed(context, PopularMoviesPage.ROUTE_NAME),
+                    Navigator.pushNamed(
+                      context,
+                      PopularEntertaimentsPage.ROUTE_NAME,
+                      arguments: false,
+                    ),
               ),
               buildMovieListConsumer(indexState: 1),
               _buildSubHeading(
@@ -106,16 +110,19 @@ class _HomePageState extends State<HomePage> {
                     Navigator.pushNamed(context, TopRatedMoviesPage.ROUTE_NAME),
               ),
               buildMovieListConsumer(indexState: 2),
-              _buildSubHeading(
-                title: 'On The Air TV Shows',
-                onTap: () =>
-                    Navigator.pushNamed(context, TopRatedMoviesPage.ROUTE_NAME),
+              Text(
+                'On The Air TV Shows',
+                style: kHeading6,
               ),
               buildTvListConsumer(indexState: 0),
               _buildSubHeading(
                 title: 'Popular TV Shows',
                 onTap: () =>
-                    Navigator.pushNamed(context, TopRatedMoviesPage.ROUTE_NAME),
+                    Navigator.pushNamed(
+                      context,
+                      PopularEntertaimentsPage.ROUTE_NAME,
+                      arguments: true,
+                    ),
               ),
               buildTvListConsumer(indexState: 1),
               _buildSubHeading(
@@ -205,7 +212,7 @@ class MovieList extends StatelessWidget {
                 Navigator.pushNamed(
                   context,
                   EntertaimentDetailPage.ROUTE_NAME,
-                  arguments: EntertaimentArguments(movie.id, false),
+                  arguments: EntertaimentArguments(id: movie.id, isTV: false),
                 );
               },
               child: ClipRRect(
@@ -247,7 +254,7 @@ class TvList extends StatelessWidget {
                 Navigator.pushNamed(
                   context,
                   EntertaimentDetailPage.ROUTE_NAME,
-                  arguments: EntertaimentArguments(tv.id, true),
+                  arguments: EntertaimentArguments(id: tv.id, isTV: true),
                 );
               },
               child: ClipRRect(
@@ -273,5 +280,5 @@ class EntertaimentArguments {
   final int id;
   final bool isTV;
 
-  const EntertaimentArguments(this.id, this.isTV);
+  const EntertaimentArguments({required this.id, required this.isTV});
 }

@@ -1,13 +1,17 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ditonton/common/constants.dart';
 import 'package:ditonton/domain/entities/movie/movie.dart';
+import 'package:ditonton/domain/entities/tv/tv.dart';
 import 'package:ditonton/presentation/pages/entertaiment_detail_page.dart';
+import 'package:ditonton/presentation/pages/home_page.dart';
 import 'package:flutter/material.dart';
 
-class MovieCard extends StatelessWidget {
-  final Movie movie;
+class EntertaimentCard extends StatelessWidget {
+  final Movie? movie;
+  final Tv? tv;
+  final bool isTV;
 
-  MovieCard(this.movie);
+  EntertaimentCard({required this.isTV, this.movie, this.tv});
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +22,9 @@ class MovieCard extends StatelessWidget {
           Navigator.pushNamed(
             context,
             EntertaimentDetailPage.ROUTE_NAME,
-            arguments: movie.id,
+            arguments: isTV == true 
+              ? EntertaimentArguments(id: tv!.id, isTV: true) 
+              : EntertaimentArguments(id: movie!.id, isTV: false),
           );
         },
         child: Stack(
@@ -35,14 +41,14 @@ class MovieCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      movie.title ?? '-',
+                      isTV == true ? tv!.name ?? '-': movie!.title ?? '-',
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                       style: kHeading6,
                     ),
                     SizedBox(height: 16),
                     Text(
-                      movie.overview ?? '-',
+                      isTV == true ? tv!.overview ?? '-': movie!.overview ?? '-',
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                     ),
@@ -57,7 +63,7 @@ class MovieCard extends StatelessWidget {
               ),
               child: ClipRRect(
                 child: CachedNetworkImage(
-                  imageUrl: '$BASE_IMAGE_URL${movie.posterPath}',
+                  imageUrl: '$BASE_IMAGE_URL${isTV == true ? tv!.posterPath : movie!.posterPath}',
                   width: 80,
                   placeholder: (context, url) => Center(
                     child: CircularProgressIndicator(),
