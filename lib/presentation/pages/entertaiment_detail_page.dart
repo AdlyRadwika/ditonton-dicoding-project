@@ -9,17 +9,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:provider/provider.dart';
 
-class MovieDetailPage extends StatefulWidget {
+class EntertaimentDetailPage extends StatefulWidget {
   static const ROUTE_NAME = '/detail';
 
   final int id;
-  MovieDetailPage({required this.id});
+  EntertaimentDetailPage({required this.id});
 
   @override
-  _MovieDetailPageState createState() => _MovieDetailPageState();
+  _EntertaimentDetailPageState createState() => _EntertaimentDetailPageState();
 }
 
-class _MovieDetailPageState extends State<MovieDetailPage> {
+class _EntertaimentDetailPageState extends State<EntertaimentDetailPage> {
   @override
   void initState() {
     super.initState();
@@ -27,7 +27,7 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
       Provider.of<MovieDetailNotifier>(context, listen: false)
           .fetchMovieDetail(widget.id);
       Provider.of<MovieDetailNotifier>(context, listen: false)
-          .loadWatchlistStatus(widget.id);
+          .loadMovieWatchlistStatus(widget.id);
     });
   }
 
@@ -111,12 +111,12 @@ class DetailContent extends StatelessWidget {
                                   await Provider.of<MovieDetailNotifier>(
                                           context,
                                           listen: false)
-                                      .addWatchlist(movie);
+                                      .addMovieWatchlist(movie);
                                 } else {
                                   await Provider.of<MovieDetailNotifier>(
                                           context,
                                           listen: false)
-                                      .removeFromWatchlist(movie);
+                                      .removeFromMovieWatchlist(movie);
                                 }
 
                                 final message =
@@ -126,10 +126,10 @@ class DetailContent extends StatelessWidget {
 
                                 if (message ==
                                         MovieDetailNotifier
-                                            .watchlistAddSuccessMessage ||
+                                            .movieWatchlistAddSuccessMessage ||
                                     message ==
                                         MovieDetailNotifier
-                                            .watchlistRemoveSuccessMessage) {
+                                            .movieWatchlistRemoveSuccessMessage) {
                                   ScaffoldMessenger.of(context).showSnackBar(
                                       SnackBar(content: Text(message)));
                                 } else {
@@ -209,7 +209,7 @@ class DetailContent extends StatelessWidget {
                                             onTap: () {
                                               Navigator.pushReplacementNamed(
                                                 context,
-                                                MovieDetailPage.ROUTE_NAME,
+                                                EntertaimentDetailPage.ROUTE_NAME,
                                                 arguments: movie.id,
                                               );
                                             },

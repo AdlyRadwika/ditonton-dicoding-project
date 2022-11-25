@@ -10,21 +10,21 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class TvDetailNotifier extends ChangeNotifier {
-  static const watchlistAddSuccessMessage = 'Added to Watchlist';
-  static const watchlistRemoveSuccessMessage = 'Removed from Watchlist';
+  static const tvWatchlistAddSuccessMessage = 'Added to Watchlist';
+  static const tvWatchlistRemoveSuccessMessage = 'Removed from Watchlist';
 
   final GetTvDetail getTvDetail;
   final GetTvRecommendations getTvRecommendations;
-  final GetWatchListStatus getWatchListStatus;
-  final SaveWatchlist saveWatchlist;
-  final RemoveWatchlist removeWatchlist;
+  final GetTvWatchlistStatus getTvWatchListStatus;
+  final SaveTvWatchlist saveTvWatchlist;
+  final RemoveTvWatchlist removeTvWatchlist;
 
   TvDetailNotifier({
     required this.getTvDetail,
     required this.getTvRecommendations,
-    required this.getWatchListStatus,
-    required this.saveWatchlist,
-    required this.removeWatchlist,
+    required this.getTvWatchListStatus,
+    required this.saveTvWatchlist,
+    required this.removeTvWatchlist,
   });
 
   late TvDetail _tv;
@@ -80,7 +80,7 @@ class TvDetailNotifier extends ChangeNotifier {
   String get watchlistMessage => _watchlistMessage;
 
   Future<void> addWatchlist(TvDetail tv) async {
-    final result = await saveWatchlist.execute(tv);
+    final result = await saveTvWatchlist.execute(tv);
 
     await result.fold(
       (failure) async {
@@ -94,8 +94,8 @@ class TvDetailNotifier extends ChangeNotifier {
     await loadWatchlistStatus(tv.id);
   }
 
-  Future<void> removeFromWatchlist(TvDetail tv) async {
-    final result = await removeWatchlist.execute(tv);
+  Future<void> removeFromTvWatchlist(TvDetail tv) async {
+    final result = await removeTvWatchlist.execute(tv);
 
     await result.fold(
       (failure) async {
@@ -110,7 +110,7 @@ class TvDetailNotifier extends ChangeNotifier {
   }
 
   Future<void> loadWatchlistStatus(int id) async {
-    final result = await getWatchListStatus.execute(id);
+    final result = await getTvWatchListStatus.execute(id);
     _isAddedtoWatchlist = result;
     notifyListeners();
   }

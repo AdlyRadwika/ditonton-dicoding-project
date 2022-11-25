@@ -7,22 +7,22 @@ import '../../dummy_data/dummy_objects.dart';
 import '../../helpers/test_helper.mocks.dart';
 
 void main() {
-  late RemoveWatchlist usecase;
+  late RemoveMovieWatchlist usecase;
   late MockMovieRepository mockMovieRepository;
 
   setUp(() {
     mockMovieRepository = MockMovieRepository();
-    usecase = RemoveWatchlist(mockMovieRepository);
+    usecase = RemoveMovieWatchlist(mockMovieRepository);
   });
 
   test('should remove watchlist movie from repository', () async {
     // arrange
-    when(mockMovieRepository.removeWatchlist(testMovieDetail))
+    when(mockMovieRepository.removeMovieWatchlist(testMovieDetail))
         .thenAnswer((_) async => Right('Removed from watchlist'));
     // act
     final result = await usecase.execute(testMovieDetail);
     // assert
-    verify(mockMovieRepository.removeWatchlist(testMovieDetail));
+    verify(mockMovieRepository.removeMovieWatchlist(testMovieDetail));
     expect(result, Right('Removed from watchlist'));
   });
 }

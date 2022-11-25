@@ -67,12 +67,12 @@ class MockGetMovieRecommendations extends _i1.Mock
           .Future<_i3.Either<_i6.Failure, List<_i9.Movie>>>);
 }
 
-/// A class which mocks [GetWatchListStatus].
+/// A class which mocks [GetMovieWatchlistStatus].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockGetWatchListStatus extends _i1.Mock
-    implements _i10.GetWatchListStatus {
-  MockGetWatchListStatus() {
+class MockGetMovieWatchlistStatus extends _i1.Mock
+    implements _i10.GetMovieWatchlistStatus {
+  MockGetMovieWatchlistStatus() {
     _i1.throwOnMissingStub(this);
   }
 
@@ -86,11 +86,11 @@ class MockGetWatchListStatus extends _i1.Mock
           returnValue: Future<bool>.value(false)) as _i5.Future<bool>);
 }
 
-/// A class which mocks [SaveWatchlist].
+/// A class which mocks [SaveMovieWatchlist].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockSaveWatchlist extends _i1.Mock implements _i11.SaveWatchlist {
-  MockSaveWatchlist() {
+class MockSaveMovieWatchlist extends _i1.Mock implements _i11.SaveMovieWatchlist {
+  MockSaveMovieWatchlist() {
     _i1.throwOnMissingStub(this);
   }
 
@@ -106,11 +106,11 @@ class MockSaveWatchlist extends _i1.Mock implements _i11.SaveWatchlist {
           as _i5.Future<_i3.Either<_i6.Failure, String>>);
 }
 
-/// A class which mocks [RemoveWatchlist].
+/// A class which mocks [RemoveMovieWatchlist].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockRemoveWatchlist extends _i1.Mock implements _i12.RemoveWatchlist {
-  MockRemoveWatchlist() {
+class MockRemoveMovieWatchlist extends _i1.Mock implements _i12.RemoveMovieWatchlist {
+  MockRemoveMovieWatchlist() {
     _i1.throwOnMissingStub(this);
   }
 
