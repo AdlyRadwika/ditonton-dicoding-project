@@ -205,7 +205,7 @@ class MovieList extends StatelessWidget {
                 Navigator.pushNamed(
                   context,
                   EntertaimentDetailPage.ROUTE_NAME,
-                  arguments: movie.id,
+                  arguments: EntertaimentArguments(movie.id, false),
                 );
               },
               child: ClipRRect(
@@ -267,4 +267,11 @@ class TvList extends StatelessWidget {
       ),
     );
   }
+}
+
+class EntertaimentArguments {
+  final int id;
+  final bool isTV;
+
+  const EntertaimentArguments(this.id, this.isTV);
 }

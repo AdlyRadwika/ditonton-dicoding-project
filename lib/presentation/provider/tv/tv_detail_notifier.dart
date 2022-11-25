@@ -45,7 +45,7 @@ class TvDetailNotifier extends ChangeNotifier {
   bool _isAddedtoWatchlist = false;
   bool get isAddedToWatchlist => _isAddedtoWatchlist;
 
-  Future<void> fetchtvDetail(int id) async {
+  Future<void> fetchTvDetail(int id) async {
     _tvState = RequestState.Loading;
     notifyListeners();
     final detailResult = await getTvDetail.execute(id);
@@ -79,7 +79,7 @@ class TvDetailNotifier extends ChangeNotifier {
   String _watchlistMessage = '';
   String get watchlistMessage => _watchlistMessage;
 
-  Future<void> addWatchlist(TvDetail tv) async {
+  Future<void> addTvWatchlist(TvDetail tv) async {
     final result = await saveTvWatchlist.execute(tv);
 
     await result.fold(
@@ -91,7 +91,7 @@ class TvDetailNotifier extends ChangeNotifier {
       },
     );
 
-    await loadWatchlistStatus(tv.id);
+    await loadTvWatchlistStatus(tv.id);
   }
 
   Future<void> removeFromTvWatchlist(TvDetail tv) async {
@@ -106,10 +106,10 @@ class TvDetailNotifier extends ChangeNotifier {
       },
     );
 
-    await loadWatchlistStatus(tv.id);
+    await loadTvWatchlistStatus(tv.id);
   }
 
-  Future<void> loadWatchlistStatus(int id) async {
+  Future<void> loadTvWatchlistStatus(int id) async {
     final result = await getTvWatchListStatus.execute(id);
     _isAddedtoWatchlist = result;
     notifyListeners();

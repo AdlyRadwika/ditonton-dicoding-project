@@ -103,7 +103,7 @@ class MockMovieRepository extends _i1.Mock implements _i6.MovieRepository {
           as _i7.Future<_i2.Either<_i8.Failure, String>>);
   @override
   _i7.Future<bool> isAddedToMovieWatchlist(int? id) =>
-      (super.noSuchMethod(Invocation.method(#isAddedToWatchlist, [id]),
+      (super.noSuchMethod(Invocation.method(#isAddedToMovieWatchlist, [id]),
           returnValue: Future<bool>.value(false)) as _i7.Future<bool>);
   @override
   _i7.Future<_i2.Either<_i8.Failure, List<_i9.Movie>>> getWatchlistMovies() =>

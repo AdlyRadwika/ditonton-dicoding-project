@@ -90,9 +90,9 @@ class MyApp extends StatelessWidget {
             case TopRatedMoviesPage.ROUTE_NAME:
               return CupertinoPageRoute(builder: (_) => TopRatedMoviesPage());
             case EntertaimentDetailPage.ROUTE_NAME:
-              final id = settings.arguments as int;
+              final args = settings.arguments as EntertaimentArguments;
               return MaterialPageRoute(
-                builder: (_) => EntertaimentDetailPage(id: id),
+                builder: (_) => EntertaimentDetailPage(id: args.id, isTV: args.isTV),
                 settings: settings,
               );
             case SearchPage.ROUTE_NAME:

@@ -87,8 +87,8 @@ class MockMovieDetailNotifier extends _i1.Mock
       (super.noSuchMethod(Invocation.getter(#message), returnValue: '')
           as String);
   @override
-  bool get isAddedToWatchlist =>
-      (super.noSuchMethod(Invocation.getter(#isAddedToWatchlist),
+  bool get isAddedToMovieWatchlist =>
+      (super.noSuchMethod(Invocation.getter(#isAddedToMovieWatchlist),
           returnValue: false) as bool);
   @override
   String get watchlistMessage =>

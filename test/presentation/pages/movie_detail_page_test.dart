@@ -35,11 +35,11 @@ void main() {
     when(mockNotifier.movie).thenReturn(testMovieDetail);
     when(mockNotifier.recommendationState).thenReturn(RequestState.Loaded);
     when(mockNotifier.movieRecommendations).thenReturn(<Movie>[]);
-    when(mockNotifier.isAddedToWatchlist).thenReturn(false);
+    when(mockNotifier.isAddedToMovieWatchlist).thenReturn(false);
 
     final watchlistButtonIcon = find.byIcon(Icons.add);
 
-    await tester.pumpWidget(_makeTestableWidget(EntertaimentDetailPage(id: 1)));
+    await tester.pumpWidget(_makeTestableWidget(EntertaimentDetailPage(id: 1, isTV: false,)));
 
     expect(watchlistButtonIcon, findsOneWidget);
   });
@@ -51,11 +51,11 @@ void main() {
     when(mockNotifier.movie).thenReturn(testMovieDetail);
     when(mockNotifier.recommendationState).thenReturn(RequestState.Loaded);
     when(mockNotifier.movieRecommendations).thenReturn(<Movie>[]);
-    when(mockNotifier.isAddedToWatchlist).thenReturn(true);
+    when(mockNotifier.isAddedToMovieWatchlist).thenReturn(true);
 
     final watchlistButtonIcon = find.byIcon(Icons.check);
 
-    await tester.pumpWidget(_makeTestableWidget(EntertaimentDetailPage(id: 1)));
+    await tester.pumpWidget(_makeTestableWidget(EntertaimentDetailPage(id: 1, isTV: false,)));
 
     expect(watchlistButtonIcon, findsOneWidget);
   });
@@ -67,12 +67,12 @@ void main() {
     when(mockNotifier.movie).thenReturn(testMovieDetail);
     when(mockNotifier.recommendationState).thenReturn(RequestState.Loaded);
     when(mockNotifier.movieRecommendations).thenReturn(<Movie>[]);
-    when(mockNotifier.isAddedToWatchlist).thenReturn(false);
+    when(mockNotifier.isAddedToMovieWatchlist).thenReturn(false);
     when(mockNotifier.watchlistMessage).thenReturn('Added to Watchlist');
 
     final watchlistButton = find.byType(ElevatedButton);
 
-    await tester.pumpWidget(_makeTestableWidget(EntertaimentDetailPage(id: 1)));
+    await tester.pumpWidget(_makeTestableWidget(EntertaimentDetailPage(id: 1, isTV: false,)));
 
     expect(find.byIcon(Icons.add), findsOneWidget);
 
@@ -90,12 +90,12 @@ void main() {
     when(mockNotifier.movie).thenReturn(testMovieDetail);
     when(mockNotifier.recommendationState).thenReturn(RequestState.Loaded);
     when(mockNotifier.movieRecommendations).thenReturn(<Movie>[]);
-    when(mockNotifier.isAddedToWatchlist).thenReturn(false);
+    when(mockNotifier.isAddedToMovieWatchlist).thenReturn(false);
     when(mockNotifier.watchlistMessage).thenReturn('Failed');
 
     final watchlistButton = find.byType(ElevatedButton);
 
-    await tester.pumpWidget(_makeTestableWidget(EntertaimentDetailPage(id: 1)));
+    await tester.pumpWidget(_makeTestableWidget(EntertaimentDetailPage(id: 1, isTV: false,)));
 
     expect(find.byIcon(Icons.add), findsOneWidget);
 

@@ -162,7 +162,7 @@ void main() {
       // act
       await provider.loadMovieWatchlistStatus(1);
       // assert
-      expect(provider.isAddedToWatchlist, true);
+      expect(provider.isAddedToMovieWatchlist, true);
     });
 
     test('should execute save watchlist when function called', () async {
@@ -199,7 +199,7 @@ void main() {
       await provider.addMovieWatchlist(testMovieDetail);
       // assert
       verify(mockGetMovieWatchlistStatus.execute(testMovieDetail.id));
-      expect(provider.isAddedToWatchlist, true);
+      expect(provider.isAddedToMovieWatchlist, true);
       expect(provider.watchlistMessage, 'Added to Watchlist');
       expect(listenerCallCount, 1);
     });
