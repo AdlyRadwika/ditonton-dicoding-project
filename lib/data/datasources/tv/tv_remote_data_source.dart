@@ -7,7 +7,7 @@ import 'package:ditonton/common/exception.dart';
 import 'package:http/http.dart' as http;
 
 abstract class TvRemoteDataSource {
-  Future<List<TvModel>> getNowPlayingTvs();
+  Future<List<TvModel>> getOnTheAirTVs();
   Future<List<TvModel>> getPopularTvs();
   Future<List<TvModel>> getTopRatedTvs();
   Future<TvDetailResponse> getTvDetail(int id);
@@ -24,9 +24,9 @@ class TvRemoteDataSourceImpl implements TvRemoteDataSource {
   TvRemoteDataSourceImpl({required this.client});
 
   @override
-  Future<List<TvModel>> getNowPlayingTvs() async {
+  Future<List<TvModel>> getOnTheAirTVs() async {
     final response =
-        await client.get(Uri.parse('$BASE_URL/tv/airing_today?$API_KEY'));
+        await client.get(Uri.parse('$BASE_URL/tv/on_the_air?$API_KEY'));
 
     if (response.statusCode == 200) {
       return TvResponse.fromJson(json.decode(response.body)).tvList;

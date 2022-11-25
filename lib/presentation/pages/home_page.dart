@@ -20,8 +20,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  bool isTV = false;
-
   @override
   void initState() {
     super.initState();
@@ -31,7 +29,7 @@ class _HomePageState extends State<HomePage> {
           ..fetchPopularMovies()
           ..fetchTopRatedMovies();
       Provider.of<TvListNotifier>(context, listen: false)
-          ..fetchNowPlayingTvs()
+          ..fetchOnTheAirTVs()
           ..fetchPopularTvs()
           ..fetchTopRatedTvs();
     });
@@ -51,20 +49,9 @@ class _HomePageState extends State<HomePage> {
               accountEmail: Text('ditonton@dicoding.com'),
             ),
             ListTile(
-              leading: Icon(Icons.movie),
-              title: Text('Movies'),
+              leading: Icon(Icons.home),
+              title: Text('Home'),
               onTap: () {
-                isTV = false;
-                setState(() {});
-                Navigator.pop(context);
-              },
-            ),
-            ListTile(
-              leading: Icon(Icons.tv),
-              title: Text('TVs'),
-              onTap: () {
-                isTV = true;
-                setState(() {});
                 Navigator.pop(context);
               },
             ),
@@ -103,22 +90,40 @@ class _HomePageState extends State<HomePage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'Now Playing',
+                'Now Playing Movies',
                 style: kHeading6,
               ),
-              isTV == true ? buildTvListConsumer(indexState: 0) : buildMovieListConsumer(indexState: 0),
+              buildMovieListConsumer(indexState: 0),
               _buildSubHeading(
-                title: 'Popular',
+                title: 'Popular Movies',
                 onTap: () =>
                     Navigator.pushNamed(context, PopularMoviesPage.ROUTE_NAME),
               ),
-              isTV == true ? buildTvListConsumer(indexState: 1) : buildMovieListConsumer(indexState: 1),
+              buildMovieListConsumer(indexState: 1),
               _buildSubHeading(
-                title: 'Top Rated',
+                title: 'Top Rated Movies',
                 onTap: () =>
                     Navigator.pushNamed(context, TopRatedMoviesPage.ROUTE_NAME),
               ),
-              isTV == true ? buildTvListConsumer(indexState: 2) : buildMovieListConsumer(indexState: 2),
+              buildMovieListConsumer(indexState: 2),
+              _buildSubHeading(
+                title: 'On The Air TV Shows',
+                onTap: () =>
+                    Navigator.pushNamed(context, TopRatedMoviesPage.ROUTE_NAME),
+              ),
+              buildTvListConsumer(indexState: 0),
+              _buildSubHeading(
+                title: 'Popular TV Shows',
+                onTap: () =>
+                    Navigator.pushNamed(context, TopRatedMoviesPage.ROUTE_NAME),
+              ),
+              buildTvListConsumer(indexState: 1),
+              _buildSubHeading(
+                title: 'Top Rated TV Shows',
+                onTap: () =>
+                    Navigator.pushNamed(context, TopRatedMoviesPage.ROUTE_NAME),
+              ),
+              buildTvListConsumer(indexState: 2),
             ],
           ),
         ),
@@ -144,8 +149,8 @@ class _HomePageState extends State<HomePage> {
 
   Consumer<TvListNotifier> buildTvListConsumer({required int indexState}) {
     return Consumer<TvListNotifier>(builder: (context, data, child) {
-      List<RequestState> state = [data.nowPlayingTVsState, data.popularTvsState, data.topRatedTvsState];
-      List tvs = [data.nowPlayingTvs, data.popularTvs, data.topRatedTvs];
+      List<RequestState> state = [data.onTheAirTVsState, data.popularTvsState, data.topRatedTvsState];
+      List tvs = [data.onTheAirTVs, data.popularTvs, data.topRatedTvs];
       if (state[indexState] == RequestState.Loading) {
         return Center(
           child: CircularProgressIndicator(),

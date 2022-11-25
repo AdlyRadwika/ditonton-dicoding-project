@@ -5,7 +5,7 @@ import 'package:ditonton/common/failure.dart';
 
 abstract class TvRepository {
   
-  Future<Either<Failure, List<Tv>>> getNowPlayingTvs();
+  Future<Either<Failure, List<Tv>>> getOnTheAirTVs();
   Future<Either<Failure, List<Tv>>> getPopularTvs();
   Future<Either<Failure, List<Tv>>> getTopRatedTvs();
   Future<Either<Failure, TvDetail>> getTvDetail(int id);

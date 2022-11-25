@@ -82,7 +82,7 @@ void init() {
   );
   locator.registerFactory(
     () => TvListNotifier(
-      getNowPlayingTvs: locator(),
+      getOnTheAirTVs: locator(),
       getPopularTvs: locator(),
       getTopRatedTvs: locator(),
     ),
@@ -128,7 +128,7 @@ void init() {
   locator.registerLazySingleton(() => SaveWatchlist(locator()));
   locator.registerLazySingleton(() => RemoveWatchlist(locator()));
   locator.registerLazySingleton(() => GetWatchlistMovies(locator()));
-  locator.registerLazySingleton(() => GetNowPlayingTvs(locator()));
+  locator.registerLazySingleton(() => GetOnTheAirTVs(locator()));
   locator.registerLazySingleton(() => GetPopularTvs(locator()));
   locator.registerLazySingleton(() => GetTopRatedTvs(locator()));
   locator.registerLazySingleton(() => GetTvDetail(locator()));

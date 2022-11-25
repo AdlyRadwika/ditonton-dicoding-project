@@ -6,11 +6,11 @@ import 'package:ditonton/domain/usecases/tv/get_top_rated_tvs.dart';
 import 'package:flutter/material.dart';
 
 class TvListNotifier extends ChangeNotifier {
-  var _nowPlayingTvs = <Tv>[];
-  List<Tv> get nowPlayingTvs => _nowPlayingTvs;
+  var _onTheAirTVs = <Tv>[];
+  List<Tv> get onTheAirTVs => _onTheAirTVs;
 
-  RequestState _nowPlayingTVsState = RequestState.Empty;
-  RequestState get nowPlayingTVsState => _nowPlayingTVsState;
+  RequestState _onTheAirTVsState = RequestState.Empty;
+  RequestState get onTheAirTVsState => _onTheAirTVsState;
 
   var _popularTvs = <Tv>[];
   List<Tv> get popularTvs => _popularTvs;
@@ -28,29 +28,29 @@ class TvListNotifier extends ChangeNotifier {
   String get message => _message;
 
   TvListNotifier({
-    required this.getNowPlayingTvs,
+    required this.getOnTheAirTVs,
     required this.getPopularTvs,
     required this.getTopRatedTvs,
   });
 
-  final GetNowPlayingTvs getNowPlayingTvs;
+  final GetOnTheAirTVs getOnTheAirTVs;
   final GetPopularTvs getPopularTvs;
   final GetTopRatedTvs getTopRatedTvs;
 
-  Future<void> fetchNowPlayingTvs() async {
-    _nowPlayingTVsState = RequestState.Loading;
+  Future<void> fetchOnTheAirTVs() async {
+    _onTheAirTVsState = RequestState.Loading;
     notifyListeners();
 
-    final result = await getNowPlayingTvs.execute();
+    final result = await getOnTheAirTVs.execute();
     result.fold(
       (failure) {
-        _nowPlayingTVsState = RequestState.Error;
+        _onTheAirTVsState = RequestState.Error;
         _message = failure.message;
         notifyListeners();
       },
       (tvsData) {
-        _nowPlayingTVsState = RequestState.Loaded;
-        _nowPlayingTvs = tvsData;
+        _onTheAirTVsState = RequestState.Loaded;
+        _onTheAirTVs = tvsData;
         notifyListeners();
       },
     );
