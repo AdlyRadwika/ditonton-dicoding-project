@@ -244,11 +244,11 @@ class TvList extends StatelessWidget {
             padding: const EdgeInsets.all(8),
             child: InkWell(
               onTap: () {
-                // Navigator.pushNamed(
-                //   context,
-                //   tvDetailPage.ROUTE_NAME,
-                //   arguments: tv.id,
-                // );
+                Navigator.pushNamed(
+                  context,
+                  EntertaimentDetailPage.ROUTE_NAME,
+                  arguments: EntertaimentArguments(tv.id, true),
+                );
               },
               child: ClipRRect(
                 borderRadius: BorderRadius.all(Radius.circular(16)),

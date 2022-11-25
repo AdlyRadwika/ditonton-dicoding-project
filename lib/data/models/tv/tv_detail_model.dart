@@ -8,13 +8,11 @@ class TvDetailResponse extends Equatable {
         required this.backdropPath,
         required this.createdBy,
         required this.episodeRunTime,
-        required this.firstAirDate,
         required this.genres,
         required this.homepage,
         required this.id,
         required this.inProduction,
         required this.languages,
-        required this.lastAirDate,
         required this.name,
         required this.numberOfEpisodes,
         required this.numberOfSeasons,
@@ -36,13 +34,11 @@ class TvDetailResponse extends Equatable {
     final String backdropPath;
     final List<dynamic> createdBy;
     final List<int> episodeRunTime;
-    final DateTime firstAirDate;
     final List<GenreModel> genres;
     final String homepage;
     final int id;
     final bool inProduction;
     final List<String> languages;
-    final DateTime lastAirDate;
     final String name;
     final int numberOfEpisodes;
     final int numberOfSeasons;
@@ -65,13 +61,11 @@ class TvDetailResponse extends Equatable {
         backdropPath: json["backdrop_path"],
         createdBy: List<dynamic>.from(json["created_by"].map((x) => x)),
         episodeRunTime: List<int>.from(json["episode_run_time"].map((x) => x)),
-        firstAirDate: DateTime.parse(json["first_air_date"]),
         genres: List<GenreModel>.from(json["genres"].map((x) => GenreModel.fromJson(x))),
         homepage: json["homepage"],
         id: json["id"],
         inProduction: json["in_production"],
         languages: List<String>.from(json["languages"].map((x) => x)),
-        lastAirDate: DateTime.parse(json["last_air_date"]),
         name: json["name"],
         numberOfEpisodes: json["number_of_episodes"],
         numberOfSeasons: json["number_of_seasons"],
@@ -94,13 +88,11 @@ class TvDetailResponse extends Equatable {
         "backdrop_path": backdropPath,
         "created_by": List<dynamic>.from(createdBy.map((x) => x)),
         "episode_run_time": List<dynamic>.from(episodeRunTime.map((x) => x)),
-        "first_air_date": "${firstAirDate.year.toString().padLeft(4, '0')}-${firstAirDate.month.toString().padLeft(2, '0')}-${firstAirDate.day.toString().padLeft(2, '0')}",
         "genres": List<dynamic>.from(genres.map((x) => x.toJson())),
         "homepage": homepage,
         "id": id,
         "in_production": inProduction,
         "languages": List<dynamic>.from(languages.map((x) => x)),
-        "last_air_date": "${lastAirDate.year.toString().padLeft(4, '0')}-${lastAirDate.month.toString().padLeft(2, '0')}-${lastAirDate.day.toString().padLeft(2, '0')}",
         "name": name,
         "number_of_episodes": numberOfEpisodes,
         "number_of_seasons": numberOfSeasons,
@@ -124,13 +116,11 @@ class TvDetailResponse extends Equatable {
         backdropPath: this.backdropPath,
         createdBy: this.createdBy,
         episodeRunTime: this.episodeRunTime,
-        firstAirDate: this.firstAirDate,
         genres: this.genres.map((genre) => genre.toEntity()).toList(),
         homepage: this.homepage,
         id: this.id,
         inProduction: this.inProduction,
         languages: this.languages,
-        lastAirDate: this.lastAirDate,
         name: this.name,
         numberOfEpisodes: this.numberOfEpisodes,
         numberOfSeasons: this.numberOfSeasons,
@@ -156,13 +146,11 @@ class TvDetailResponse extends Equatable {
         backdropPath,
         createdBy,
         episodeRunTime,
-        firstAirDate,
         genres,
         homepage,
         id,
         inProduction,
         languages,
-        lastAirDate,
         name,
         numberOfEpisodes,
         numberOfSeasons,
