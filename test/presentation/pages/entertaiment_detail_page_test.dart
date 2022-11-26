@@ -9,7 +9,7 @@ import 'package:mockito/mockito.dart';
 import 'package:provider/provider.dart';
 
 import '../../dummy_data/movie/movie_dummy_objects.dart';
-import 'movie_detail_page_test.mocks.dart';
+import 'entertaiment_detail_page_test.mocks.dart';
 
 @GenerateMocks([MovieDetailNotifier])
 void main() {

@@ -8,7 +8,7 @@ import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:provider/provider.dart';
 
-import 'top_rated_movies_page_test.mocks.dart';
+import 'top_rated_entertaiments_page_test.mocks.dart';
 
 @GenerateMocks([TopRatedMoviesNotifier])
 void main() {
