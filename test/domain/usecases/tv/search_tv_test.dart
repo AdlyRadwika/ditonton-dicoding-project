@@ -1,30 +1,30 @@
 import 'package:dartz/dartz.dart';
-import 'package:ditonton/domain/entities/movie/movie.dart';
-import 'package:ditonton/domain/usecases/movie/search_movies.dart';
+import 'package:ditonton/domain/entities/tv/tv.dart';
+import 'package:ditonton/domain/usecases/tv/search_tvs.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 
-import '../../../helpers/movie/movie_test_helper.mocks.dart';
+import '../../../helpers/tv/tv_test_helper.mocks.dart';
 
 void main() {
-  late SearchMovies usecase;
-  late MockMovieRepository mockMovieRepository;
+  late SearchTvs usecase;
+  late MockTvRepository mockTvRepository;
 
   setUp(() {
-    mockMovieRepository = MockMovieRepository();
-    usecase = SearchMovies(mockMovieRepository);
+    mockTvRepository = MockTvRepository();
+    usecase = SearchTvs(mockTvRepository);
   });
 
-  final tMovies = <Movie>[];
+  final tTvs = <Tv>[];
   final tQuery = 'Spiderman';
 
-  test('should get list of movies from the repository', () async {
+  test('should get list of Tvs from the repository', () async {
     // arrange
-    when(mockMovieRepository.searchMovies(tQuery))
-        .thenAnswer((_) async => Right(tMovies));
+    when(mockTvRepository.searchTvs(tQuery))
+        .thenAnswer((_) async => Right(tTvs));
     // act
     final result = await usecase.execute(tQuery);
     // assert
-    expect(result, Right(tMovies));
+    expect(result, Right(tTvs));
   });
 }

@@ -1,31 +1,31 @@
 import 'package:dartz/dartz.dart';
-import 'package:ditonton/domain/entities/movie/movie.dart';
-import 'package:ditonton/domain/usecases/movie/get_movie_recommendations.dart';
+import 'package:ditonton/domain/entities/tv/tv.dart';
+import 'package:ditonton/domain/usecases/tv/get_tv_recommendations.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 
-import '../../../helpers/movie/movie_test_helper.mocks.dart';
+import '../../../helpers/tv/tv_test_helper.mocks.dart';
 
 void main() {
-  late GetMovieRecommendations usecase;
-  late MockMovieRepository mockMovieRepository;
+  late GetTvRecommendations usecase;
+  late MockTvRepository mockTvRepository;
 
   setUp(() {
-    mockMovieRepository = MockMovieRepository();
-    usecase = GetMovieRecommendations(mockMovieRepository);
+    mockTvRepository = MockTvRepository();
+    usecase = GetTvRecommendations(mockTvRepository);
   });
 
   final tId = 1;
-  final tMovies = <Movie>[];
+  final tTvs = <Tv>[];
 
-  test('should get list of movie recommendations from the repository',
+  test('should get list of Tv recommendations from the repository',
       () async {
     // arrange
-    when(mockMovieRepository.getMovieRecommendations(tId))
-        .thenAnswer((_) async => Right(tMovies));
+    when(mockTvRepository.getTvRecommendations(tId))
+        .thenAnswer((_) async => Right(tTvs));
     // act
     final result = await usecase.execute(tId);
     // assert
-    expect(result, Right(tMovies));
+    expect(result, Right(tTvs));
   });
 }

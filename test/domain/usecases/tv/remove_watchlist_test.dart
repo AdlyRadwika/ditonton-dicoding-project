@@ -1,28 +1,28 @@
 import 'package:dartz/dartz.dart';
-import 'package:ditonton/domain/usecases/movie/remove_watchlist.dart';
+import 'package:ditonton/domain/usecases/tv/remove_watchlist.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 
-import '../../../dummy_data/movie/movie_dummy_objects.dart';
-import '../../../helpers/movie/movie_test_helper.mocks.dart';
+import '../../../dummy_data/tv/tv_dummy_objects.dart';
+import '../../../helpers/tv/tv_test_helper.mocks.dart';
 
 void main() {
-  late RemoveMovieWatchlist usecase;
-  late MockMovieRepository mockMovieRepository;
+  late RemoveTvWatchlist usecase;
+  late MockTvRepository mockTvRepository;
 
   setUp(() {
-    mockMovieRepository = MockMovieRepository();
-    usecase = RemoveMovieWatchlist(mockMovieRepository);
+    mockTvRepository = MockTvRepository();
+    usecase = RemoveTvWatchlist(mockTvRepository);
   });
 
-  test('should remove watchlist movie from repository', () async {
+  test('should remove watchlist Tv from repository', () async {
     // arrange
-    when(mockMovieRepository.removeMovieWatchlist(testMovieDetail))
+    when(mockTvRepository.removeTvWatchlist(testTvDetail))
         .thenAnswer((_) async => Right('Removed from watchlist'));
     // act
-    final result = await usecase.execute(testMovieDetail);
+    final result = await usecase.execute(testTvDetail);
     // assert
-    verify(mockMovieRepository.removeMovieWatchlist(testMovieDetail));
+    verify(mockTvRepository.removeTvWatchlist(testTvDetail));
     expect(result, Right('Removed from watchlist'));
   });
 }

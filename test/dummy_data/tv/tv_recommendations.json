@@ -4,23 +4,26 @@
     {
       "adult": false,
       "backdrop_path": "/path.jpg",
+      "id": 1,
+      "name": "name",
+      "original_language": "en",
+      "original_name": "Original name",
+      "overview": "Overview",
+      "poster_path": "/path.jpg",
+      "media_type": "tv",
       "genre_ids": [
         1,
         2,
-        3
+        3,
+        4
       ],
-      "id": 1,
-      "media_type": "movie",
-      "title": "Title",
-      "original_language": "en",
-      "original_title": "Original Title",
-      "overview": "Overview",
       "popularity": 1.0,
-      "poster_path": "/path.jpg",
-      "release_date": "2020-05-05",
-      "video": false,
+      "first_air_date": "2020-05-05",
       "vote_average": 1.0,
-      "vote_count": 1
+      "vote_count": 1,
+      "origin_country": [
+        "DE"
+      ]
     }
   ],
   "total_pages": 1,

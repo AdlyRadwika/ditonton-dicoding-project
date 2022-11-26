@@ -28,12 +28,12 @@ class TvListNotifier extends ChangeNotifier {
   String get message => _message;
 
   TvListNotifier({
-    required this.getOnTheAirTVs,
+    required this.getNowPlayingTvs,
     required this.getPopularTvs,
     required this.getTopRatedTvs,
   });
 
-  final GetOnTheAirTVs getOnTheAirTVs;
+  final GetNowPlayingTvs getNowPlayingTvs;
   final GetPopularTvs getPopularTvs;
   final GetTopRatedTvs getTopRatedTvs;
 
@@ -41,7 +41,7 @@ class TvListNotifier extends ChangeNotifier {
     _onTheAirTVsState = RequestState.Loading;
     notifyListeners();
 
-    final result = await getOnTheAirTVs.execute();
+    final result = await getNowPlayingTvs.execute();
     result.fold(
       (failure) {
         _onTheAirTVsState = RequestState.Error;
