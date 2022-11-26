@@ -35,4 +35,9 @@ class TvSearchNotifier extends ChangeNotifier {
       },
     );
   }
+
+  void emptyTvSearch() {
+    _state = RequestState.Empty;
+    _searchResult = [];
+  }
 }

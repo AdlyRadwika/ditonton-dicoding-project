@@ -35,4 +35,9 @@ class MovieSearchNotifier extends ChangeNotifier {
       },
     );
   }
+
+    void emptyMovieSearch() {
+      _state = RequestState.Empty;
+      _searchResult = [];
+  }
 }
