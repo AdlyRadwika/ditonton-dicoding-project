@@ -28,14 +28,14 @@ final testTvDetail = TvDetail(
 
 final testWatchlistTv = Tv.watchlist(
   id: 1,
-  name: 'title',
+  name: 'name',
   posterPath: 'posterPath',
   overview: 'overview',
 );
 
 final testTvTable = TvTable(
   id: 1,
-  title: 'title',
+  name: 'name',
   posterPath: 'posterPath',
   overview: 'overview',
 );
@@ -44,5 +44,5 @@ final testTvMap = {
   'id': 1,
   'overview': 'overview',
   'posterPath': 'posterPath',
-  'title': 'title',
+  'name': 'name',
 };

@@ -20,11 +20,11 @@ class MovieDatabaseHelper {
     return _database;
   }
 
-  static const String _tblWatchlist = 'watchlist';
+  static const String _tblWatchlist = 'movieWatchlist';
 
   Future<Database> _initDb() async {
     final path = await getDatabasesPath();
-    final databasePath = '$path/ditonton.db';
+    final databasePath = '$path/ditontonMovie.db';
 
     var db = await openDatabase(databasePath, version: 1, onCreate: _onCreate);
     return db;
