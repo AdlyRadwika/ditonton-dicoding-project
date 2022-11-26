@@ -68,7 +68,7 @@ class _WatchlistMoviesPageState extends State<WatchlistMoviesPage>
 
   Consumer<WatchlistMovieNotifier> buildMovieConsumer() {
     return Consumer<WatchlistMovieNotifier>(
-      builder: (context, movieData,child) {
+      builder: (context, movieData, child) {
         if (movieData.watchlistState == RequestState.Loading) {
           return Center(
             child: CircularProgressIndicator(),
@@ -79,7 +79,10 @@ class _WatchlistMoviesPageState extends State<WatchlistMoviesPage>
               itemCount: movieData.watchlistMovies.length,
               itemBuilder: (context, index) {
                 final movie = movieData.watchlistMovies[index];
-                return EntertaimentCard(movie: movie, isTV: false,);
+                return EntertaimentCard(
+                  movie: movie,
+                  isTV: false,
+                );
               },
             ),
           );
@@ -97,7 +100,7 @@ class _WatchlistMoviesPageState extends State<WatchlistMoviesPage>
 
   Consumer<WatchlistTvNotifier> buildTvConsumer() {
     return Consumer<WatchlistTvNotifier>(
-      builder: (context, tvData,child) {
+      builder: (context, tvData, child) {
         if (tvData.watchlistState == RequestState.Loading) {
           return Center(
             child: CircularProgressIndicator(),
@@ -108,7 +111,10 @@ class _WatchlistMoviesPageState extends State<WatchlistMoviesPage>
               itemCount: tvData.watchlistTvs.length,
               itemBuilder: (context, index) {
                 final tv = tvData.watchlistTvs[index];
-                return EntertaimentCard(tv: tv, isTV: true,);
+                return EntertaimentCard(
+                  tv: tv,
+                  isTV: true,
+                );
               },
             ),
           );

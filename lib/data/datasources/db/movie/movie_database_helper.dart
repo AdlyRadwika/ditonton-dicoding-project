@@ -9,7 +9,8 @@ class MovieDatabaseHelper {
     _movieDatabaseHelper = this;
   }
 
-  factory MovieDatabaseHelper() => _movieDatabaseHelper ?? MovieDatabaseHelper._instance();
+  factory MovieDatabaseHelper() =>
+      _movieDatabaseHelper ?? MovieDatabaseHelper._instance();
 
   static Database? _database;
 

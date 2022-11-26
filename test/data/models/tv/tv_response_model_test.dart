@@ -15,8 +15,7 @@ void main() {
     name: "Name",
     voteAverage: 1.0,
   );
-  final tTvResponseModel =
-      TvResponse(tvList: <TvModel>[tTvModel]);
+  final tTvResponseModel = TvResponse(tvList: <TvModel>[tTvModel]);
   group('fromJson', () {
     test('should return a valid model from JSON', () async {
       // arrange

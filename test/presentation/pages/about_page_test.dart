@@ -3,10 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  testWidgets('should finds a stack widget or any other widgets', (tester) async {
+  testWidgets('should finds a stack widget or any other widgets',
+      (tester) async {
     final stackWidget = find.byType(Stack);
 
-    await tester.pumpWidget(MaterialApp(home: AboutPage(),));
+    await tester.pumpWidget(MaterialApp(
+      home: AboutPage(),
+    ));
 
     expect(stackWidget, findsWidgets);
   });

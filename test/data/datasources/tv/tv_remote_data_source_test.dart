@@ -11,7 +11,6 @@ import 'package:mockito/mockito.dart';
 import '../../../helpers/tv/tv_test_helper.mocks.dart';
 import '../../../json_reader.dart';
 
-
 void main() {
   const API_KEY = 'api_key=2174d146bb9c0eab47529b2e77d6b526';
   const BASE_URL = 'https://api.themoviedb.org/3';
@@ -32,8 +31,7 @@ void main() {
     test('should return list of tv Model when the response code is 200',
         () async {
       // arrange
-      when(mockHttpClient
-              .get(Uri.parse('$BASE_URL/tv/on_the_air?$API_KEY')))
+      when(mockHttpClient.get(Uri.parse('$BASE_URL/tv/on_the_air?$API_KEY')))
           .thenAnswer((_) async =>
               http.Response(readJson('dummy_data/tv/now_playing.json'), 200));
       // act
@@ -45,8 +43,7 @@ void main() {
         'should throw a ServerException when the response code is 404 or other',
         () async {
       // arrange
-      when(mockHttpClient
-              .get(Uri.parse('$BASE_URL/tv/on_the_air?$API_KEY')))
+      when(mockHttpClient.get(Uri.parse('$BASE_URL/tv/on_the_air?$API_KEY')))
           .thenAnswer((_) async => http.Response('Not Found', 404));
       // act
       final call = dataSource.getNowPlayingTvs();
@@ -60,8 +57,7 @@ void main() {
         TvResponse.fromJson(json.decode(readJson('dummy_data/tv/popular.json')))
             .tvList;
 
-    test('should return list of tvs when response is success (200)',
-        () async {
+    test('should return list of tvs when response is success (200)', () async {
       // arrange
       when(mockHttpClient.get(Uri.parse('$BASE_URL/tv/popular?$API_KEY')))
           .thenAnswer((_) async =>

@@ -105,10 +105,11 @@ class MovieRepositoryImpl implements MovieRepository {
   }
 
   @override
-  Future<Either<Failure, String>> removeMovieWatchlist(MovieDetail movie) async {
+  Future<Either<Failure, String>> removeMovieWatchlist(
+      MovieDetail movie) async {
     try {
-      final result =
-          await localDataSource.removeMovieWatchlist(MovieTable.fromEntity(movie));
+      final result = await localDataSource
+          .removeMovieWatchlist(MovieTable.fromEntity(movie));
       return Right(result);
     } on DatabaseException catch (e) {
       return Left(DatabaseFailure(e.message));

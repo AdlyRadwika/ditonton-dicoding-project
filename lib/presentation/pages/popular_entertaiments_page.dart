@@ -13,7 +13,8 @@ class PopularEntertaimentsPage extends StatefulWidget {
   PopularEntertaimentsPage({required this.isTV});
 
   @override
-  _PopularEntertaimentsPageState createState() => _PopularEntertaimentsPageState();
+  _PopularEntertaimentsPageState createState() =>
+      _PopularEntertaimentsPageState();
 }
 
 class _PopularEntertaimentsPageState extends State<PopularEntertaimentsPage> {
@@ -21,23 +22,26 @@ class _PopularEntertaimentsPageState extends State<PopularEntertaimentsPage> {
   void initState() {
     super.initState();
     widget.isTV == true
-    ? Future.microtask(() =>
-        Provider.of<PopularTvsNotifier>(context, listen: false)
-            .fetchPopularTvs())
-    : Future.microtask(() =>
-        Provider.of<PopularMoviesNotifier>(context, listen: false)
-            .fetchPopularMovies());
+        ? Future.microtask(() =>
+            Provider.of<PopularTvsNotifier>(context, listen: false)
+                .fetchPopularTvs())
+        : Future.microtask(() =>
+            Provider.of<PopularMoviesNotifier>(context, listen: false)
+                .fetchPopularMovies());
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.isTV == true ? 'Popular TV Shows' : 'Popular Movies'),
+        title:
+            Text(widget.isTV == true ? 'Popular TV Shows' : 'Popular Movies'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: widget.isTV == true ? buildPopularTvsConsumer() : buildPopularMoviesConsumer(),
+        child: widget.isTV == true
+            ? buildPopularTvsConsumer()
+            : buildPopularMoviesConsumer(),
       ),
     );
   }
@@ -78,7 +82,10 @@ class _PopularEntertaimentsPageState extends State<PopularEntertaimentsPage> {
           return ListView.builder(
             itemBuilder: (context, index) {
               final tv = data.tvs[index];
-              return EntertaimentCard(tv: tv, isTV: true,);
+              return EntertaimentCard(
+                tv: tv,
+                isTV: true,
+              );
             },
             itemCount: data.tvs.length,
           );

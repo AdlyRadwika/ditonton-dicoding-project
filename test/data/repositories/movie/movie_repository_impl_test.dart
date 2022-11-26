@@ -14,7 +14,6 @@ import 'package:mockito/mockito.dart';
 import '../../../dummy_data/movie/movie_dummy_objects.dart';
 import '../../../helpers/movie/movie_test_helper.mocks.dart';
 
-
 void main() {
   late MovieRepositoryImpl repository;
   late MockMovieRemoteDataSource mockRemoteDataSource;

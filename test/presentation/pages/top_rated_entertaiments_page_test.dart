@@ -39,7 +39,9 @@ void main() {
     final progressFinder = find.byType(CircularProgressIndicator);
     final centerFinder = find.byType(Center);
 
-    await tester.pumpWidget(_makeTestableMovieWidget(TopRatedEntertaimentsPage(isTV: false,)));
+    await tester.pumpWidget(_makeTestableMovieWidget(TopRatedEntertaimentsPage(
+      isTV: false,
+    )));
 
     expect(centerFinder, findsOneWidget);
     expect(progressFinder, findsOneWidget);
@@ -52,7 +54,9 @@ void main() {
 
     final listViewFinder = find.byType(ListView);
 
-    await tester.pumpWidget(_makeTestableMovieWidget(TopRatedEntertaimentsPage(isTV: false,)));
+    await tester.pumpWidget(_makeTestableMovieWidget(TopRatedEntertaimentsPage(
+      isTV: false,
+    )));
 
     expect(listViewFinder, findsOneWidget);
   });
@@ -64,7 +68,9 @@ void main() {
 
     final textFinder = find.byKey(Key('error_message'));
 
-    await tester.pumpWidget(_makeTestableMovieWidget(TopRatedEntertaimentsPage(isTV: false,)));
+    await tester.pumpWidget(_makeTestableMovieWidget(TopRatedEntertaimentsPage(
+      isTV: false,
+    )));
 
     expect(textFinder, findsOneWidget);
   });
@@ -86,7 +92,9 @@ void main() {
     final progressFinder = find.byType(CircularProgressIndicator);
     final centerFinder = find.byType(Center);
 
-    await tester.pumpWidget(_makeTestableTvWidget(TopRatedEntertaimentsPage(isTV: true,)));
+    await tester.pumpWidget(_makeTestableTvWidget(TopRatedEntertaimentsPage(
+      isTV: true,
+    )));
 
     expect(centerFinder, findsOneWidget);
     expect(progressFinder, findsOneWidget);
@@ -99,7 +107,9 @@ void main() {
 
     final listViewFinder = find.byType(ListView);
 
-    await tester.pumpWidget(_makeTestableTvWidget(TopRatedEntertaimentsPage(isTV: true,)));
+    await tester.pumpWidget(_makeTestableTvWidget(TopRatedEntertaimentsPage(
+      isTV: true,
+    )));
 
     expect(listViewFinder, findsOneWidget);
   });

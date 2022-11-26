@@ -28,19 +28,20 @@ class _FakeGetTvDetail extends _i1.Fake implements _i2.GetTvDetail {}
 class _FakeGetTvRecommendations extends _i1.Fake
     implements _i3.GetTvRecommendations {}
 
-class _FakeGetTvWatchlistStatus extends _i1.Fake implements _i4.GetTvWatchlistStatus {}
+class _FakeGetTvWatchlistStatus extends _i1.Fake
+    implements _i4.GetTvWatchlistStatus {}
 
 class _FakeSaveTvWatchlist extends _i1.Fake implements _i5.SaveTvWatchlist {}
 
-class _FakeRemoveTvWatchlist extends _i1.Fake implements _i6.RemoveTvWatchlist {}
+class _FakeRemoveTvWatchlist extends _i1.Fake implements _i6.RemoveTvWatchlist {
+}
 
 class _FakeTvDetail extends _i1.Fake implements _i7.TvDetail {}
 
 /// A class which mocks [TvDetailNotifier].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockTvDetailNotifier extends _i1.Mock
-    implements _i8.TvDetailNotifier {
+class MockTvDetailNotifier extends _i1.Mock implements _i8.TvDetailNotifier {
   MockTvDetailNotifier() {
     _i1.throwOnMissingStub(this);
   }
@@ -50,13 +51,12 @@ class MockTvDetailNotifier extends _i1.Mock
       (super.noSuchMethod(Invocation.getter(#getTvDetail),
           returnValue: _FakeGetTvDetail()) as _i2.GetTvDetail);
   @override
-  _i3.GetTvRecommendations get getTvRecommendations =>
-      (super.noSuchMethod(Invocation.getter(#getTvRecommendations),
-              returnValue: _FakeGetTvRecommendations())
-          as _i3.GetTvRecommendations);
-  _i4.GetTvWatchlistStatus get  getTvWatchlistStatus =>
-      (super.noSuchMethod(Invocation.getter(#GetTvWatchlistStatus),
-          returnValue: _FakeGetTvWatchlistStatus()) as _i4.GetTvWatchlistStatus);
+  _i3.GetTvRecommendations get getTvRecommendations => (super.noSuchMethod(
+      Invocation.getter(#getTvRecommendations),
+      returnValue: _FakeGetTvRecommendations()) as _i3.GetTvRecommendations);
+  _i4.GetTvWatchlistStatus get getTvWatchlistStatus => (super.noSuchMethod(
+      Invocation.getter(#GetTvWatchlistStatus),
+      returnValue: _FakeGetTvWatchlistStatus()) as _i4.GetTvWatchlistStatus);
   @override
   _i5.SaveTvWatchlist get saveTvWatchlist =>
       (super.noSuchMethod(Invocation.getter(#SaveTvWatchlist),
@@ -66,8 +66,9 @@ class MockTvDetailNotifier extends _i1.Mock
       (super.noSuchMethod(Invocation.getter(#RemoveTvWatchlist),
           returnValue: _FakeRemoveTvWatchlist()) as _i6.RemoveTvWatchlist);
   @override
-  _i7.TvDetail get tv => (super.noSuchMethod(Invocation.getter(#Tv),
-      returnValue: _FakeTvDetail()) as _i7.TvDetail);
+  _i7.TvDetail get tv =>
+      (super.noSuchMethod(Invocation.getter(#Tv), returnValue: _FakeTvDetail())
+          as _i7.TvDetail);
   @override
   _i9.RequestState get tvState =>
       (super.noSuchMethod(Invocation.getter(#TvState),

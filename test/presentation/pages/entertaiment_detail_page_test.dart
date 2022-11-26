@@ -45,7 +45,10 @@ void main() {
 
     final watchlistButtonIcon = find.byIcon(Icons.add);
 
-    await tester.pumpWidget(_makeTestableMovieWidget(EntertaimentDetailPage(id: 1, isTV: false,)));
+    await tester.pumpWidget(_makeTestableMovieWidget(EntertaimentDetailPage(
+      id: 1,
+      isTV: false,
+    )));
 
     expect(watchlistButtonIcon, findsOneWidget);
   });
@@ -61,7 +64,10 @@ void main() {
 
     final watchlistButtonIcon = find.byIcon(Icons.check);
 
-    await tester.pumpWidget(_makeTestableMovieWidget(EntertaimentDetailPage(id: 1, isTV: false,)));
+    await tester.pumpWidget(_makeTestableMovieWidget(EntertaimentDetailPage(
+      id: 1,
+      isTV: false,
+    )));
 
     expect(watchlistButtonIcon, findsOneWidget);
   });
@@ -78,7 +84,10 @@ void main() {
 
     final watchlistButton = find.byType(ElevatedButton);
 
-    await tester.pumpWidget(_makeTestableMovieWidget(EntertaimentDetailPage(id: 1, isTV: false,)));
+    await tester.pumpWidget(_makeTestableMovieWidget(EntertaimentDetailPage(
+      id: 1,
+      isTV: false,
+    )));
 
     expect(find.byIcon(Icons.add), findsOneWidget);
 
@@ -101,7 +110,10 @@ void main() {
 
     final watchlistButton = find.byType(ElevatedButton);
 
-    await tester.pumpWidget(_makeTestableMovieWidget(EntertaimentDetailPage(id: 1, isTV: false,)));
+    await tester.pumpWidget(_makeTestableMovieWidget(EntertaimentDetailPage(
+      id: 1,
+      isTV: false,
+    )));
 
     expect(find.byIcon(Icons.add), findsOneWidget);
 
@@ -133,7 +145,10 @@ void main() {
 
     final watchlistButtonIcon = find.byIcon(Icons.add);
 
-    await tester.pumpWidget(_makeTestableTvWidget(EntertaimentDetailPage(id: 1, isTV: true,)));
+    await tester.pumpWidget(_makeTestableTvWidget(EntertaimentDetailPage(
+      id: 1,
+      isTV: true,
+    )));
 
     expect(watchlistButtonIcon, findsOneWidget);
   });
@@ -149,7 +164,10 @@ void main() {
 
     final watchlistButtonIcon = find.byIcon(Icons.check);
 
-    await tester.pumpWidget(_makeTestableTvWidget(EntertaimentDetailPage(id: 1, isTV: true,)));
+    await tester.pumpWidget(_makeTestableTvWidget(EntertaimentDetailPage(
+      id: 1,
+      isTV: true,
+    )));
 
     expect(watchlistButtonIcon, findsOneWidget);
   });
@@ -166,7 +184,10 @@ void main() {
 
     final watchlistButton = find.byType(ElevatedButton);
 
-    await tester.pumpWidget(_makeTestableTvWidget(EntertaimentDetailPage(id: 1, isTV: true,)));
+    await tester.pumpWidget(_makeTestableTvWidget(EntertaimentDetailPage(
+      id: 1,
+      isTV: true,
+    )));
 
     expect(find.byIcon(Icons.add), findsOneWidget);
 
@@ -189,7 +210,10 @@ void main() {
 
     final watchlistButton = find.byType(ElevatedButton);
 
-    await tester.pumpWidget(_makeTestableTvWidget(EntertaimentDetailPage(id: 1, isTV: true,)));
+    await tester.pumpWidget(_makeTestableTvWidget(EntertaimentDetailPage(
+      id: 1,
+      isTV: true,
+    )));
 
     expect(find.byIcon(Icons.add), findsOneWidget);
 

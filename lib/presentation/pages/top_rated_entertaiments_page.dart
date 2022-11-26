@@ -13,7 +13,8 @@ class TopRatedEntertaimentsPage extends StatefulWidget {
   const TopRatedEntertaimentsPage({required this.isTV});
 
   @override
-  _TopRatedEntertaimentsPageState createState() => _TopRatedEntertaimentsPageState();
+  _TopRatedEntertaimentsPageState createState() =>
+      _TopRatedEntertaimentsPageState();
 }
 
 class _TopRatedEntertaimentsPageState extends State<TopRatedEntertaimentsPage> {
@@ -21,19 +22,20 @@ class _TopRatedEntertaimentsPageState extends State<TopRatedEntertaimentsPage> {
   void initState() {
     super.initState();
     widget.isTV == true
-    ? Future.microtask(() =>
-        Provider.of<TopRatedTvsNotifier>(context, listen: false)
-            .fetchTopRatedtvs())
-    : Future.microtask(() =>
-        Provider.of<TopRatedMoviesNotifier>(context, listen: false)
-            .fetchTopRatedMovies());
+        ? Future.microtask(() =>
+            Provider.of<TopRatedTvsNotifier>(context, listen: false)
+                .fetchTopRatedtvs())
+        : Future.microtask(() =>
+            Provider.of<TopRatedMoviesNotifier>(context, listen: false)
+                .fetchTopRatedMovies());
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.isTV == true ? 'Top Rated TV Shows' : 'Top Rated Movies'),
+        title: Text(
+            widget.isTV == true ? 'Top Rated TV Shows' : 'Top Rated Movies'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -53,7 +55,10 @@ class _TopRatedEntertaimentsPageState extends State<TopRatedEntertaimentsPage> {
           return ListView.builder(
             itemBuilder: (context, index) {
               final movie = data.movies[index];
-              return EntertaimentCard(movie: movie, isTV: false,);
+              return EntertaimentCard(
+                movie: movie,
+                isTV: false,
+              );
             },
             itemCount: data.movies.length,
           );
@@ -78,7 +83,10 @@ class _TopRatedEntertaimentsPageState extends State<TopRatedEntertaimentsPage> {
           return ListView.builder(
             itemBuilder: (context, index) {
               final tv = data.tvs[index];
-              return EntertaimentCard(tv: tv, isTV: true,);
+              return EntertaimentCard(
+                tv: tv,
+                isTV: true,
+              );
             },
             itemCount: data.tvs.length,
           );

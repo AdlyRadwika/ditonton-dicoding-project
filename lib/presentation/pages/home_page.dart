@@ -23,15 +23,15 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
-    Future.microtask( () { 
+    Future.microtask(() {
       Provider.of<MovieListNotifier>(context, listen: false)
-          ..fetchNowPlayingMovies()
-          ..fetchPopularMovies()
-          ..fetchTopRatedMovies();
+        ..fetchNowPlayingMovies()
+        ..fetchPopularMovies()
+        ..fetchTopRatedMovies();
       Provider.of<TvListNotifier>(context, listen: false)
-          ..fetchOnTheAirTVs()
-          ..fetchPopularTvs()
-          ..fetchTopRatedTvs();
+        ..fetchOnTheAirTVs()
+        ..fetchPopularTvs()
+        ..fetchTopRatedTvs();
     });
   }
 
@@ -96,22 +96,20 @@ class _HomePageState extends State<HomePage> {
               buildMovieListConsumer(indexState: 0),
               _buildSubHeading(
                 title: 'Popular Movies',
-                onTap: () =>
-                    Navigator.pushNamed(
-                      context,
-                      PopularEntertaimentsPage.ROUTE_NAME,
-                      arguments: false,
-                    ),
+                onTap: () => Navigator.pushNamed(
+                  context,
+                  PopularEntertaimentsPage.ROUTE_NAME,
+                  arguments: false,
+                ),
               ),
               buildMovieListConsumer(indexState: 1),
               _buildSubHeading(
                 title: 'Top Rated Movies',
-                onTap: () =>
-                    Navigator.pushNamed(
-                      context,
-                      TopRatedEntertaimentsPage.ROUTE_NAME,
-                      arguments: false,
-                    ),
+                onTap: () => Navigator.pushNamed(
+                  context,
+                  TopRatedEntertaimentsPage.ROUTE_NAME,
+                  arguments: false,
+                ),
               ),
               buildMovieListConsumer(indexState: 2),
               Text(
@@ -121,22 +119,20 @@ class _HomePageState extends State<HomePage> {
               buildTvListConsumer(indexState: 0),
               _buildSubHeading(
                 title: 'Popular TV Shows',
-                onTap: () =>
-                    Navigator.pushNamed(
-                      context,
-                      PopularEntertaimentsPage.ROUTE_NAME,
-                      arguments: true,
-                    ),
+                onTap: () => Navigator.pushNamed(
+                  context,
+                  PopularEntertaimentsPage.ROUTE_NAME,
+                  arguments: true,
+                ),
               ),
               buildTvListConsumer(indexState: 1),
               _buildSubHeading(
                 title: 'Top Rated TV Shows',
-                onTap: () =>
-                    Navigator.pushNamed(
-                      context,
-                      TopRatedEntertaimentsPage.ROUTE_NAME,
-                      arguments: true,
-                    ),
+                onTap: () => Navigator.pushNamed(
+                  context,
+                  TopRatedEntertaimentsPage.ROUTE_NAME,
+                  arguments: true,
+                ),
               ),
               buildTvListConsumer(indexState: 2),
             ],
@@ -146,10 +142,19 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Consumer<MovieListNotifier> buildMovieListConsumer({required int indexState}) {
+  Consumer<MovieListNotifier> buildMovieListConsumer(
+      {required int indexState}) {
     return Consumer<MovieListNotifier>(builder: (context, data, child) {
-      List<RequestState> state = [data.nowPlayingMoviesState, data.popularMoviesState, data.topRatedMoviesState];
-      List movies = [data.nowPlayingMovies, data.popularMovies, data.topRatedMovies];
+      List<RequestState> state = [
+        data.nowPlayingMoviesState,
+        data.popularMoviesState,
+        data.topRatedMoviesState
+      ];
+      List movies = [
+        data.nowPlayingMovies,
+        data.popularMovies,
+        data.topRatedMovies
+      ];
       if (state[indexState] == RequestState.Loading) {
         return Center(
           child: CircularProgressIndicator(),
@@ -164,7 +169,11 @@ class _HomePageState extends State<HomePage> {
 
   Consumer<TvListNotifier> buildTvListConsumer({required int indexState}) {
     return Consumer<TvListNotifier>(builder: (context, data, child) {
-      List<RequestState> state = [data.onTheAirTVsState, data.popularTvsState, data.topRatedTvsState];
+      List<RequestState> state = [
+        data.onTheAirTVsState,
+        data.popularTvsState,
+        data.topRatedTvsState
+      ];
       List tvs = [data.onTheAirTVs, data.popularTvs, data.topRatedTvs];
       if (state[indexState] == RequestState.Loading) {
         return Center(
@@ -220,7 +229,8 @@ class MovieList extends StatelessWidget {
                 Navigator.pushNamed(
                   context,
                   EntertaimentDetailPage.ROUTE_NAME,
-                  arguments: EntertaimentDetailArguments(id: movie.id, isTV: false),
+                  arguments:
+                      EntertaimentDetailArguments(id: movie.id, isTV: false),
                 );
               },
               child: ClipRRect(

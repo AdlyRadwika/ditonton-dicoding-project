@@ -39,7 +39,9 @@ void main() {
     final progressBarFinder = find.byType(CircularProgressIndicator);
     final centerFinder = find.byType(Center);
 
-    await tester.pumpWidget(_makeTestableMovieWidget(PopularEntertaimentsPage(isTV: false,)));
+    await tester.pumpWidget(_makeTestableMovieWidget(PopularEntertaimentsPage(
+      isTV: false,
+    )));
 
     expect(centerFinder, findsOneWidget);
     expect(progressBarFinder, findsOneWidget);
@@ -52,7 +54,9 @@ void main() {
 
     final listViewFinder = find.byType(ListView);
 
-    await tester.pumpWidget(_makeTestableMovieWidget(PopularEntertaimentsPage(isTV: false,)));
+    await tester.pumpWidget(_makeTestableMovieWidget(PopularEntertaimentsPage(
+      isTV: false,
+    )));
 
     expect(listViewFinder, findsOneWidget);
   });
@@ -64,7 +68,9 @@ void main() {
 
     final textFinder = find.byKey(Key('error_message'));
 
-    await tester.pumpWidget(_makeTestableMovieWidget(PopularEntertaimentsPage(isTV: false,)));
+    await tester.pumpWidget(_makeTestableMovieWidget(PopularEntertaimentsPage(
+      isTV: false,
+    )));
 
     expect(textFinder, findsOneWidget);
   });
@@ -86,7 +92,9 @@ void main() {
     final progressBarFinder = find.byType(CircularProgressIndicator);
     final centerFinder = find.byType(Center);
 
-    await tester.pumpWidget(_makeTestableTvWidget(PopularEntertaimentsPage(isTV: true,)));
+    await tester.pumpWidget(_makeTestableTvWidget(PopularEntertaimentsPage(
+      isTV: true,
+    )));
 
     expect(centerFinder, findsOneWidget);
     expect(progressBarFinder, findsOneWidget);
@@ -99,7 +107,9 @@ void main() {
 
     final listViewFinder = find.byType(ListView);
 
-    await tester.pumpWidget(_makeTestableTvWidget(PopularEntertaimentsPage(isTV: true,)));
+    await tester.pumpWidget(_makeTestableTvWidget(PopularEntertaimentsPage(
+      isTV: true,
+    )));
 
     expect(listViewFinder, findsOneWidget);
   });
@@ -111,7 +121,9 @@ void main() {
 
     final textFinder = find.byKey(Key('error_message'));
 
-    await tester.pumpWidget(_makeTestableTvWidget(PopularEntertaimentsPage(isTV: true,)));
+    await tester.pumpWidget(_makeTestableTvWidget(PopularEntertaimentsPage(
+      isTV: true,
+    )));
 
     expect(textFinder, findsOneWidget);
   });

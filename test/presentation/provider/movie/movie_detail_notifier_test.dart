@@ -158,7 +158,8 @@ void main() {
   group('Watchlist', () {
     test('should get the watchlist status', () async {
       // arrange
-      when(mockGetMovieWatchlistStatus.execute(1)).thenAnswer((_) async => true);
+      when(mockGetMovieWatchlistStatus.execute(1))
+          .thenAnswer((_) async => true);
       // act
       await provider.loadMovieWatchlistStatus(1);
       // assert

@@ -19,10 +19,8 @@ class _SearchPageState extends State<SearchPage> {
   @override
   void initState() {
     super.initState();
-    Provider.of<MovieSearchNotifier>(context, listen: false)
-      .emptyMovieSearch();
-    Provider.of<TvSearchNotifier>(context, listen: false)
-      .emptyTvSearch();
+    Provider.of<MovieSearchNotifier>(context, listen: false).emptyMovieSearch();
+    Provider.of<TvSearchNotifier>(context, listen: false).emptyTvSearch();
   }
 
   @override
@@ -79,22 +77,24 @@ class _SearchPageState extends State<SearchPage> {
           final result = data.searchResult;
           if (result.isEmpty) {
             return Expanded(
-              child: Center(
-                child: Text("The movie you're looking for couldn't be found",
-                  style: kBodyText,
-                ),
-              )
-            );
+                child: Center(
+              child: Text(
+                "The movie you're looking for couldn't be found",
+                style: kBodyText,
+              ),
+            ));
           }
           return Expanded(
             child: ListView.builder(
-              padding: const EdgeInsets.all(8),
-              itemBuilder: (context, index) {
-                final movie = data.searchResult[index];
-                return EntertaimentCard(movie: movie, isTV: false,);
-              },
-              itemCount: result.length >= 1 ? result.length : 1
-            ),
+                padding: const EdgeInsets.all(8),
+                itemBuilder: (context, index) {
+                  final movie = data.searchResult[index];
+                  return EntertaimentCard(
+                    movie: movie,
+                    isTV: false,
+                  );
+                },
+                itemCount: result.length >= 1 ? result.length : 1),
           );
         } else {
           return Expanded(
@@ -116,22 +116,24 @@ class _SearchPageState extends State<SearchPage> {
           final result = data.searchResult;
           if (result.isEmpty) {
             return Expanded(
-              child: Center(
-                child: Text("The TV Show you're looking for couldn't be found",
-                  style: kBodyText,
-                ),
-              )
-            );
+                child: Center(
+              child: Text(
+                "The TV Show you're looking for couldn't be found",
+                style: kBodyText,
+              ),
+            ));
           }
           return Expanded(
             child: ListView.builder(
-              padding: const EdgeInsets.all(8),
-              itemBuilder: (context, index) {
-                final tv = data.searchResult[index];
-                return EntertaimentCard(tv: tv, isTV: true,);
-              },
-              itemCount: result.length >= 1 ? result.length : 1
-            ),
+                padding: const EdgeInsets.all(8),
+                itemBuilder: (context, index) {
+                  final tv = data.searchResult[index];
+                  return EntertaimentCard(
+                    tv: tv,
+                    isTV: true,
+                  );
+                },
+                itemCount: result.length >= 1 ? result.length : 1),
           );
         } else {
           return Expanded(

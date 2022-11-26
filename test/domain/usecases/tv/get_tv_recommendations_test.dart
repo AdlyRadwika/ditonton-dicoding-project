@@ -18,8 +18,7 @@ void main() {
   final tId = 1;
   final tTvs = <Tv>[];
 
-  test('should get list of Tv recommendations from the repository',
-      () async {
+  test('should get list of Tv recommendations from the repository', () async {
     // arrange
     when(mockTvRepository.getTvRecommendations(tId))
         .thenAnswer((_) async => Right(tTvs));

@@ -9,7 +9,8 @@ class TvDatabaseHelper {
     _tvDatabaseHelper = this;
   }
 
-  factory TvDatabaseHelper() => _tvDatabaseHelper ?? TvDatabaseHelper._instance();
+  factory TvDatabaseHelper() =>
+      _tvDatabaseHelper ?? TvDatabaseHelper._instance();
 
   static Database? _database;
 

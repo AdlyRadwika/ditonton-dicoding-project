@@ -3,40 +3,40 @@ import 'package:equatable/equatable.dart';
 
 class TvModel extends Equatable {
   TvModel({
-      required this.genreIds,
-      required this.id,
-      required this.name,
-      required this.overview,
-      required this.posterPath,
-      required this.voteAverage,
+    required this.genreIds,
+    required this.id,
+    required this.name,
+    required this.overview,
+    required this.posterPath,
+    required this.voteAverage,
   });
 
-    final List<int> genreIds;
-    final int id;
-    final String name;
-    final String overview;
-    final String? posterPath;
-    final double voteAverage;
+  final List<int> genreIds;
+  final int id;
+  final String name;
+  final String overview;
+  final String? posterPath;
+  final double voteAverage;
 
-    factory TvModel.fromJson(Map<String, dynamic> json) => TvModel(
+  factory TvModel.fromJson(Map<String, dynamic> json) => TvModel(
         genreIds: List<int>.from(json["genre_ids"].map((x) => x)),
         id: json["id"],
         name: json["name"],
         overview: json["overview"],
         posterPath: json["poster_path"],
         voteAverage: json["vote_average"].toDouble(),
-    );
+      );
 
-    Map<String, dynamic> toJson() => {
+  Map<String, dynamic> toJson() => {
         "genre_ids": List<dynamic>.from(genreIds.map((x) => x)),
         "id": id,
         "name": name,
         "overview": overview,
         "poster_path": posterPath,
         "vote_average": voteAverage,
-    };
+      };
 
-      Tv toEntity() {
+  Tv toEntity() {
     return Tv(
       genreIds: this.genreIds,
       id: this.id,
@@ -49,14 +49,11 @@ class TvModel extends Equatable {
 
   @override
   List<Object?> get props => [
-      genreIds,
-      id,
-      name,
-      overview,
-      posterPath,
-      voteAverage,
-  ];
+        genreIds,
+        id,
+        name,
+        overview,
+        posterPath,
+        voteAverage,
+      ];
 }
-
-
-

@@ -97,8 +97,7 @@ void main() {
   group('popular Tvs', () {
     test('should change state to loading when usecase is called', () async {
       // arrange
-      when(mockGetPopularTvs.execute())
-          .thenAnswer((_) async => Right(tTvList));
+      when(mockGetPopularTvs.execute()).thenAnswer((_) async => Right(tTvList));
       // act
       provider.fetchPopularTvs();
       // assert
@@ -106,11 +105,9 @@ void main() {
       // verify(provider.setState(RequestState.Loading));
     });
 
-    test('should change Tvs data when data is gotten successfully',
-        () async {
+    test('should change Tvs data when data is gotten successfully', () async {
       // arrange
-      when(mockGetPopularTvs.execute())
-          .thenAnswer((_) async => Right(tTvList));
+      when(mockGetPopularTvs.execute()).thenAnswer((_) async => Right(tTvList));
       // act
       await provider.fetchPopularTvs();
       // assert
@@ -143,8 +140,7 @@ void main() {
       expect(provider.topRatedTvsState, RequestState.Loading);
     });
 
-    test('should change Tvs data when data is gotten successfully',
-        () async {
+    test('should change Tvs data when data is gotten successfully', () async {
       // arrange
       when(mockGetTopRatedTvs.execute())
           .thenAnswer((_) async => Right(tTvList));

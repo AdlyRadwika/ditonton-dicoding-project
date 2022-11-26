@@ -6,14 +6,12 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:provider/provider.dart';
 import 'package:ditonton/injection.dart' as di;
 
-
 void main() {
-
-    setUp(() {
-      di.init();
+  setUp(() {
+    di.init();
   });
 
-    Widget _makeTestableWidget(Widget body, [testKey]) {
+  Widget _makeTestableWidget(Widget body, [testKey]) {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(
@@ -29,7 +27,9 @@ void main() {
       ),
     );
   }
-  testWidgets('should finds a text widget or any other widgets', (tester) async {
+
+  testWidgets('should finds a text widget or any other widgets',
+      (tester) async {
     final stackWidget = find.byType(Text);
 
     await tester.pumpWidget(_makeTestableWidget(HomePage()));

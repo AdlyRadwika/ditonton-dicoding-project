@@ -18,8 +18,7 @@ import 'package:mockito/mockito.dart' as _i1;
 // ignore_for_file: prefer_const_constructors
 // ignore_for_file: unnecessary_parenthesis
 
-class _FakeGetTopRatedTvs extends _i1.Fake implements _i2.GetTopRatedTvs {
-}
+class _FakeGetTopRatedTvs extends _i1.Fake implements _i2.GetTopRatedTvs {}
 
 /// A class which mocks [TopRatedTvsNotifier].
 ///
@@ -38,8 +37,9 @@ class MockTopRatedTvsNotifier extends _i1.Mock
   _i4.RequestState get state => (super.noSuchMethod(Invocation.getter(#state),
       returnValue: _i4.RequestState.Empty) as _i4.RequestState);
   @override
-  List<_i5.Tv> get tvs => (super.noSuchMethod(Invocation.getter(#Tvs),
-      returnValue: <_i5.Tv>[]) as List<_i5.Tv>);
+  List<_i5.Tv> get tvs =>
+      (super.noSuchMethod(Invocation.getter(#Tvs), returnValue: <_i5.Tv>[])
+          as List<_i5.Tv>);
   @override
   String get message =>
       (super.noSuchMethod(Invocation.getter(#message), returnValue: '')

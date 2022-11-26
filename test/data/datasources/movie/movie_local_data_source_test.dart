@@ -12,7 +12,8 @@ void main() {
 
   setUp(() {
     mockMovieDatabaseHelper = MockMovieDatabaseHelper();
-    dataSource = MovieLocalDataSourceImpl(movieDatabaseHelper: mockMovieDatabaseHelper);
+    dataSource =
+        MovieLocalDataSourceImpl(movieDatabaseHelper: mockMovieDatabaseHelper);
   });
 
   group('save watchlist', () {
@@ -78,7 +79,8 @@ void main() {
 
     test('should return null when data is not found', () async {
       // arrange
-      when(mockMovieDatabaseHelper.getMovieById(tId)).thenAnswer((_) async => null);
+      when(mockMovieDatabaseHelper.getMovieById(tId))
+          .thenAnswer((_) async => null);
       // act
       final result = await dataSource.getMovieById(tId);
       // assert

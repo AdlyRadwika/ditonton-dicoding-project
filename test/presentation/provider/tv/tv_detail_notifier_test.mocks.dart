@@ -41,9 +41,9 @@ class MockGetTvDetail extends _i1.Mock implements _i4.GetTvDetail {
   @override
   _i5.Future<_i3.Either<_i6.Failure, _i7.TvDetail>> execute(int? id) =>
       (super.noSuchMethod(Invocation.method(#execute, [id]),
-          returnValue: Future<_i3.Either<_i6.Failure, _i7.TvDetail>>.value(
-              _FakeEither<_i6.Failure, _i7.TvDetail>())) as _i5
-          .Future<_i3.Either<_i6.Failure, _i7.TvDetail>>);
+              returnValue: Future<_i3.Either<_i6.Failure, _i7.TvDetail>>.value(
+                  _FakeEither<_i6.Failure, _i7.TvDetail>()))
+          as _i5.Future<_i3.Either<_i6.Failure, _i7.TvDetail>>);
 }
 
 /// A class which mocks [GetTvRecommendations].
@@ -62,9 +62,9 @@ class MockGetTvRecommendations extends _i1.Mock
   @override
   _i5.Future<_i3.Either<_i6.Failure, List<_i9.Tv>>> execute(dynamic id) =>
       (super.noSuchMethod(Invocation.method(#execute, [id]),
-          returnValue: Future<_i3.Either<_i6.Failure, List<_i9.Tv>>>.value(
-              _FakeEither<_i6.Failure, List<_i9.Tv>>())) as _i5
-          .Future<_i3.Either<_i6.Failure, List<_i9.Tv>>>);
+              returnValue: Future<_i3.Either<_i6.Failure, List<_i9.Tv>>>.value(
+                  _FakeEither<_i6.Failure, List<_i9.Tv>>()))
+          as _i5.Future<_i3.Either<_i6.Failure, List<_i9.Tv>>>);
 }
 
 /// A class which mocks [GetTvWatchlistStatus].

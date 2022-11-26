@@ -86,21 +86,26 @@ class MyApp extends StatelessWidget {
             case '/home':
               return MaterialPageRoute(builder: (_) => HomePage());
             case PopularEntertaimentsPage.ROUTE_NAME:
-              final isTV = settings.arguments as bool; 
+              final isTV = settings.arguments as bool;
               return CupertinoPageRoute(
-                builder: (_) => PopularEntertaimentsPage(isTV: isTV,),
+                builder: (_) => PopularEntertaimentsPage(
+                  isTV: isTV,
+                ),
                 settings: settings,
               );
             case TopRatedEntertaimentsPage.ROUTE_NAME:
               final isTV = settings.arguments as bool;
               return CupertinoPageRoute(
-                builder: (_) => TopRatedEntertaimentsPage(isTV: isTV,),
+                builder: (_) => TopRatedEntertaimentsPage(
+                  isTV: isTV,
+                ),
                 settings: settings,
               );
             case EntertaimentDetailPage.ROUTE_NAME:
               final args = settings.arguments as EntertaimentDetailArguments;
               return MaterialPageRoute(
-                builder: (_) => EntertaimentDetailPage(id: args.id, isTV: args.isTV),
+                builder: (_) =>
+                    EntertaimentDetailPage(id: args.id, isTV: args.isTV),
                 settings: settings,
               );
             case SearchPage.ROUTE_NAME:
