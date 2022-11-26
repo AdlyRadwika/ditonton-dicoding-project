@@ -84,7 +84,7 @@ class _TopRatedEntertaimentsPageState extends State<TopRatedEntertaimentsPage> {
           );
         } else {
           return Center(
-            key: Key('error_message'),
+            key: Key('error_message_tv'),
             child: Text(data.message),
           );
         }

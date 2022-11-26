@@ -29,14 +29,14 @@ void main() {
     backdropPath: 'backdropPath',
     genreIds: [1, 2, 3],
     id: 1,
+    name: 'name',
+    originCountry: ['origin'],
     originalName: 'originalName',
     overview: 'overview',
     popularity: 1,
     posterPath: 'posterPath',
-    name: 'name',
     voteAverage: 1,
     voteCount: 1,
-    originCountry: [],
     originalLanguage: "original_language",
   );
 

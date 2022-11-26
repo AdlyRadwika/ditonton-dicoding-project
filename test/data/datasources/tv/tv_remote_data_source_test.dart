@@ -33,7 +33,7 @@ void main() {
         () async {
       // arrange
       when(mockHttpClient
-              .get(Uri.parse('$BASE_URL/tv/now_playing?$API_KEY')))
+              .get(Uri.parse('$BASE_URL/tv/on_the_air?$API_KEY')))
           .thenAnswer((_) async =>
               http.Response(readJson('dummy_data/tv/now_playing.json'), 200));
       // act
@@ -41,13 +41,12 @@ void main() {
       // assert
       expect(result, equals(tTvList));
     });
-//FIXME:
     test(
         'should throw a ServerException when the response code is 404 or other',
         () async {
       // arrange
       when(mockHttpClient
-              .get(Uri.parse('$BASE_URL/tv/on_the?$API_KEY&language=en-US&page=1')))
+              .get(Uri.parse('$BASE_URL/tv/on_the_air?$API_KEY')))
           .thenAnswer((_) async => http.Response('Not Found', 404));
       // act
       final call = dataSource.getNowPlayingTvs();
@@ -115,10 +114,9 @@ void main() {
   });
 
   group('get tv detail', () {
-    final tId = 1;
+    final tId = 2;
     final ttvDetail = TvDetailResponse.fromJson(
         json.decode(readJson('dummy_data/tv/tv_detail.json')));
-//FIXME:
     test('should return tv detail when the response code is 200', () async {
       // arrange
       when(mockHttpClient.get(Uri.parse('$BASE_URL/tv/$tId?$API_KEY')))
