@@ -221,7 +221,7 @@ class DetailContent extends StatelessWidget {
                               _showGenres(isTV == true ? tv!.genres : movie!.genres),
                             ),
                             Text(
-                              isTV == true ? "${tv!.numberOfEpisodes} episodes" : _showDuration(movie!.runtime),
+                              isTV == true ? "${tv!.numberOfEpisodes} episodes, ${tv!.numberOfSeasons} seasons" : _showDuration(movie!.runtime),
                             ),
                             Row(
                               children: [

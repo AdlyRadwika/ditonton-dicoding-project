@@ -4,9 +4,9 @@ import 'package:equatable/equatable.dart';
 
 class TvTable extends Equatable {
   final int id;
-  final String? title;
-  final String? posterPath;
-  final String? overview;
+  final String title;
+  final String posterPath;
+  final String overview;
 
   TvTable({
     required this.id,

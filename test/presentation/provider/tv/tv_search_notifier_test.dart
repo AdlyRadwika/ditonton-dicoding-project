@@ -26,18 +26,12 @@ void main() {
   });
 
   final tTvModel = Tv(
-    backdropPath: '/rv5gu2gYbOEYoArzH7bqJuMxvBB.jpg',
     genreIds: [18, 10751],
     id: 115646,
-    originalName: 'Lisa',
     overview: '',
-    popularity: 1054.433,
     posterPath: '/w2nOl7KhwcUj11YxEi9Nknj9cqu.jpg',
     name: 'Lisa',
     voteAverage: 6.4,
-    voteCount: 33,
-    originCountry: ["BE"],
-    originalLanguage: "nl",
   );
   final tTvList = <Tv>[tTvModel];
   final tQuery = 'lisa';

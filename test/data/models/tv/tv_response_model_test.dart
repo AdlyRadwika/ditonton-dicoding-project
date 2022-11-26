@@ -8,18 +8,12 @@ import '../../../json_reader.dart';
 
 void main() {
   final tTvModel = TvModel(
-    backdropPath: "/path.jpg",
     genreIds: [1, 2, 3, 4],
     id: 1,
-    originalName: "Original Name",
     overview: "Overview",
-    popularity: 1.0,
     posterPath: "/path.jpg",
     name: "Name",
     voteAverage: 1.0,
-    voteCount: 1,
-    originCountry: [],
-    originalLanguage: "original_language",
   );
   final tTvResponseModel =
       TvResponse(tvList: <TvModel>[tTvModel]);
@@ -45,18 +39,12 @@ void main() {
       final expectedJsonMap = {
         "results": [
           {
-            "backdrop_path": "/path.jpg",
             "genre_ids": [1, 2, 3, 4],
             "id": 1,
-            "original_name": "Original Name",
             "overview": "Overview",
-            "popularity": 1.0,
             "poster_path": "/path.jpg",
             "name": "Name",
             "vote_average": 1.0,
-            "vote_count": 1,
-            "origin_country": [],
-            "original_language": "original_language",
           }
         ],
       };
