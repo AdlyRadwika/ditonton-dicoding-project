@@ -23,8 +23,8 @@ class EntertaimentCard extends StatelessWidget {
             context,
             EntertaimentDetailPage.ROUTE_NAME,
             arguments: isTV == true 
-              ? EntertaimentArguments(id: tv!.id, isTV: true) 
-              : EntertaimentArguments(id: movie!.id, isTV: false),
+              ? EntertaimentDetailArguments(id: tv!.id, isTV: true) 
+              : EntertaimentDetailArguments(id: movie!.id, isTV: false),
           );
         },
         child: Stack(

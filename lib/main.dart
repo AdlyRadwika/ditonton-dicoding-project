@@ -5,7 +5,7 @@ import 'package:ditonton/presentation/pages/entertaiment_detail_page.dart';
 import 'package:ditonton/presentation/pages/home_page.dart';
 import 'package:ditonton/presentation/pages/popular_entertaiments_page.dart';
 import 'package:ditonton/presentation/pages/search_page.dart';
-import 'package:ditonton/presentation/pages/top_rated_movies_page.dart';
+import 'package:ditonton/presentation/pages/top_rated_entertaiments_page.dart';
 import 'package:ditonton/presentation/pages/watchlist_movies_page.dart';
 import 'package:ditonton/presentation/provider/movie/movie_detail_notifier.dart';
 import 'package:ditonton/presentation/provider/movie/movie_list_notifier.dart';
@@ -88,13 +88,17 @@ class MyApp extends StatelessWidget {
             case PopularEntertaimentsPage.ROUTE_NAME:
               final isTV = settings.arguments as bool; 
               return CupertinoPageRoute(
-                builder: (_) => PopularEntertaimentsPage(isTV: isTV),
+                builder: (_) => PopularEntertaimentsPage(isTV: isTV,),
                 settings: settings,
               );
-            case TopRatedMoviesPage.ROUTE_NAME:
-              return CupertinoPageRoute(builder: (_) => TopRatedMoviesPage());
+            case TopRatedEntertaimentsPage.ROUTE_NAME:
+              final isTV = settings.arguments as bool;
+              return CupertinoPageRoute(
+                builder: (_) => TopRatedEntertaimentsPage(isTV: isTV,),
+                settings: settings,
+              );
             case EntertaimentDetailPage.ROUTE_NAME:
-              final args = settings.arguments as EntertaimentArguments;
+              final args = settings.arguments as EntertaimentDetailArguments;
               return MaterialPageRoute(
                 builder: (_) => EntertaimentDetailPage(id: args.id, isTV: args.isTV),
                 settings: settings,

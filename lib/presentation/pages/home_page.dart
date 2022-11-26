@@ -6,7 +6,7 @@ import 'package:ditonton/presentation/pages/about_page.dart';
 import 'package:ditonton/presentation/pages/entertaiment_detail_page.dart';
 import 'package:ditonton/presentation/pages/popular_entertaiments_page.dart';
 import 'package:ditonton/presentation/pages/search_page.dart';
-import 'package:ditonton/presentation/pages/top_rated_movies_page.dart';
+import 'package:ditonton/presentation/pages/top_rated_entertaiments_page.dart';
 import 'package:ditonton/presentation/pages/watchlist_movies_page.dart';
 import 'package:ditonton/presentation/provider/movie/movie_list_notifier.dart';
 import 'package:ditonton/common/state_enum.dart';
@@ -107,7 +107,11 @@ class _HomePageState extends State<HomePage> {
               _buildSubHeading(
                 title: 'Top Rated Movies',
                 onTap: () =>
-                    Navigator.pushNamed(context, TopRatedMoviesPage.ROUTE_NAME),
+                    Navigator.pushNamed(
+                      context,
+                      TopRatedEntertaimentsPage.ROUTE_NAME,
+                      arguments: false,
+                    ),
               ),
               buildMovieListConsumer(indexState: 2),
               Text(
@@ -128,7 +132,11 @@ class _HomePageState extends State<HomePage> {
               _buildSubHeading(
                 title: 'Top Rated TV Shows',
                 onTap: () =>
-                    Navigator.pushNamed(context, TopRatedMoviesPage.ROUTE_NAME),
+                    Navigator.pushNamed(
+                      context,
+                      TopRatedEntertaimentsPage.ROUTE_NAME,
+                      arguments: true,
+                    ),
               ),
               buildTvListConsumer(indexState: 2),
             ],
@@ -212,7 +220,7 @@ class MovieList extends StatelessWidget {
                 Navigator.pushNamed(
                   context,
                   EntertaimentDetailPage.ROUTE_NAME,
-                  arguments: EntertaimentArguments(id: movie.id, isTV: false),
+                  arguments: EntertaimentDetailArguments(id: movie.id, isTV: false),
                 );
               },
               child: ClipRRect(
@@ -254,7 +262,7 @@ class TvList extends StatelessWidget {
                 Navigator.pushNamed(
                   context,
                   EntertaimentDetailPage.ROUTE_NAME,
-                  arguments: EntertaimentArguments(id: tv.id, isTV: true),
+                  arguments: EntertaimentDetailArguments(id: tv.id, isTV: true),
                 );
               },
               child: ClipRRect(
@@ -276,9 +284,9 @@ class TvList extends StatelessWidget {
   }
 }
 
-class EntertaimentArguments {
+class EntertaimentDetailArguments {
   final int id;
   final bool isTV;
 
-  const EntertaimentArguments({required this.id, required this.isTV});
+  const EntertaimentDetailArguments({required this.id, required this.isTV});
 }
