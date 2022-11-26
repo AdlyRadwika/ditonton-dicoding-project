@@ -5,6 +5,7 @@ import 'package:ditonton/domain/entities/movie/movie.dart';
 import 'package:ditonton/domain/entities/movie/movie_detail.dart';
 import 'package:ditonton/domain/entities/tv/tv.dart';
 import 'package:ditonton/domain/entities/tv/tv_detail.dart';
+import 'package:ditonton/presentation/pages/home_page.dart';
 import 'package:ditonton/presentation/provider/movie/movie_detail_notifier.dart';
 import 'package:ditonton/common/state_enum.dart';
 import 'package:ditonton/presentation/provider/tv/tv_detail_notifier.dart';
@@ -176,8 +177,8 @@ class DetailContent extends StatelessWidget {
                                 var message;
 
                                 isTV == true 
-                                ? message = Provider.of<MovieDetailNotifier>(context, listen: false).watchlistMessage
-                                : message = Provider.of<TvDetailNotifier>(context, listen: false).watchlistMessage;
+                                ? message = Provider.of<TvDetailNotifier>(context, listen: false).watchlistMessage
+                                : message = Provider.of<MovieDetailNotifier>(context, listen: false).watchlistMessage;
 
                                 if (message ==
                                         MovieDetailNotifier
@@ -314,7 +315,7 @@ class DetailContent extends StatelessWidget {
                       Navigator.pushReplacementNamed(
                         context,
                         EntertaimentDetailPage.ROUTE_NAME,
-                        arguments: movie.id,
+                        arguments: EntertaimentDetailArguments(id: movie.id, isTV: false),
                       );
                     },
                     child: ClipRRect(
@@ -373,7 +374,7 @@ class DetailContent extends StatelessWidget {
                       Navigator.pushReplacementNamed(
                         context,
                         EntertaimentDetailPage.ROUTE_NAME,
-                        arguments: tv.id,
+                        arguments: EntertaimentDetailArguments(id: tv.id, isTV: true),
                       );
                     },
                     child: ClipRRect(

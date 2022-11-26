@@ -4,34 +4,34 @@ import 'package:equatable/equatable.dart';
 
 class TvTable extends Equatable {
   final int id;
-  final String? name;
+  final String? title;
   final String? posterPath;
   final String? overview;
 
   TvTable({
     required this.id,
-    required this.name,
+    required this.title,
     required this.posterPath,
     required this.overview,
   });
 
   factory TvTable.fromEntity(TvDetail tv) => TvTable(
         id: tv.id,
-        name: tv.name,
+        title: tv.name,
         posterPath: tv.posterPath,
         overview: tv.overview,
       );
 
   factory TvTable.fromMap(Map<String, dynamic> map) => TvTable(
         id: map['id'],
-        name: map['name'],
+        title: map['title'],
         posterPath: map['posterPath'],
         overview: map['overview'],
       );
 
   Map<String, dynamic> toJson() => {
         'id': id,
-        'name': name,
+        'title': title,
         'posterPath': posterPath,
         'overview': overview,
       };
@@ -40,10 +40,10 @@ class TvTable extends Equatable {
         id: id,
         overview: overview,
         posterPath: posterPath,
-        name: name,
+        name: title,
       );
 
   @override
   // TODO: implement props
-  List<Object?> get props => [id, name, posterPath, overview];
+  List<Object?> get props => [id, title, posterPath, overview];
 }
