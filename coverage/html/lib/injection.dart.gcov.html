@@ -31,13 +31,13 @@
             <td class="headerValue">lcov.info</td>
             <td></td>
             <td class="headerItem">Lines:</td>
-            <td class="headerCovTableEntry">61</td>
-            <td class="headerCovTableEntry">89</td>
-            <td class="headerCovTableEntryLo">68.5 %</td>
+            <td class="headerCovTableEntry">62</td>
+            <td class="headerCovTableEntry">90</td>
+            <td class="headerCovTableEntryLo">68.9 %</td>
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">Sun Nov 27 00:16:49 2022</td>
+            <td class="headerValue">Mon Nov 28 09:53:29 2022</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">0</td>
@@ -229,12 +229,13 @@
 <a name="167"><span class="lineNum">     167 </span><span class="lineCov">          4 :       () =&gt; TvLocalDataSourceImpl(tvDatabaseHelper: locator()));</span></a>
 <a name="168"><span class="lineNum">     168 </span>            : </a>
 <a name="169"><span class="lineNum">     169 </span>            :   // helper</a>
-<a name="170"><span class="lineNum">     170 </span><span class="lineCov">          4 :   locator.registerLazySingleton&lt;MovieDatabaseHelper&gt;(() =&gt; MovieDatabaseHelper());</span></a>
-<a name="171"><span class="lineNum">     171 </span><span class="lineCov">          4 :   locator.registerLazySingleton&lt;TvDatabaseHelper&gt;(() =&gt; TvDatabaseHelper());</span></a>
-<a name="172"><span class="lineNum">     172 </span>            : </a>
-<a name="173"><span class="lineNum">     173 </span>            :   // external</a>
-<a name="174"><span class="lineNum">     174 </span><span class="lineCov">          4 :   locator.registerLazySingleton(() =&gt; http.Client());</span></a>
-<a name="175"><span class="lineNum">     175 </span>            : }</a>
+<a name="170"><span class="lineNum">     170 </span><span class="lineCov">          1 :   locator</span></a>
+<a name="171"><span class="lineNum">     171 </span><span class="lineCov">          3 :       .registerLazySingleton&lt;MovieDatabaseHelper&gt;(() =&gt; MovieDatabaseHelper());</span></a>
+<a name="172"><span class="lineNum">     172 </span><span class="lineCov">          4 :   locator.registerLazySingleton&lt;TvDatabaseHelper&gt;(() =&gt; TvDatabaseHelper());</span></a>
+<a name="173"><span class="lineNum">     173 </span>            : </a>
+<a name="174"><span class="lineNum">     174 </span>            :   // external</a>
+<a name="175"><span class="lineNum">     175 </span><span class="lineCov">          4 :   locator.registerLazySingleton(() =&gt; http.Client());</span></a>
+<a name="176"><span class="lineNum">     176 </span>            : }</a>
 </pre>
       </td>
     </tr>

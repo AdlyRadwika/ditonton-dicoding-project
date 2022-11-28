@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">Sun Nov 27 00:16:49 2022</td>
+            <td class="headerValue">Mon Nov 28 09:53:29 2022</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">0</td>
@@ -65,7 +65,7 @@
 <a name="3"><span class="lineNum">       3 </span>            : import 'package:equatable/equatable.dart';</a>
 <a name="4"><span class="lineNum">       4 </span>            : </a>
 <a name="5"><span class="lineNum">       5 </span>            : class MovieDetailResponse extends Equatable {</a>
-<a name="6"><span class="lineNum">       6 </span><span class="lineCov">          3 :   MovieDetailResponse({</span></a>
+<a name="6"><span class="lineNum">       6 </span><span class="lineCov">          2 :   MovieDetailResponse({</span></a>
 <a name="7"><span class="lineNum">       7 </span>            :     required this.adult,</a>
 <a name="8"><span class="lineNum">       8 </span>            :     required this.backdropPath,</a>
 <a name="9"><span class="lineNum">       9 </span>            :     required this.budget,</a>
@@ -137,20 +137,20 @@
 <a name="75"><span class="lineNum">      75 </span><span class="lineCov">          1 :         voteCount: json[&quot;vote_count&quot;],</span></a>
 <a name="76"><span class="lineNum">      76 </span>            :       );</a>
 <a name="77"><span class="lineNum">      77 </span>            : </a>
-<a name="78"><span class="lineNum">      78 </span><span class="lineCov">          2 :   MovieDetail toEntity() {</span></a>
-<a name="79"><span class="lineNum">      79 </span><span class="lineCov">          2 :     return MovieDetail(</span></a>
-<a name="80"><span class="lineNum">      80 </span><span class="lineCov">          2 :       adult: this.adult,</span></a>
-<a name="81"><span class="lineNum">      81 </span><span class="lineCov">          2 :       backdropPath: this.backdropPath,</span></a>
-<a name="82"><span class="lineNum">      82 </span><span class="lineCov">         10 :       genres: this.genres.map((genre) =&gt; genre.toEntity()).toList(),</span></a>
-<a name="83"><span class="lineNum">      83 </span><span class="lineCov">          2 :       id: this.id,</span></a>
-<a name="84"><span class="lineNum">      84 </span><span class="lineCov">          2 :       originalTitle: this.originalTitle,</span></a>
-<a name="85"><span class="lineNum">      85 </span><span class="lineCov">          2 :       overview: this.overview,</span></a>
-<a name="86"><span class="lineNum">      86 </span><span class="lineCov">          2 :       posterPath: this.posterPath,</span></a>
-<a name="87"><span class="lineNum">      87 </span><span class="lineCov">          2 :       releaseDate: this.releaseDate,</span></a>
-<a name="88"><span class="lineNum">      88 </span><span class="lineCov">          2 :       runtime: this.runtime,</span></a>
-<a name="89"><span class="lineNum">      89 </span><span class="lineCov">          2 :       title: this.title,</span></a>
-<a name="90"><span class="lineNum">      90 </span><span class="lineCov">          2 :       voteAverage: this.voteAverage,</span></a>
-<a name="91"><span class="lineNum">      91 </span><span class="lineCov">          2 :       voteCount: this.voteCount,</span></a>
+<a name="78"><span class="lineNum">      78 </span><span class="lineCov">          1 :   MovieDetail toEntity() {</span></a>
+<a name="79"><span class="lineNum">      79 </span><span class="lineCov">          1 :     return MovieDetail(</span></a>
+<a name="80"><span class="lineNum">      80 </span><span class="lineCov">          1 :       adult: this.adult,</span></a>
+<a name="81"><span class="lineNum">      81 </span><span class="lineCov">          1 :       backdropPath: this.backdropPath,</span></a>
+<a name="82"><span class="lineNum">      82 </span><span class="lineCov">          5 :       genres: this.genres.map((genre) =&gt; genre.toEntity()).toList(),</span></a>
+<a name="83"><span class="lineNum">      83 </span><span class="lineCov">          1 :       id: this.id,</span></a>
+<a name="84"><span class="lineNum">      84 </span><span class="lineCov">          1 :       originalTitle: this.originalTitle,</span></a>
+<a name="85"><span class="lineNum">      85 </span><span class="lineCov">          1 :       overview: this.overview,</span></a>
+<a name="86"><span class="lineNum">      86 </span><span class="lineCov">          1 :       posterPath: this.posterPath,</span></a>
+<a name="87"><span class="lineNum">      87 </span><span class="lineCov">          1 :       releaseDate: this.releaseDate,</span></a>
+<a name="88"><span class="lineNum">      88 </span><span class="lineCov">          1 :       runtime: this.runtime,</span></a>
+<a name="89"><span class="lineNum">      89 </span><span class="lineCov">          1 :       title: this.title,</span></a>
+<a name="90"><span class="lineNum">      90 </span><span class="lineCov">          1 :       voteAverage: this.voteAverage,</span></a>
+<a name="91"><span class="lineNum">      91 </span><span class="lineCov">          1 :       voteCount: this.voteCount,</span></a>
 <a name="92"><span class="lineNum">      92 </span>            :     );</a>
 <a name="93"><span class="lineNum">      93 </span>            :   }</a>
 <a name="94"><span class="lineNum">      94 </span>            : </a>
