@@ -7,14 +7,14 @@ import 'package:ditonton/presentation/widgets/entertaiment_card_list.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class WatchlistMoviesPage extends StatefulWidget {
+class WatchlistPage extends StatefulWidget {
   static const ROUTE_NAME = '/watchlist';
 
   @override
-  _WatchlistMoviesPageState createState() => _WatchlistMoviesPageState();
+  _WatchlistPageState createState() => _WatchlistPageState();
 }
 
-class _WatchlistMoviesPageState extends State<WatchlistMoviesPage>
+class _WatchlistPageState extends State<WatchlistPage>
     with RouteAware {
   @override
   void initState() {
@@ -42,27 +42,40 @@ class _WatchlistMoviesPageState extends State<WatchlistMoviesPage>
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Watchlist'),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(
+    return DefaultTabController(
+      length: 2,
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text('Watchlist'),
+          bottom: buildTabBar(),
+        ),
+        body: TabBarView(
           children: [
-            Text(
-              'Movies Watchlist',
-              style: kHeading6,
-            ),
             buildMovieConsumer(),
-            Text(
-              'TV Shows Watchlist',
-              style: kHeading6,
-            ),
             buildTvConsumer(),
           ],
         ),
       ),
+    );
+  }
+
+  TabBar buildTabBar() {
+    return TabBar(
+      indicatorColor: kColorScheme.primary,
+      tabs: [
+        Tab(
+          icon: Icon(
+            Icons.movie,
+          ),
+          text: 'Movies',
+        ),
+        Tab(
+          icon: Icon(
+            Icons.tv,
+          ),
+          text: 'TV Shows',
+        ),
+      ],
     );
   }
 

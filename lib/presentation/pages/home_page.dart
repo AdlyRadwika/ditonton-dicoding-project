@@ -4,6 +4,7 @@ import 'package:ditonton/domain/entities/movie/movie.dart';
 import 'package:ditonton/domain/entities/tv/tv.dart';
 import 'package:ditonton/presentation/pages/about_page.dart';
 import 'package:ditonton/presentation/pages/entertaiment_detail_page.dart';
+import 'package:ditonton/presentation/pages/now_playing_entertaiments_page.dart';
 import 'package:ditonton/presentation/pages/popular_entertaiments_page.dart';
 import 'package:ditonton/presentation/pages/search_page.dart';
 import 'package:ditonton/presentation/pages/top_rated_entertaiments_page.dart';
@@ -59,7 +60,7 @@ class _HomePageState extends State<HomePage> {
               leading: Icon(Icons.save_alt),
               title: Text('Watchlist'),
               onTap: () {
-                Navigator.pushNamed(context, WatchlistMoviesPage.ROUTE_NAME);
+                Navigator.pushNamed(context, WatchlistPage.ROUTE_NAME);
               },
             ),
             ListTile(
@@ -89,9 +90,13 @@ class _HomePageState extends State<HomePage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                'Now Playing Movies',
-                style: kHeading6,
+              _buildSubHeading(
+                title: 'Now Playing Movies',
+                onTap: () => Navigator.pushNamed(
+                  context,
+                  NowPlayingEntertaimentsPage.ROUTE_NAME,
+                  arguments: false,
+                ),
               ),
               buildMovieListConsumer(indexState: 0),
               _buildSubHeading(
@@ -112,9 +117,13 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
               buildMovieListConsumer(indexState: 2),
-              Text(
-                'On The Air TV Shows',
-                style: kHeading6,
+              _buildSubHeading(
+                title: 'On The Air TV Shows',
+                onTap: () => Navigator.pushNamed(
+                  context,
+                  NowPlayingEntertaimentsPage.ROUTE_NAME,
+                  arguments: true,
+                ),
               ),
               buildTvListConsumer(indexState: 0),
               _buildSubHeading(

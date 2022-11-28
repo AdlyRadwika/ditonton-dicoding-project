@@ -25,44 +25,56 @@ class _SearchPageState extends State<SearchPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Search'),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+    return DefaultTabController(
+      length: 2,
+      child: Scaffold(
+        appBar: AppBar(
+          title: buildSearchTextField(context),
+          bottom: buildTabBar(),
+        ),
+        body: TabBarView(
           children: [
-            TextField(
-              controller: searchController,
-              onSubmitted: (query) {
-                Provider.of<MovieSearchNotifier>(context, listen: false)
-                    .fetchMovieSearch(query);
-                Provider.of<TvSearchNotifier>(context, listen: false)
-                    .fetchTvSearch(query);
-              },
-              decoration: InputDecoration(
-                hintText: 'Search title',
-                prefixIcon: Icon(Icons.search),
-                border: OutlineInputBorder(),
-              ),
-              textInputAction: TextInputAction.search,
-            ),
-            SizedBox(height: 16),
-            Text(
-              'Movies Search Result',
-              style: kHeading6,
-            ),
             buildMovieSearchConsumer(),
-            Text(
-              'TV Shows Search Result',
-              style: kHeading6,
-            ),
             buildTvSearchConsumer(),
-          ],
+          ]
         ),
       ),
+    );
+  }
+
+  TextField buildSearchTextField(BuildContext context) {
+    return TextField(
+      controller: searchController,
+      onSubmitted: (query) {
+        Provider.of<MovieSearchNotifier>(context, listen: false)
+            .fetchMovieSearch(query);
+        Provider.of<TvSearchNotifier>(context, listen: false)
+            .fetchTvSearch(query);
+      },
+      decoration: InputDecoration(
+        hintText: 'Search title',
+      ),
+      textInputAction: TextInputAction.search,
+    );
+  }
+
+  TabBar buildTabBar() {
+    return TabBar(
+      indicatorColor: kColorScheme.primary,
+      tabs: [
+        Tab(
+          icon: Icon(
+            Icons.movie,
+          ),
+          text: 'Movies',
+        ),
+        Tab(
+          icon: Icon(
+            Icons.tv,
+          ),
+          text: 'TV Shows',
+        ),
+      ],
     );
   }
 
@@ -76,30 +88,25 @@ class _SearchPageState extends State<SearchPage> {
         } else if (data.state == RequestState.Loaded) {
           final result = data.searchResult;
           if (result.isEmpty) {
-            return Expanded(
-                child: Center(
+            return Center(
               child: Text(
-                "The movie you're looking for couldn't be found",
-                style: kBodyText,
+            "The movie you're looking for couldn't be found",
+            style: kBodyText,
               ),
-            ));
+            );
           }
-          return Expanded(
-            child: ListView.builder(
-                padding: const EdgeInsets.all(8),
-                itemBuilder: (context, index) {
-                  final movie = data.searchResult[index];
-                  return EntertaimentCard(
-                    movie: movie,
-                    isTV: false,
-                  );
-                },
-                itemCount: result.length >= 1 ? result.length : 1),
-          );
+          return ListView.builder(
+              padding: const EdgeInsets.all(8),
+              itemBuilder: (context, index) {
+                final movie = data.searchResult[index];
+                return EntertaimentCard(
+                  movie: movie,
+                  isTV: false,
+                );
+              },
+              itemCount: result.length >= 1 ? result.length : 1);
         } else {
-          return Expanded(
-            child: Container(),
-          );
+          return Container();
         }
       },
     );
@@ -115,26 +122,23 @@ class _SearchPageState extends State<SearchPage> {
         } else if (data.state == RequestState.Loaded) {
           final result = data.searchResult;
           if (result.isEmpty) {
-            return Expanded(
-                child: Center(
+            return Center(
               child: Text(
-                "The TV Show you're looking for couldn't be found",
-                style: kBodyText,
+            "The TV Show you're looking for couldn't be found",
+            style: kBodyText,
               ),
-            ));
+            );
           }
-          return Expanded(
-            child: ListView.builder(
-                padding: const EdgeInsets.all(8),
-                itemBuilder: (context, index) {
-                  final tv = data.searchResult[index];
-                  return EntertaimentCard(
-                    tv: tv,
-                    isTV: true,
-                  );
-                },
-                itemCount: result.length >= 1 ? result.length : 1),
-          );
+          return ListView.builder(
+              padding: const EdgeInsets.all(8),
+              itemBuilder: (context, index) {
+                final tv = data.searchResult[index];
+                return EntertaimentCard(
+                  tv: tv,
+                  isTV: true,
+                );
+              },
+              itemCount: result.length >= 1 ? result.length : 1);
         } else {
           return Expanded(
             child: Container(),
