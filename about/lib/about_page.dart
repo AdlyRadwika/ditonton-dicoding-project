@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
+// ignore: use_key_in_widget_constructors
 class AboutPage extends StatelessWidget {
+  // ignore: constant_identifier_names
   static const ROUTE_NAME = '/about';
 
   @override
