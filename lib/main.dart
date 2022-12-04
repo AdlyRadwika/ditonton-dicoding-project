@@ -1,25 +1,26 @@
-import 'package:ditonton/common/constants.dart';
-import 'package:ditonton/common/utils.dart';
+import 'package:core/core.dart';
 import 'package:about/about.dart';
-import 'package:ditonton/presentation/pages/entertaiment_detail_page.dart';
-import 'package:ditonton/presentation/pages/home_page.dart';
-import 'package:ditonton/presentation/pages/now_playing_entertaiments_page.dart';
-import 'package:ditonton/presentation/pages/popular_entertaiments_page.dart';
-import 'package:ditonton/presentation/pages/search_page.dart';
-import 'package:ditonton/presentation/pages/top_rated_entertaiments_page.dart';
-import 'package:ditonton/presentation/pages/watchlist_movies_page.dart';
-import 'package:ditonton/presentation/provider/movie/movie_detail_notifier.dart';
-import 'package:ditonton/presentation/provider/movie/movie_list_notifier.dart';
-import 'package:ditonton/presentation/provider/movie/movie_search_notifier.dart';
-import 'package:ditonton/presentation/provider/movie/popular_movies_notifier.dart';
-import 'package:ditonton/presentation/provider/movie/top_rated_movies_notifier.dart';
-import 'package:ditonton/presentation/provider/movie/watchlist_movie_notifier.dart';
-import 'package:ditonton/presentation/provider/tv/popular_tvs_notifier.dart';
-import 'package:ditonton/presentation/provider/tv/top_rated_tvs_notifier.dart';
-import 'package:ditonton/presentation/provider/tv/tv_detail_notifier.dart';
-import 'package:ditonton/presentation/provider/tv/tv_list_notifier.dart';
-import 'package:ditonton/presentation/provider/tv/tv_search_notifier.dart';
-import 'package:ditonton/presentation/provider/tv/watchlist_tv_notifier.dart';
+import 'package:core/presentation/pages/entertaiment_detail_page.dart';
+import 'package:core/presentation/pages/home_page.dart';
+import 'package:core/presentation/pages/now_playing_entertaiments_page.dart';
+import 'package:core/presentation/pages/popular_entertaiments_page.dart';
+import 'package:core/presentation/pages/search_page.dart';
+import 'package:core/presentation/pages/top_rated_entertaiments_page.dart';
+import 'package:core/presentation/pages/watchlist_movies_page.dart';
+import 'package:core/presentation/provider/movie/movie_detail_notifier.dart';
+import 'package:core/presentation/provider/movie/movie_list_notifier.dart';
+import 'package:core/presentation/provider/movie/movie_search_notifier.dart';
+import 'package:core/presentation/provider/movie/popular_movies_notifier.dart';
+import 'package:core/presentation/provider/movie/top_rated_movies_notifier.dart';
+import 'package:core/presentation/provider/movie/watchlist_movie_notifier.dart';
+import 'package:core/presentation/provider/tv/popular_tvs_notifier.dart';
+import 'package:core/presentation/provider/tv/top_rated_tvs_notifier.dart';
+import 'package:core/presentation/provider/tv/tv_detail_notifier.dart';
+import 'package:core/presentation/provider/tv/tv_list_notifier.dart';
+import 'package:core/presentation/provider/tv/tv_search_notifier.dart';
+import 'package:core/presentation/provider/tv/watchlist_tv_notifier.dart';
+import 'package:core/utils/utils.dart';
+import 'package:core/utils/routes.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -86,7 +87,7 @@ class MyApp extends StatelessWidget {
           switch (settings.name) {
             case '/home':
               return MaterialPageRoute(builder: (_) => HomePage());
-            case PopularEntertaimentsPage.ROUTE_NAME:
+            case POPULAR_ROUTE:
               final isTV = settings.arguments as bool;
               return CupertinoPageRoute(
                 builder: (_) => PopularEntertaimentsPage(
@@ -94,7 +95,7 @@ class MyApp extends StatelessWidget {
                 ),
                 settings: settings,
               );
-            case NowPlayingEntertaimentsPage.ROUTE_NAME:
+            case NOW_PLAYING_ROUTE:
               final isTV = settings.arguments as bool;
               return CupertinoPageRoute(
                 builder: (_) => NowPlayingEntertaimentsPage(
@@ -102,7 +103,7 @@ class MyApp extends StatelessWidget {
                 ),
                 settings: settings,
               );
-            case TopRatedEntertaimentsPage.ROUTE_NAME:
+            case TOP_RATED_ROUTE:
               final isTV = settings.arguments as bool;
               return CupertinoPageRoute(
                 builder: (_) => TopRatedEntertaimentsPage(
@@ -110,16 +111,16 @@ class MyApp extends StatelessWidget {
                 ),
                 settings: settings,
               );
-            case EntertaimentDetailPage.ROUTE_NAME:
+            case DETAIL_ROUTE:
               final args = settings.arguments as EntertaimentDetailArguments;
               return MaterialPageRoute(
                 builder: (_) =>
                     EntertaimentDetailPage(id: args.id, isTV: args.isTV),
                 settings: settings,
               );
-            case SearchPage.ROUTE_NAME:
+            case SEARCH_ROUTE:
               return CupertinoPageRoute(builder: (_) => SearchPage());
-            case WatchlistPage.ROUTE_NAME:
+            case WATCHLIST_ROUTE:
               return MaterialPageRoute(builder: (_) => WatchlistPage());
             case AboutPage.ROUTE_NAME:
               return MaterialPageRoute(builder: (_) => AboutPage());
