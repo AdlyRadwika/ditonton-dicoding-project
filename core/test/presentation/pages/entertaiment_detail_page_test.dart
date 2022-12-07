@@ -1,8 +1,5 @@
-// ignore_for_file: no_leading_underscores_for_local_identifiers
 
 import 'package:core/core.dart';
-import 'package:core/domain/entities/movie/movie.dart';
-import 'package:core/domain/entities/tv/tv.dart';
 import 'package:core/presentation/pages/entertaiment_detail_page.dart';
 import 'package:core/presentation/provider/movie/movie_detail_notifier.dart';
 import 'package:core/presentation/provider/tv/tv_detail_notifier.dart';

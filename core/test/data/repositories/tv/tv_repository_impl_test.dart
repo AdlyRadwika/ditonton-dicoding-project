@@ -3,11 +3,7 @@
 import 'dart:io';
 import 'package:core/core.dart';
 import 'package:dartz/dartz.dart';
-import 'package:core/data/models/genre_model.dart';
-import 'package:core/data/models/tv/tv_detail_model.dart';
-import 'package:core/data/models/tv/tv_model.dart';
 import 'package:core/data/repositories/tv/tv_repository_impl.dart';
-import 'package:core/domain/entities/tv/tv.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 

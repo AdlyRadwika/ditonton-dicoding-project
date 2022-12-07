@@ -1,6 +1,6 @@
 // ignore_for_file: avoid_relative_lib_imports, no_leading_underscores_for_local_identifiers, prefer_const_constructors
 
-import '../../../lib/utils/state_enum.dart';
+import 'package:core/utils/state_enum.dart';
 import 'package:core/domain/entities/movie/movie.dart';
 import 'package:core/domain/entities/tv/tv.dart';
 import 'package:core/presentation/pages/top_rated_entertaiments_page.dart';

@@ -2,16 +2,13 @@
 
 import 'dart:convert';
 
-import 'package:core/data/datasources/tv/tv_remote_data_source.dart';
-import 'package:core/data/models/tv/tv_detail_model.dart';
-import 'package:core/data/models/tv/tv_response.dart';
 import 'package:core/core.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:mockito/mockito.dart';
 
 import '../../../helpers/tv/tv_test_helper.mocks.dart';
-import '../../../json_reader.dart';
+import '../../../../test/json_reader.dart';
 
 void main() {
   const API_KEY = 'api_key=2174d146bb9c0eab47529b2e77d6b526';

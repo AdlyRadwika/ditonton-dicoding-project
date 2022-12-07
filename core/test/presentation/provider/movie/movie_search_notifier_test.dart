@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
-import '../../../../lib/utils/failure.dart';
-import '../../../../lib/utils/state_enum.dart';
+import 'package:core/utils/failure.dart';
+import 'package:core/utils/state_enum.dart';
 import 'package:core/domain/entities/movie/movie.dart';
 import 'package:core/domain/usecases/movie/search_movies.dart';
 import 'package:core/presentation/provider/movie/movie_search_notifier.dart';

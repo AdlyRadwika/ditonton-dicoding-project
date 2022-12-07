@@ -9,7 +9,7 @@ import 'dart:convert' as _i18;
 import 'dart:typed_data' as _i19;
 
 import 'package:dartz/dartz.dart' as _i2;
-import '../../../lib/utils/failure.dart' as _i8;
+import 'package:core/utils/failure.dart' as _i8;
 import 'package:core/data/datasources/db/movie/movie_database_helper.dart'
     as _i15;
 import 'package:core/data/datasources/movie/movie_local_data_source.dart'
@@ -29,12 +29,6 @@ import 'package:http/src/response.dart' as _i4;
 import 'package:http/src/streamed_response.dart' as _i5;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:sqflite_common/sqlite_api.dart' as _i16;
-
-// ignore_for_file: avoid_redundant_argument_values
-// ignore_for_file: comment_references
-// ignore_for_file: invalid_use_of_visible_for_testing_member
-// ignore_for_file: prefer_const_constructors
-// ignore_for_file: unnecessary_parenthesis
 
 class _FakeEither<L, R> extends _i1.Fake implements _i2.Either<L, R> {}
 

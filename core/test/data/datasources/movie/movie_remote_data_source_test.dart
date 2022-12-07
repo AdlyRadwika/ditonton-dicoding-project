@@ -1,17 +1,12 @@
-// ignore_for_file: constant_identifier_names, prefer_const_declarations
-
 import 'dart:convert';
 
-import 'package:core/data/datasources/movie/movie_remote_data_source.dart';
-import 'package:core/data/models/movie/movie_detail_model.dart';
-import 'package:core/data/models/movie/movie_response.dart';
 import 'package:core/core.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:mockito/mockito.dart';
 
 import '../../../helpers/movie/movie_test_helper.mocks.dart';
-import '../../../json_reader.dart';
+import '../../../../test/json_reader.dart';
 
 void main() {
   const API_KEY = 'api_key=2174d146bb9c0eab47529b2e77d6b526';

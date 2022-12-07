@@ -1,7 +1,6 @@
 // ignore_for_file: prefer_const_declarations
 
 import 'package:core/core.dart';
-import 'package:core/data/datasources/tv/tv_local_data_source.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 

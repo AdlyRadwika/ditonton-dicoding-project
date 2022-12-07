@@ -3,11 +3,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:core/core.dart';
 import 'package:core/utils/routes.dart';
-import 'package:core/domain/entities/genre.dart';
-import 'package:core/domain/entities/movie/movie.dart';
-import 'package:core/domain/entities/movie/movie_detail.dart';
-import 'package:core/domain/entities/tv/tv.dart';
-import 'package:core/domain/entities/tv/tv_detail.dart';
 import 'package:core/presentation/pages/home_page.dart';
 import 'package:core/presentation/provider/movie/movie_detail_notifier.dart';
 import 'package:core/presentation/provider/tv/tv_detail_notifier.dart';

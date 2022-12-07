@@ -1,12 +1,10 @@
-// ignore_for_file: prefer_const_literals_to_create_immutables
-
 import 'dart:convert';
 
 import 'package:core/data/models/movie/movie_model.dart';
 import 'package:core/data/models/movie/movie_response.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import '../../../json_reader.dart';
+import '../../../../test/json_reader.dart';
 
 void main() {
   final tMovieModel = MovieModel(

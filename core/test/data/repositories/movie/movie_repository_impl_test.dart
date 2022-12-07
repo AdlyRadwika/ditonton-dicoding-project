@@ -3,12 +3,8 @@
 import 'dart:io';
 
 import 'package:dartz/dartz.dart';
-import 'package:core/data/models/genre_model.dart';
-import 'package:core/data/models/movie/movie_detail_model.dart';
-import 'package:core/data/models/movie/movie_model.dart';
 import 'package:core/data/repositories/movie/movie_repository_impl.dart';
 import 'package:core/core.dart';
-import 'package:core/domain/entities/movie/movie.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 
