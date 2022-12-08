@@ -1,7 +1,6 @@
 // ignore_for_file: use_key_in_widget_constructors, constant_identifier_names, prefer_const_constructors, prefer_is_empty
 
 import 'package:core/core.dart';
-import 'package:core/presentation/provider/tv/tv_search_notifier.dart';
 import 'package:core/presentation/widgets/entertaiment_card_list.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';

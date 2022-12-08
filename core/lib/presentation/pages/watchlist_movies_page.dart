@@ -2,7 +2,6 @@
 
 import 'package:core/core.dart';
 import '../../utils/utils.dart';
-import 'package:core/presentation/provider/tv/watchlist_tv_notifier.dart';
 import 'package:core/presentation/widgets/entertaiment_card_list.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';

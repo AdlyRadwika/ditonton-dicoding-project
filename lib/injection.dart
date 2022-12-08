@@ -1,11 +1,4 @@
 import 'package:core/core.dart';
-import 'package:core/data/repositories/tv/tv_repository_impl.dart';
-import 'package:core/presentation/provider/tv/popular_tvs_notifier.dart';
-import 'package:core/presentation/provider/tv/top_rated_tvs_notifier.dart';
-import 'package:core/presentation/provider/tv/tv_detail_notifier.dart';
-import 'package:core/presentation/provider/tv/tv_list_notifier.dart';
-import 'package:core/presentation/provider/tv/tv_search_notifier.dart';
-import 'package:core/presentation/provider/tv/watchlist_tv_notifier.dart';
 import 'package:http/http.dart' as http;
 import 'package:get_it/get_it.dart';
 
