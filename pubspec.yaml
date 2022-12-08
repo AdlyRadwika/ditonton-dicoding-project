@@ -27,6 +27,8 @@ dependencies:
     path: core
   about:
     path: about
+  movie:
+    path: movie
 
 
   # The following adds the Cupertino Icons font to your application.

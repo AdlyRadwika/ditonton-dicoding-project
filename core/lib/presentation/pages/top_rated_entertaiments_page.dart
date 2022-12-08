@@ -1,7 +1,6 @@
 // ignore_for_file: constant_identifier_names, use_key_in_widget_constructors, library_private_types_in_public_api, prefer_const_constructors
 
-import '../../utils/state_enum.dart';
-import 'package:core/presentation/provider/movie/top_rated_movies_notifier.dart';
+import 'package:core/core.dart';
 import 'package:core/presentation/provider/tv/top_rated_tvs_notifier.dart';
 import 'package:core/presentation/widgets/entertaiment_card_list.dart';
 import 'package:flutter/material.dart';

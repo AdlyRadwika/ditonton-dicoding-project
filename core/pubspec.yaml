@@ -13,6 +13,8 @@ dependencies:
     sdk: flutter
   about:
     path: ../about
+  movie:
+    path: ../movie
 
   equatable: ^2.0.3
   google_fonts: ^3.0.1
