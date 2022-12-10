@@ -1,10 +1,10 @@
 // ignore_for_file: unused_local_variable, prefer_const_declarations, prefer_const_literals_to_create_immutables
 
+import 'package:bloc_test/bloc_test.dart';
 import 'package:core/core.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
-import 'package:bloc_test/bloc_test.dart';
 import 'package:mockito/mockito.dart';
 
 import 'search_movie_bloc_test.mocks.dart'; 
