@@ -78,6 +78,13 @@ void init() {
       getWatchlistTvs: locator(),
     ),
   );
+  
+  // bloc
+  locator.registerFactory(
+    () => SearchMovieBloc(
+      locator(),
+    ),
+  );
 
   // use case
   locator.registerLazySingleton(() => GetNowPlayingMovies(locator()));
