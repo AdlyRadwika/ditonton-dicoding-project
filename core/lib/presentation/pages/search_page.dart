@@ -3,6 +3,7 @@
 import 'package:core/core.dart';
 import 'package:core/presentation/widgets/entertaiment_card_list.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 
 class SearchPage extends StatefulWidget {
@@ -33,7 +34,7 @@ class _SearchPageState extends State<SearchPage> {
         ),
         body: TabBarView(
           children: [
-            buildMovieSearchConsumer(),
+            buildMovieSearch(),
             buildTvSearchConsumer(),
           ]
         ),
@@ -45,8 +46,7 @@ class _SearchPageState extends State<SearchPage> {
     return TextField(
       controller: searchController,
       onSubmitted: (query) {
-        Provider.of<MovieSearchNotifier>(context, listen: false)
-            .fetchMovieSearch(query);
+        context.read<SearchMovieBloc>().add(OnQueryChanged(query));
         Provider.of<TvSearchNotifier>(context, listen: false)
             .fetchTvSearch(query);
       },
@@ -78,15 +78,15 @@ class _SearchPageState extends State<SearchPage> {
     );
   }
 
-  Consumer<MovieSearchNotifier> buildMovieSearchConsumer() {
-    return Consumer<MovieSearchNotifier>(
-      builder: (context, data, child) {
-        if (data.state == RequestState.Loading) {
+  BlocBuilder<SearchMovieBloc, SearchState> buildMovieSearch() {
+    return BlocBuilder<SearchMovieBloc, SearchState>(
+      builder: (context, state) {
+        if (state is SearchLoading) {
           return Center(
             child: CircularProgressIndicator(),
           );
-        } else if (data.state == RequestState.Loaded) {
-          final result = data.searchResult;
+        } else if (state is SearchHasData) {
+          final result = state.result;
           if (result.isEmpty) {
             return Center(
               child: Text(
@@ -98,13 +98,19 @@ class _SearchPageState extends State<SearchPage> {
           return ListView.builder(
               padding: const EdgeInsets.all(8),
               itemBuilder: (context, index) {
-                final movie = data.searchResult[index];
+                final movie = result[index];
                 return EntertaimentCard(
                   movie: movie,
                   isTV: false,
                 );
               },
               itemCount: result.length >= 1 ? result.length : 1);
+        } else if (state is SearchError) {
+          return Expanded(
+            child: Center(
+              child: Text(state.message),
+            ),
+          );
         } else {
           return Container();
         }
