@@ -1,6 +1,7 @@
 // ignore_for_file: use_key_in_widget_constructors, constant_identifier_names, library_private_types_in_public_api, annotate_overrides, prefer_const_constructors, unnecessary_string_interpolations
 
 import 'package:core/core.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../utils/utils.dart';
 import 'package:core/presentation/widgets/entertaiment_card_list.dart';
 import 'package:flutter/material.dart';
@@ -19,8 +20,7 @@ class _WatchlistPageState extends State<WatchlistPage>
   void initState() {
     super.initState();
     Future.microtask(() =>
-    Provider.of<WatchlistMovieNotifier>(context, listen: false)
-        .fetchWatchlistMovies());
+      context.read<WatchlistMovieBloc>().add(GetWatchlistMovie()));
     Future.microtask(() =>
         Provider.of<WatchlistTvNotifier>(context, listen: false)
             .fetchWatchlistTvs());
@@ -33,8 +33,7 @@ class _WatchlistPageState extends State<WatchlistPage>
   }
 
   void didPopNext() {
-    Provider.of<WatchlistMovieNotifier>(context, listen: false)
-        .fetchWatchlistMovies();
+    context.read<WatchlistMovieBloc>().add(GetWatchlistMovie());
     Provider.of<WatchlistTvNotifier>(context, listen: false)
         .fetchWatchlistTvs();
   }
@@ -50,7 +49,7 @@ class _WatchlistPageState extends State<WatchlistPage>
         ),
         body: TabBarView(
           children: [
-            buildMovieConsumer(),
+            buildMovie(),
             buildTvConsumer(),
           ],
         ),
@@ -79,30 +78,32 @@ class _WatchlistPageState extends State<WatchlistPage>
     );
   }
 
-  Consumer<WatchlistMovieNotifier> buildMovieConsumer() {
-    return Consumer<WatchlistMovieNotifier>(
-      builder: (context, movieData,child) {
-        if (movieData.watchlistState == RequestState.Loading) {
+  BlocBuilder<WatchlistMovieBloc, WatchlistMovieState> buildMovie() {
+    return BlocBuilder<WatchlistMovieBloc, WatchlistMovieState>(
+      builder: (context, state) {
+        if (state is GetWatchlistMovieLoading) {
           return Center(
             child: CircularProgressIndicator(),
           );
-        } else if (movieData.watchlistState == RequestState.Loaded) {
+        } else if (state is GetWatchlistMovieHasData) {
           return Expanded(
             child: ListView.builder(
-              itemCount: movieData.watchlistMovies.length,
+              itemCount: state.movies.length,
               itemBuilder: (context, index) {
-                final movie = movieData.watchlistMovies[index];
+                final movie = state.movies[index];
                 return EntertaimentCard(movie: movie, isTV: false,);
               },
             ),
           );
-        } else {
+        } else if (state is GetWatchlistMovieError) {
           return Expanded(
             child: Center(
               key: Key('error_message'),
-              child: Text("${movieData.message}"),
+              child: Text("${state.message}"),
             ),
           );
+        }else {
+          return const Text('There is something wrong.');
         }
       },
     );

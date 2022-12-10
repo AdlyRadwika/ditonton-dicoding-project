@@ -29,4 +29,5 @@ export 'presentation/provider/popular_movies_notifier.dart';
 export 'presentation/provider/top_rated_movies_notifier.dart';
 export 'presentation/provider/watchlist_movie_notifier.dart';
 export 'presentation/bloc/search_movie/search_bloc.dart';
+export 'presentation/bloc/watchlist_movie/watchlist_movie_bloc.dart';
 
