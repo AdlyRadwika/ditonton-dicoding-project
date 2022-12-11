@@ -6,7 +6,7 @@ import 'package:core/presentation/pages/now_playing_entertaiments_page.dart';
 import 'package:core/presentation/pages/popular_entertaiments_page.dart';
 import 'package:core/presentation/pages/search_page.dart';
 import 'package:core/presentation/pages/top_rated_entertaiments_page.dart';
-import 'package:core/presentation/pages/watchlist_movies_page.dart';
+import 'package:core/presentation/pages/watchlist_page.dart';
 import 'package:core/utils/utils.dart';
 import 'package:core/utils/routes.dart';
 import 'package:flutter/cupertino.dart';
@@ -63,6 +63,15 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (_) => di.locator<SearchMovieBloc>(),
+        ),
+        BlocProvider(
+          create: (_) => di.locator<WatchlistMovieBloc>(),
+        ),
+        BlocProvider(
+          create: (_) => di.locator<MovieDetailBloc>(),
+        ),
+        BlocProvider(
+          create: (_) => di.locator<RecommendationMoviesBloc>(),
         ),
       ],
       child: MaterialApp(

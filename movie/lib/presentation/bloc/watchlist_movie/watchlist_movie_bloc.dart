@@ -22,6 +22,7 @@ class WatchlistMovieBloc extends Bloc<WatchlistMovieEvent, WatchlistMovieState> 
         },
         (movieData) {
           emit(SaveWatchlistMovieSuccess(movieData));
+          emit(GetWatchlistMovieStatusData(true));
         },
       );
     });
@@ -36,11 +37,11 @@ class WatchlistMovieBloc extends Bloc<WatchlistMovieEvent, WatchlistMovieState> 
           },
           (movieData) {
             emit(RemoveWatchlistMovieSuccess(movieData));
+            emit(GetWatchlistMovieStatusData(false));
           },
         );
       });
     
-
     on<GetWatchlistMovieStatus>((event, emit) async {
       emit(GetWatchlistMovieStatusLoading());
 

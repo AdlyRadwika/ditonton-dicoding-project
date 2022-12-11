@@ -19,7 +19,6 @@ class _SearchPageState extends State<SearchPage> {
   @override
   void initState() {
     super.initState();
-    Provider.of<MovieSearchNotifier>(context, listen: false).emptyMovieSearch();
     Provider.of<TvSearchNotifier>(context, listen: false).emptyTvSearch();
   }
 

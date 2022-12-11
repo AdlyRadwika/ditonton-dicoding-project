@@ -86,21 +86,17 @@ class _WatchlistPageState extends State<WatchlistPage>
             child: CircularProgressIndicator(),
           );
         } else if (state is GetWatchlistMovieHasData) {
-          return Expanded(
-            child: ListView.builder(
-              itemCount: state.movies.length,
-              itemBuilder: (context, index) {
-                final movie = state.movies[index];
-                return EntertaimentCard(movie: movie, isTV: false,);
-              },
-            ),
+          return ListView.builder(
+            itemCount: state.movies.length,
+            itemBuilder: (context, index) {
+              final movie = state.movies[index];
+              return EntertaimentCard(movie: movie, isTV: false,);
+            },
           );
         } else if (state is GetWatchlistMovieError) {
-          return Expanded(
-            child: Center(
-              key: Key('error_message'),
-              child: Text("${state.message}"),
-            ),
+          return Center(
+            key: Key('error_message'),
+            child: Text("${state.message}"),
           );
         }else {
           return const Text('There is something wrong.');
@@ -117,21 +113,17 @@ class _WatchlistPageState extends State<WatchlistPage>
             child: CircularProgressIndicator(),
           );
         } else if (tvData.watchlistState == RequestState.Loaded) {
-          return Expanded(
-            child: ListView.builder(
-              itemCount: tvData.watchlistTvs.length,
-              itemBuilder: (context, index) {
-                final tv = tvData.watchlistTvs[index];
-                return EntertaimentCard(tv: tv, isTV: true,);
-              },
-            ),
+          return ListView.builder(
+            itemCount: tvData.watchlistTvs.length,
+            itemBuilder: (context, index) {
+              final tv = tvData.watchlistTvs[index];
+              return EntertaimentCard(tv: tv, isTV: true,);
+            },
           );
         } else {
-          return Expanded(
-            child: Center(
-              key: Key('error_message'),
-              child: Text("${tvData.message}"),
-            ),
+          return Center(
+            key: Key('error_message'),
+            child: Text("${tvData.message}"),
           );
         }
       },

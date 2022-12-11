@@ -30,4 +30,6 @@ export 'presentation/provider/top_rated_movies_notifier.dart';
 export 'presentation/provider/watchlist_movie_notifier.dart';
 export 'presentation/bloc/search_movie/search_bloc.dart';
 export 'presentation/bloc/watchlist_movie/watchlist_movie_bloc.dart';
+export 'presentation/bloc/movie_detail/movie_detail_bloc.dart';
+export 'presentation/bloc/recommendation_movies/recommendation_movies_bloc.dart';
 

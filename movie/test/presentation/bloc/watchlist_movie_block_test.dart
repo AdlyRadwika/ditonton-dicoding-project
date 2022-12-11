@@ -42,6 +42,7 @@ void main() {
       expect: () => [
         SaveWatchlistMovieLoading(),
         const SaveWatchlistMovieSuccess('Added to Watchlist'),
+        const GetWatchlistMovieStatusData(true),
       ],
       verify: (bloc) {
         verify(mockSaveWatchlistMovie.execute(testMovieDetail));
@@ -76,6 +77,7 @@ void main() {
       expect: () => [
         RemoveWatchlistMovieLoading(),
         const RemoveWatchlistMovieSuccess('Removed from Watchlist'),
+        const GetWatchlistMovieStatusData(false),
       ],
       verify: (bloc) {
         verify(mockRemoveWatchlistMovie.execute(testMovieDetail));
