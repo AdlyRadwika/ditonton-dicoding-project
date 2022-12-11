@@ -28,5 +28,10 @@ export 'presentation/provider/tv_search_notifier.dart';
 export 'presentation/provider/popular_tvs_notifier.dart';
 export 'presentation/provider/top_rated_tvs_notifier.dart';
 export 'presentation/provider/watchlist_tv_notifier.dart';
-
-
+export 'presentation/bloc/search_tv/search_tv_bloc.dart';
+export 'presentation/bloc/watchlist_tv/watchlist_tv_bloc.dart';
+export 'presentation/bloc/tv_detail/tv_detail_bloc.dart';
+export 'presentation/bloc/recommendation_tvs/recommendation_tvs_bloc.dart';
+export 'presentation/bloc/now_playing_tv/now_playing_tv_bloc.dart';
+export 'presentation/bloc/popular_tv/popular_tv_bloc.dart';
+export 'presentation/bloc/top_rated_tv/top_rated_tv_bloc.dart';

@@ -82,6 +82,44 @@ void init() {
       locator(),
     ),
   );
+  locator.registerFactory(
+    () => SearchTvBloc(
+      locator(),
+    ),
+  );
+  locator.registerFactory(
+    () => WatchlistTvBloc(
+      locator(),
+      locator(),
+      locator(),
+      locator(),
+    ),
+  );
+  locator.registerFactory(
+    () => TvDetailBloc(
+      locator(),
+    ),
+  );
+  locator.registerFactory(
+    () => RecommendationTvsBloc(
+      locator(),
+    ),
+  );
+  locator.registerFactory(
+    () => NowPlayingTvBloc(
+      locator(),
+    ),
+  );
+  locator.registerFactory(
+    () => PopularTvBloc(
+      locator(),
+    ),
+  );
+  locator.registerFactory(
+    () => TopRatedTvBloc(
+      locator(),
+    ),
+  );
 
   // use case
   locator.registerLazySingleton(() => GetNowPlayingMovies(locator()));
