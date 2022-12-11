@@ -103,6 +103,21 @@ void init() {
       locator(),
     ),
   );
+  locator.registerFactory(
+    () => NowPlayingMovieBloc(
+      locator(),
+    ),
+  );
+  locator.registerFactory(
+    () => PopularMovieBloc(
+      locator(),
+    ),
+  );
+  locator.registerFactory(
+    () => TopRatedMovieBloc(
+      locator(),
+    ),
+  );
 
   // use case
   locator.registerLazySingleton(() => GetNowPlayingMovies(locator()));

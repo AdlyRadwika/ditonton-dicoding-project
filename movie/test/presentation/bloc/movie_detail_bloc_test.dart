@@ -13,11 +13,9 @@ import 'movie_detail_bloc_test.mocks.dart';
 void main() {
   late MovieDetailBloc movieDetailBloc;
   late MockGetMovieDetail mockGetMovieDetail;
-  late MockGetMovieRecommendations mockGetMovieRecommendations;
 
   setUp(() {
     mockGetMovieDetail = MockGetMovieDetail();
-    mockGetMovieRecommendations = MockGetMovieRecommendations();
     movieDetailBloc = MovieDetailBloc(mockGetMovieDetail);
   });
 

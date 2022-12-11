@@ -5,6 +5,7 @@ import 'package:core/core.dart';
 import 'package:about/about.dart';
 import 'package:core/utils/routes.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
@@ -17,10 +18,9 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
     Future.microtask(() {
-      Provider.of<MovieListNotifier>(context, listen: false)
-        ..fetchNowPlayingMovies()
-        ..fetchPopularMovies()
-        ..fetchTopRatedMovies();
+      context.read<NowPlayingMovieBloc>().add(GetNowPlayingMovieEvent());
+      context.read<PopularMovieBloc>().add(GetPopularMovieEvent());
+      context.read<TopRatedMovieBloc>().add(GetTopRatedMovieEvent());
       Provider.of<TvListNotifier>(context, listen: false)
         ..fetchOnTheAirTVs()
         ..fetchPopularTvs()
@@ -90,7 +90,7 @@ class _HomePageState extends State<HomePage> {
                   arguments: false,
                 ),
               ),
-              buildMovieListConsumer(indexState: 0),
+              buildMovieList(blocIndex: 0),
               _buildSubHeading(
                 title: 'Popular Movies',
                 onTap: () => Navigator.pushNamed(
@@ -99,7 +99,7 @@ class _HomePageState extends State<HomePage> {
                   arguments: false,
                 ),
               ),
-              buildMovieListConsumer(indexState: 1),
+              buildMovieList(blocIndex: 1),
               _buildSubHeading(
                 title: 'Top Rated Movies',
                 onTap: () => Navigator.pushNamed(
@@ -108,7 +108,7 @@ class _HomePageState extends State<HomePage> {
                   arguments: false,
                 ),
               ),
-              buildMovieListConsumer(indexState: 2),
+              buildMovieList(blocIndex: 2),
               _buildSubHeading(
                 title: 'On The Air TV Shows',
                 onTap: () => Navigator.pushNamed(
@@ -117,7 +117,7 @@ class _HomePageState extends State<HomePage> {
                   arguments: true,
                 ),
               ),
-              buildTvListConsumer(indexState: 0),
+              buildTvListConsumer(blocIndex: 0),
               _buildSubHeading(
                 title: 'Popular TV Shows',
                 onTap: () => Navigator.pushNamed(
@@ -126,7 +126,7 @@ class _HomePageState extends State<HomePage> {
                   arguments: true,
                 ),
               ),
-              buildTvListConsumer(indexState: 1),
+              buildTvListConsumer(blocIndex: 1),
               _buildSubHeading(
                 title: 'Top Rated TV Shows',
                 onTap: () => Navigator.pushNamed(
@@ -135,7 +135,7 @@ class _HomePageState extends State<HomePage> {
                   arguments: true,
                 ),
               ),
-              buildTvListConsumer(indexState: 2),
+              buildTvListConsumer(blocIndex: 2),
             ],
           ),
         ),
@@ -143,32 +143,50 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Consumer<MovieListNotifier> buildMovieListConsumer(
-      {required int indexState}) {
-    return Consumer<MovieListNotifier>(builder: (context, data, child) {
-      List<RequestState> state = [
-        data.nowPlayingMoviesState,
-        data.popularMoviesState,
-        data.topRatedMoviesState
-      ];
-      List movies = [
-        data.nowPlayingMovies,
-        data.popularMovies,
-        data.topRatedMovies
-      ];
-      if (state[indexState] == RequestState.Loading) {
-        return Center(
-          child: CircularProgressIndicator(),
-        );
-      } else if (state[indexState] == RequestState.Loaded) {
-        return MovieList(movies: movies[indexState]);
-      } else {
-        return Text('Failed');
-      }
-    });
+  Widget buildMovieList({required int blocIndex}) {
+    if(blocIndex == 0) {
+      return BlocBuilder<NowPlayingMovieBloc, NowPlayingMovieState>(builder: (context, state) {
+        if (state is NowPlayingMovieLoading) {
+          return Center(
+            child: CircularProgressIndicator(),
+          );
+        } else if (state is NowPlayingMovieHasData) {
+          return MovieList(movies: state.nowPlayingMovie);
+        } else {
+          return Text('Failed');
+        }
+      });
+    }
+    if(blocIndex == 1) {
+      return BlocBuilder<PopularMovieBloc, PopularMovieState>(builder: (context, state) {
+        if (state is PopularMovieLoading) {
+          return Center(
+            child: CircularProgressIndicator(),
+          );
+        } else if (state is PopularMovieHasData) {
+          return MovieList(movies: state.popularMovie);
+        } else {
+          return Text('Failed');
+        }
+      });
+    }
+    if(blocIndex == 2) {
+      return BlocBuilder<TopRatedMovieBloc, TopRatedMovieState>(builder: (context, state) {
+        if (state is TopRatedMovieLoading) {
+          return Center(
+            child: CircularProgressIndicator(),
+          );
+        } else if (state is TopRatedMovieHasData) {
+          return MovieList(movies: state.topRatedMovie);
+        } else {
+          return Text('Failed');
+        }
+      });
+    }
+    return Center(child: Text('Movie list not found'),);
   }
 
-  Consumer<TvListNotifier> buildTvListConsumer({required int indexState}) {
+  Consumer<TvListNotifier> buildTvListConsumer({required int blocIndex}) {
     return Consumer<TvListNotifier>(builder: (context, data, child) {
       List<RequestState> state = [
         data.onTheAirTVsState,
@@ -176,12 +194,12 @@ class _HomePageState extends State<HomePage> {
         data.topRatedTvsState
       ];
       List tvs = [data.onTheAirTVs, data.popularTvs, data.topRatedTvs];
-      if (state[indexState] == RequestState.Loading) {
+      if (state[blocIndex] == RequestState.Loading) {
         return Center(
           child: CircularProgressIndicator(),
         );
-      } else if (state[indexState] == RequestState.Loaded) {
-        return TvList(tvs: tvs[indexState]);
+      } else if (state[blocIndex] == RequestState.Loaded) {
+        return TvList(tvs: tvs[blocIndex]);
       } else {
         return Text('Failed');
       }

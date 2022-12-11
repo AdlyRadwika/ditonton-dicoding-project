@@ -2,6 +2,7 @@
 import 'package:core/core.dart';
 import 'package:core/presentation/widgets/entertaiment_card_list.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 
 class NowPlayingEntertaimentsPage extends StatefulWidget {
@@ -24,9 +25,7 @@ class _NowPlayingEntertaimentsPageState extends State<NowPlayingEntertaimentsPag
         ? Future.microtask(() =>
             Provider.of<TvListNotifier>(context, listen: false)
                 .fetchOnTheAirTVs())
-        : Future.microtask(() =>
-            Provider.of<MovieListNotifier>(context, listen: false)
-                .fetchNowPlayingMovies());
+        : context.read<NowPlayingMovieBloc>().add(GetNowPlayingMovieEvent());
   }
 
   @override
@@ -40,30 +39,30 @@ class _NowPlayingEntertaimentsPageState extends State<NowPlayingEntertaimentsPag
         padding: const EdgeInsets.all(8.0),
         child: widget.isTV == true
             ? buildTVConsumer()
-            : buildMovieConsumer(),
+            : buildMovie(),
       ),
     );
   }
 
-  Consumer<MovieListNotifier> buildMovieConsumer() {
-    return Consumer<MovieListNotifier>(
-      builder: (context, data, child) {
-        if (data.nowPlayingMoviesState == RequestState.Loading) {
+  BlocBuilder<NowPlayingMovieBloc, NowPlayingMovieState> buildMovie() {
+    return BlocBuilder<NowPlayingMovieBloc, NowPlayingMovieState>(
+      builder: (context, data) {
+        if (data is NowPlayingMovieLoading) {
           return Center(
             child: CircularProgressIndicator(),
           );
-        } else if (data.nowPlayingMoviesState == RequestState.Loaded) {
+        } else if (data is NowPlayingMovieHasData) {
           return ListView.builder(
             itemBuilder: (context, index) {
-              final movie = data.nowPlayingMovies[index];
+              final movie = data.nowPlayingMovie[index];
               return EntertaimentCard(isTV: false, movie: movie);
             },
-            itemCount: data.nowPlayingMovies.length,
+            itemCount: data.nowPlayingMovie.length,
           );
         } else {
           return Center(
             key: Key('error_message'),
-            child: Text(data.message),
+            child: Text(data is NowPlayingMovieError ? data.message : 'There is something wrong!'),
           );
         }
       },

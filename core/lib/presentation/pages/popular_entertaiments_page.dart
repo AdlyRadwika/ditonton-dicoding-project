@@ -3,6 +3,7 @@
 import 'package:core/core.dart';
 import 'package:core/presentation/widgets/entertaiment_card_list.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 
 class PopularEntertaimentsPage extends StatefulWidget {
@@ -25,9 +26,7 @@ class _PopularEntertaimentsPageState extends State<PopularEntertaimentsPage> {
         ? Future.microtask(() =>
             Provider.of<PopularTvsNotifier>(context, listen: false)
                 .fetchPopularTvs())
-        : Future.microtask(() =>
-            Provider.of<PopularMoviesNotifier>(context, listen: false)
-                .fetchPopularMovies());
+        : context.read<PopularMovieBloc>().add(GetPopularMovieEvent());
   }
 
   @override
@@ -41,30 +40,30 @@ class _PopularEntertaimentsPageState extends State<PopularEntertaimentsPage> {
         padding: const EdgeInsets.all(8.0),
         child: widget.isTV == true
             ? buildPopularTvsConsumer()
-            : buildPopularMoviesConsumer(),
+            : buildPopularMovies(),
       ),
     );
   }
 
-  Consumer<PopularMoviesNotifier> buildPopularMoviesConsumer() {
-    return Consumer<PopularMoviesNotifier>(
-      builder: (context, data, child) {
-        if (data.state == RequestState.Loading) {
+  BlocBuilder<PopularMovieBloc, PopularMovieState> buildPopularMovies() {
+    return BlocBuilder<PopularMovieBloc, PopularMovieState>(
+      builder: (context, state) {
+        if (state is PopularMovieLoading) {
           return Center(
             child: CircularProgressIndicator(),
           );
-        } else if (data.state == RequestState.Loaded) {
+        } else if (state is PopularMovieHasData) {
           return ListView.builder(
             itemBuilder: (context, index) {
-              final movie = data.movies[index];
+              final movie = state.popularMovie[index];
               return EntertaimentCard(isTV: false, movie: movie);
             },
-            itemCount: data.movies.length,
+            itemCount: state.popularMovie.length,
           );
         } else {
           return Center(
             key: Key('error_message'),
-            child: Text(data.message),
+            child: Text(state is PopularMovieError ? state.message : 'There is something wrong'),
           );
         }
       },
