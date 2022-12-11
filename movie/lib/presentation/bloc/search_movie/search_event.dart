@@ -17,3 +17,5 @@ class OnQueryChanged extends SearchEvent {
   @override
   List<Object> get props => [query];
 }
+
+class OnQueryEmpty extends SearchEvent {}

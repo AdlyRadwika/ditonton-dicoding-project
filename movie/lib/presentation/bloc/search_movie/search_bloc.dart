@@ -32,5 +32,12 @@ class SearchMovieBloc extends Bloc<SearchEvent, SearchState> {
         },
       );
     }, transformer: debounce(const Duration(milliseconds: 500)));
+
+    on<OnQueryEmpty>((event, emit) async {
+  
+      emit(SearchEmpty());
+
+    });
+    
   }
 }

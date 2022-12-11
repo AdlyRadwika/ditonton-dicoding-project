@@ -19,6 +19,7 @@ class _SearchPageState extends State<SearchPage> {
   @override
   void initState() {
     super.initState();
+    context.read<SearchMovieBloc>().add(OnQueryEmpty());
     Provider.of<TvSearchNotifier>(context, listen: false).emptyTvSearch();
   }
 
@@ -59,7 +60,6 @@ class _SearchPageState extends State<SearchPage> {
   TabBar buildTabBar() {
     return TabBar(
       indicatorColor: kColorScheme.primary,
-      // ignore: prefer_const_literals_to_create_immutables
       tabs: [
         Tab(
           icon: Icon(
