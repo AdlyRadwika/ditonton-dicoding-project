@@ -2,7 +2,7 @@ import 'dart:io';
 
 String readJson(String name) {
   var dir = Directory.current.path;
-  //CHANGE 'movie/test' TO 'test' if running the movie test from the movie folder with "flutter test --coverage"
+  //TODO: change 'movie/test' TO 'test' if running the movie test from the movie folder with "flutter test --coverage"
   if (dir.endsWith('movie/test')) {
     dir = dir.replaceAll('movie/test', '');
   }
