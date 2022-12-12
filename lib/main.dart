@@ -1,5 +1,5 @@
-import 'package:core/core.dart';
 import 'package:about/about.dart';
+import 'package:core/core.dart';
 import 'package:core/presentation/pages/entertaiment_detail_page.dart';
 import 'package:core/presentation/pages/home_page.dart';
 import 'package:core/presentation/pages/now_playing_entertaiments_page.dart';
@@ -9,14 +9,19 @@ import 'package:core/presentation/pages/top_rated_entertaiments_page.dart';
 import 'package:core/presentation/pages/watchlist_page.dart';
 import 'package:core/utils/utils.dart';
 import 'package:core/utils/routes.dart';
+import 'package:ditonton/firebase_options.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ditonton/injection.dart' as di;
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   await SSLPinning.init();
   di.init();
   runApp(MyApp());
