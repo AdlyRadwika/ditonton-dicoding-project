@@ -5,7 +5,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../utils/utils.dart';
 import 'package:core/presentation/widgets/entertaiment_card_list.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 class WatchlistPage extends StatefulWidget {
   static const ROUTE_NAME = '/watchlist';
@@ -22,8 +21,7 @@ class _WatchlistPageState extends State<WatchlistPage>
     Future.microtask(() =>
       context.read<WatchlistMovieBloc>().add(GetWatchlistMovie()));
     Future.microtask(() =>
-        Provider.of<WatchlistTvNotifier>(context, listen: false)
-            .fetchWatchlistTvs());
+      context.read<WatchlistTvBloc>().add(GetWatchlistTv()));
   }
 
   @override
@@ -34,8 +32,7 @@ class _WatchlistPageState extends State<WatchlistPage>
 
   void didPopNext() {
     context.read<WatchlistMovieBloc>().add(GetWatchlistMovie());
-    Provider.of<WatchlistTvNotifier>(context, listen: false)
-        .fetchWatchlistTvs();
+    context.read<WatchlistTvBloc>().add(GetWatchlistTv());
   }
 
   @override
@@ -50,7 +47,7 @@ class _WatchlistPageState extends State<WatchlistPage>
         body: TabBarView(
           children: [
             buildMovie(),
-            buildTvConsumer(),
+            buildTv(),
           ],
         ),
       ),
@@ -105,26 +102,28 @@ class _WatchlistPageState extends State<WatchlistPage>
     );
   }
 
-  Consumer<WatchlistTvNotifier> buildTvConsumer() {
-    return Consumer<WatchlistTvNotifier>(
-      builder: (context, tvData,child) {
-        if (tvData.watchlistState == RequestState.Loading) {
+  BlocBuilder<WatchlistTvBloc, WatchlistTvState> buildTv() {
+    return BlocBuilder<WatchlistTvBloc, WatchlistTvState>(
+      builder: (context, state) {
+        if (state is GetWatchlistTvLoading) {
           return Center(
             child: CircularProgressIndicator(),
           );
-        } else if (tvData.watchlistState == RequestState.Loaded) {
+        } else if (state is GetWatchlistTvHasData) {
           return ListView.builder(
-            itemCount: tvData.watchlistTvs.length,
+            itemCount: state.tvs.length,
             itemBuilder: (context, index) {
-              final tv = tvData.watchlistTvs[index];
+              final tv = state.tvs[index];
               return EntertaimentCard(tv: tv, isTV: true,);
             },
           );
-        } else {
+        } else if (state is GetWatchlistTvError) {
           return Center(
             key: Key('error_message'),
-            child: Text("${tvData.message}"),
+            child: Text("${state.message}"),
           );
+        }else {
+          return const Text('There is something wrong.');
         }
       },
     );

@@ -6,7 +6,6 @@ import 'package:about/about.dart';
 import 'package:core/utils/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -21,10 +20,9 @@ class _HomePageState extends State<HomePage> {
       context.read<NowPlayingMovieBloc>().add(GetNowPlayingMovieEvent());
       context.read<PopularMovieBloc>().add(GetPopularMovieEvent());
       context.read<TopRatedMovieBloc>().add(GetTopRatedMovieEvent());
-      Provider.of<TvListNotifier>(context, listen: false)
-        ..fetchOnTheAirTVs()
-        ..fetchPopularTvs()
-        ..fetchTopRatedTvs();
+      context.read<NowPlayingTvBloc>().add(GetNowPlayingTvEvent());
+      context.read<PopularTvBloc>().add(GetPopularTvEvent());
+      context.read<TopRatedTvBloc>().add(GetTopRatedTvEvent());
     });
   }
 
@@ -117,7 +115,7 @@ class _HomePageState extends State<HomePage> {
                   arguments: true,
                 ),
               ),
-              buildTvListConsumer(blocIndex: 0),
+              buildTvList(blocIndex: 0),
               _buildSubHeading(
                 title: 'Popular TV Shows',
                 onTap: () => Navigator.pushNamed(
@@ -126,7 +124,7 @@ class _HomePageState extends State<HomePage> {
                   arguments: true,
                 ),
               ),
-              buildTvListConsumer(blocIndex: 1),
+              buildTvList(blocIndex: 1),
               _buildSubHeading(
                 title: 'Top Rated TV Shows',
                 onTap: () => Navigator.pushNamed(
@@ -135,7 +133,7 @@ class _HomePageState extends State<HomePage> {
                   arguments: true,
                 ),
               ),
-              buildTvListConsumer(blocIndex: 2),
+              buildTvList(blocIndex: 2),
             ],
           ),
         ),
@@ -186,24 +184,47 @@ class _HomePageState extends State<HomePage> {
     return Center(child: Text('Movie list not found'),);
   }
 
-  Consumer<TvListNotifier> buildTvListConsumer({required int blocIndex}) {
-    return Consumer<TvListNotifier>(builder: (context, data, child) {
-      List<RequestState> state = [
-        data.onTheAirTVsState,
-        data.popularTvsState,
-        data.topRatedTvsState
-      ];
-      List tvs = [data.onTheAirTVs, data.popularTvs, data.topRatedTvs];
-      if (state[blocIndex] == RequestState.Loading) {
-        return Center(
-          child: CircularProgressIndicator(),
-        );
-      } else if (state[blocIndex] == RequestState.Loaded) {
-        return TvList(tvs: tvs[blocIndex]);
-      } else {
-        return Text('Failed');
-      }
-    });
+  Widget buildTvList({required int blocIndex}) {
+    if(blocIndex == 0) {
+      return BlocBuilder<NowPlayingTvBloc, NowPlayingTvState>(builder: (context, state) {
+        if (state is NowPlayingTvLoading) {
+          return Center(
+            child: CircularProgressIndicator(),
+          );
+        } else if (state is NowPlayingTvHasData) {
+          return TvList(tvs: state.nowPlayingTv);
+        } else {
+          return Text('Failed');
+        }
+      });
+    }
+    if(blocIndex == 1) {
+      return BlocBuilder<PopularTvBloc, PopularTvState>(builder: (context, state) {
+        if (state is PopularTvLoading) {
+          return Center(
+            child: CircularProgressIndicator(),
+          );
+        } else if (state is PopularTvHasData) {
+          return TvList(tvs: state.popularTv);
+        } else {
+          return Text('Failed');
+        }
+      });
+    }
+    if(blocIndex == 2) {
+      return BlocBuilder<TopRatedTvBloc, TopRatedTvState>(builder: (context, state) {
+        if (state is TopRatedTvLoading) {
+          return Center(
+            child: CircularProgressIndicator(),
+          );
+        } else if (state is TopRatedTvHasData) {
+          return TvList(tvs: state.topRatedTv);
+        } else {
+          return Text('Failed');
+        }
+      });
+    }
+    return Center(child: Text('Tv list not found'),);
   }
 
   Row _buildSubHeading({required String title, required Function() onTap}) {

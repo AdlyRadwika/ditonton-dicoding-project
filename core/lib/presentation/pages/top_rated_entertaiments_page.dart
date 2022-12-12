@@ -4,7 +4,6 @@ import 'package:core/core.dart';
 import 'package:core/presentation/widgets/entertaiment_card_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:provider/provider.dart';
 
 class TopRatedEntertaimentsPage extends StatefulWidget {
   static const ROUTE_NAME = '/top-rated';
@@ -23,9 +22,7 @@ class _TopRatedEntertaimentsPageState extends State<TopRatedEntertaimentsPage> {
   void initState() {
     super.initState();
     widget.isTV == true
-        ? Future.microtask(() =>
-            Provider.of<TopRatedTvsNotifier>(context, listen: false)
-                .fetchTopRatedtvs())
+        ? context.read<TopRatedTvBloc>().add(GetTopRatedTvEvent())
         : context.read<TopRatedMovieBloc>().add(GetTopRatedMovieEvent());
   }
 
@@ -38,7 +35,7 @@ class _TopRatedEntertaimentsPageState extends State<TopRatedEntertaimentsPage> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: widget.isTV == true ? buildTvConsumer() : buildMovie(),
+        child: widget.isTV == true ? buildTv() : buildMovie(),
       ),
     );
   }
@@ -71,31 +68,32 @@ class _TopRatedEntertaimentsPageState extends State<TopRatedEntertaimentsPage> {
     );
   }
 
-  Consumer<TopRatedTvsNotifier> buildTvConsumer() {
-    return Consumer<TopRatedTvsNotifier>(
-      builder: (context, data, child) {
-        if (data.state == RequestState.Loading) {
+  BlocBuilder<TopRatedTvBloc, TopRatedTvState> buildTv() {
+    return BlocBuilder<TopRatedTvBloc, TopRatedTvState>(
+      builder: (context, state) {
+        if (state is TopRatedTvLoading) {
           return Center(
             child: CircularProgressIndicator(),
           );
-        } else if (data.state == RequestState.Loaded) {
+        } else if (state is TopRatedTvHasData) {
           return ListView.builder(
             itemBuilder: (context, index) {
-              final tv = data.tvs[index];
+              final tv = state.topRatedTv[index];
               return EntertaimentCard(
                 tv: tv,
-                isTV: true,
+                isTV: false,
               );
             },
-            itemCount: data.tvs.length,
+            itemCount: state.topRatedTv.length,
           );
         } else {
           return Center(
-            key: Key('error_message_tv'),
-            child: Text(data.message),
+            key: Key('error_message'),
+            child: Text(state is TopRatedTvError ? state.message : 'There is something wrong'),
           );
         }
       },
     );
   }
+
 }

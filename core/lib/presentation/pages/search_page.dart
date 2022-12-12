@@ -4,7 +4,6 @@ import 'package:core/core.dart';
 import 'package:core/presentation/widgets/entertaiment_card_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:provider/provider.dart';
 
 class SearchPage extends StatefulWidget {
   static const ROUTE_NAME = '/search';
@@ -20,7 +19,7 @@ class _SearchPageState extends State<SearchPage> {
   void initState() {
     super.initState();
     context.read<SearchMovieBloc>().add(OnQueryEmpty());
-    Provider.of<TvSearchNotifier>(context, listen: false).emptyTvSearch();
+    context.read<SearchTvBloc>().add(OnTvQueryEmpty());
   }
 
   @override
@@ -35,7 +34,7 @@ class _SearchPageState extends State<SearchPage> {
         body: TabBarView(
           children: [
             buildMovieSearch(),
-            buildTvSearchConsumer(),
+            buildTvSearch(),
           ]
         ),
       ),
@@ -47,8 +46,7 @@ class _SearchPageState extends State<SearchPage> {
       controller: searchController,
       onSubmitted: (query) {
         context.read<SearchMovieBloc>().add(OnQueryChanged(query));
-        Provider.of<TvSearchNotifier>(context, listen: false)
-            .fetchTvSearch(query);
+        context.read<SearchTvBloc>().add(OnTvQueryChanged(query));
       },
       decoration: InputDecoration(
         hintText: 'Search title',
@@ -117,15 +115,15 @@ class _SearchPageState extends State<SearchPage> {
     );
   }
 
-  Consumer<TvSearchNotifier> buildTvSearchConsumer() {
-    return Consumer<TvSearchNotifier>(
-      builder: (context, data, child) {
-        if (data.state == RequestState.Loading) {
+  BlocBuilder<SearchTvBloc, SearchTVState> buildTvSearch() {
+    return BlocBuilder<SearchTvBloc, SearchTVState>(
+      builder: (context, state) {
+        if (state is SearchTvLoading) {
           return Center(
             child: CircularProgressIndicator(),
           );
-        } else if (data.state == RequestState.Loaded) {
-          final result = data.searchResult;
+        } else if (state is SearchTvHasData) {
+          final result = state.result;
           if (result.isEmpty) {
             return Center(
               child: Text(
@@ -137,7 +135,7 @@ class _SearchPageState extends State<SearchPage> {
           return ListView.builder(
               padding: const EdgeInsets.all(8),
               itemBuilder: (context, index) {
-                final tv = data.searchResult[index];
+                final tv = state.result[index];
                 return EntertaimentCard(
                   tv: tv,
                   isTV: true,

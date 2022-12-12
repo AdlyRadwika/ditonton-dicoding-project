@@ -4,7 +4,6 @@ import 'package:core/core.dart';
 import 'package:core/presentation/widgets/entertaiment_card_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:provider/provider.dart';
 
 class PopularEntertaimentsPage extends StatefulWidget {
   static const ROUTE_NAME = '/popular-entertaiment';
@@ -23,9 +22,7 @@ class _PopularEntertaimentsPageState extends State<PopularEntertaimentsPage> {
   void initState() {
     super.initState();
     widget.isTV == true
-        ? Future.microtask(() =>
-            Provider.of<PopularTvsNotifier>(context, listen: false)
-                .fetchPopularTvs())
+        ? context.read<PopularTvBloc>().add(GetPopularTvEvent())
         : context.read<PopularMovieBloc>().add(GetPopularMovieEvent());
   }
 
@@ -39,7 +36,7 @@ class _PopularEntertaimentsPageState extends State<PopularEntertaimentsPage> {
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: widget.isTV == true
-            ? buildPopularTvsConsumer()
+            ? buildPopularTvs()
             : buildPopularMovies(),
       ),
     );
@@ -70,28 +67,25 @@ class _PopularEntertaimentsPageState extends State<PopularEntertaimentsPage> {
     );
   }
 
-  Consumer<PopularTvsNotifier> buildPopularTvsConsumer() {
-    return Consumer<PopularTvsNotifier>(
-      builder: (context, data, child) {
-        if (data.state == RequestState.Loading) {
+  BlocBuilder<PopularTvBloc, PopularTvState> buildPopularTvs() {
+    return BlocBuilder<PopularTvBloc, PopularTvState>(
+      builder: (context, state) {
+        if (state is PopularTvLoading) {
           return Center(
             child: CircularProgressIndicator(),
           );
-        } else if (data.state == RequestState.Loaded) {
+        } else if (state is PopularTvHasData) {
           return ListView.builder(
             itemBuilder: (context, index) {
-              final tv = data.tvs[index];
-              return EntertaimentCard(
-                tv: tv,
-                isTV: true,
-              );
+              final tv = state.popularTv[index];
+              return EntertaimentCard(isTV: true, tv: tv);
             },
-            itemCount: data.tvs.length,
+            itemCount: state.popularTv.length,
           );
         } else {
           return Center(
             key: Key('error_message'),
-            child: Text(data.message),
+            child: Text(state is PopularTvError ? state.message : 'There is something wrong'),
           );
         }
       },

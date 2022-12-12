@@ -3,7 +3,6 @@ import 'package:core/core.dart';
 import 'package:core/presentation/widgets/entertaiment_card_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:provider/provider.dart';
 
 class NowPlayingEntertaimentsPage extends StatefulWidget {
   static const ROUTE_NAME = '/now-playing';
@@ -22,9 +21,7 @@ class _NowPlayingEntertaimentsPageState extends State<NowPlayingEntertaimentsPag
   void initState() {
     super.initState();
     widget.isTV == true
-        ? Future.microtask(() =>
-            Provider.of<TvListNotifier>(context, listen: false)
-                .fetchOnTheAirTVs())
+        ? context.read<NowPlayingTvBloc>().add(GetNowPlayingTvEvent())
         : context.read<NowPlayingMovieBloc>().add(GetNowPlayingMovieEvent());
   }
 
@@ -38,7 +35,7 @@ class _NowPlayingEntertaimentsPageState extends State<NowPlayingEntertaimentsPag
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: widget.isTV == true
-            ? buildTVConsumer()
+            ? buildTV()
             : buildMovie(),
       ),
     );
@@ -69,28 +66,28 @@ class _NowPlayingEntertaimentsPageState extends State<NowPlayingEntertaimentsPag
     );
   }
 
-  Consumer<TvListNotifier> buildTVConsumer() {
-    return Consumer<TvListNotifier>(
-      builder: (context, data, child) {
-        if (data.onTheAirTVsState == RequestState.Loading) {
+  BlocBuilder<NowPlayingTvBloc, NowPlayingTvState> buildTV() {
+    return BlocBuilder<NowPlayingTvBloc, NowPlayingTvState>(
+      builder: (context, state) {
+        if (state is NowPlayingTvLoading) {
           return Center(
             child: CircularProgressIndicator(),
           );
-        } else if (data.onTheAirTVsState == RequestState.Loaded) {
+        } else if (state is NowPlayingTvHasData) {
           return ListView.builder(
             itemBuilder: (context, index) {
-              final tv = data.onTheAirTVs[index];
+              final tv = state.nowPlayingTv[index];
               return EntertaimentCard(
                 tv: tv,
                 isTV: true,
               );
             },
-            itemCount: data.onTheAirTVs.length,
+            itemCount: state.nowPlayingTv.length,
           );
         } else {
           return Center(
             key: Key('error_message'),
-            child: Text(data.message),
+            child: Text(state is NowPlayingTvError ? state.message : 'There is something wrong!'),
           );
         }
       },
