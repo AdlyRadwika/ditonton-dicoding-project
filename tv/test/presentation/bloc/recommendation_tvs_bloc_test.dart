@@ -21,23 +21,25 @@ void main() {
     recommendationTvsBloc = RecommendationTvsBloc(mockGetTvRecommendations);
   });
 
-  group('Tv recommendation bloc', () {
-    blocTest<RecommendationTvsBloc, RecommendationTvsState>(
-      'Should emit [Loading, HasData] when Tvs recommendation data is gotten successfully',
-      build: () {
-        when(mockGetTvRecommendations.execute(testTv.id))
-            .thenAnswer((_) async => Right(testTvList));
-        return recommendationTvsBloc;
-      },
-      act: (bloc) => bloc.add(GetRecommendationTvEvent(testTv.id)),
-      expect: () => [
-        RecommendationTvsLoading(),
-        RecommendationTvsData(testTvList),
-      ],
-      verify: (bloc) {
-        verify(mockGetTvRecommendations.execute(testTv.id));
-      },
-    );
+  group(
+    'Tv recommendation bloc',
+    () {
+      blocTest<RecommendationTvsBloc, RecommendationTvsState>(
+        'Should emit [Loading, HasData] when Tvs recommendation data is gotten successfully',
+        build: () {
+          when(mockGetTvRecommendations.execute(testTv.id))
+              .thenAnswer((_) async => Right(testTvList));
+          return recommendationTvsBloc;
+        },
+        act: (bloc) => bloc.add(GetRecommendationTvEvent(testTv.id)),
+        expect: () => [
+          RecommendationTvsLoading(),
+          RecommendationTvsData(testTvList),
+        ],
+        verify: (bloc) {
+          verify(mockGetTvRecommendations.execute(testTv.id));
+        },
+      );
 
       blocTest<RecommendationTvsBloc, RecommendationTvsState>(
         'Should emit [Loading, Empty] when Tvs recommendation data is empty',

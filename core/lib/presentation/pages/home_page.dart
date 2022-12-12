@@ -4,7 +4,6 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:core/core.dart';
 import 'package:about/about.dart';
 import 'package:core/utils/routes.dart';
-import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -143,8 +142,9 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget buildMovieList({required int blocIndex}) {
-    if(blocIndex == 0) {
-      return BlocBuilder<NowPlayingMovieBloc, NowPlayingMovieState>(builder: (context, state) {
+    if (blocIndex == 0) {
+      return BlocBuilder<NowPlayingMovieBloc, NowPlayingMovieState>(
+          builder: (context, state) {
         if (state is NowPlayingMovieLoading) {
           return Center(
             child: CircularProgressIndicator(),
@@ -156,8 +156,9 @@ class _HomePageState extends State<HomePage> {
         }
       });
     }
-    if(blocIndex == 1) {
-      return BlocBuilder<PopularMovieBloc, PopularMovieState>(builder: (context, state) {
+    if (blocIndex == 1) {
+      return BlocBuilder<PopularMovieBloc, PopularMovieState>(
+          builder: (context, state) {
         if (state is PopularMovieLoading) {
           return Center(
             child: CircularProgressIndicator(),
@@ -169,8 +170,9 @@ class _HomePageState extends State<HomePage> {
         }
       });
     }
-    if(blocIndex == 2) {
-      return BlocBuilder<TopRatedMovieBloc, TopRatedMovieState>(builder: (context, state) {
+    if (blocIndex == 2) {
+      return BlocBuilder<TopRatedMovieBloc, TopRatedMovieState>(
+          builder: (context, state) {
         if (state is TopRatedMovieLoading) {
           return Center(
             child: CircularProgressIndicator(),
@@ -182,12 +184,15 @@ class _HomePageState extends State<HomePage> {
         }
       });
     }
-    return Center(child: Text('Movie list not found'),);
+    return Center(
+      child: Text('Movie list not found'),
+    );
   }
 
   Widget buildTvList({required int blocIndex}) {
-    if(blocIndex == 0) {
-      return BlocBuilder<NowPlayingTvBloc, NowPlayingTvState>(builder: (context, state) {
+    if (blocIndex == 0) {
+      return BlocBuilder<NowPlayingTvBloc, NowPlayingTvState>(
+          builder: (context, state) {
         if (state is NowPlayingTvLoading) {
           return Center(
             child: CircularProgressIndicator(),
@@ -199,8 +204,9 @@ class _HomePageState extends State<HomePage> {
         }
       });
     }
-    if(blocIndex == 1) {
-      return BlocBuilder<PopularTvBloc, PopularTvState>(builder: (context, state) {
+    if (blocIndex == 1) {
+      return BlocBuilder<PopularTvBloc, PopularTvState>(
+          builder: (context, state) {
         if (state is PopularTvLoading) {
           return Center(
             child: CircularProgressIndicator(),
@@ -212,8 +218,9 @@ class _HomePageState extends State<HomePage> {
         }
       });
     }
-    if(blocIndex == 2) {
-      return BlocBuilder<TopRatedTvBloc, TopRatedTvState>(builder: (context, state) {
+    if (blocIndex == 2) {
+      return BlocBuilder<TopRatedTvBloc, TopRatedTvState>(
+          builder: (context, state) {
         if (state is TopRatedTvLoading) {
           return Center(
             child: CircularProgressIndicator(),
@@ -225,7 +232,9 @@ class _HomePageState extends State<HomePage> {
         }
       });
     }
-    return Center(child: Text('Tv list not found'),);
+    return Center(
+      child: Text('Tv list not found'),
+    );
   }
 
   Row _buildSubHeading({required String title, required Function() onTap}) {

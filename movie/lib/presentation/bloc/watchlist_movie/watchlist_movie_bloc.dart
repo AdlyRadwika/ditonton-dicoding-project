@@ -5,13 +5,16 @@ import 'package:equatable/equatable.dart';
 part 'watchlist_movie_event.dart';
 part 'watchlist_movie_state.dart';
 
-class WatchlistMovieBloc extends Bloc<WatchlistMovieEvent, WatchlistMovieState> {
+class WatchlistMovieBloc
+    extends Bloc<WatchlistMovieEvent, WatchlistMovieState> {
   final SaveMovieWatchlist _saveWatchlist;
   final RemoveMovieWatchlist _removeWatchlist;
   final GetMovieWatchlistStatus _getWatchListStatus;
   final GetWatchlistMovies _getWatchlistMovies;
 
-  WatchlistMovieBloc(this._saveWatchlist, this._removeWatchlist, this._getWatchListStatus, this._getWatchlistMovies) : super(WatchlistMovieInitial()) {
+  WatchlistMovieBloc(this._saveWatchlist, this._removeWatchlist,
+      this._getWatchListStatus, this._getWatchlistMovies)
+      : super(WatchlistMovieInitial()) {
     on<SaveWatchlistMovie>((event, emit) async {
       emit(SaveWatchlistMovieLoading());
       final result = await _saveWatchlist.execute(event.movieDetail);
@@ -28,20 +31,20 @@ class WatchlistMovieBloc extends Bloc<WatchlistMovieEvent, WatchlistMovieState> 
     });
 
     on<RemoveWatchlistMovie>((event, emit) async {
-        emit(RemoveWatchlistMovieLoading());
-        final result = await _removeWatchlist.execute(event.movieDetail);
+      emit(RemoveWatchlistMovieLoading());
+      final result = await _removeWatchlist.execute(event.movieDetail);
 
-        result.fold(
-          (failure) {
-            emit(RemoveWatchlistMovieError(failure.message));
-          },
-          (movieData) {
-            emit(RemoveWatchlistMovieSuccess(movieData));
-            emit(GetWatchlistMovieStatusData(false));
-          },
-        );
-      });
-    
+      result.fold(
+        (failure) {
+          emit(RemoveWatchlistMovieError(failure.message));
+        },
+        (movieData) {
+          emit(RemoveWatchlistMovieSuccess(movieData));
+          emit(GetWatchlistMovieStatusData(false));
+        },
+      );
+    });
+
     on<GetWatchlistMovieStatus>((event, emit) async {
       emit(GetWatchlistMovieStatusLoading());
 

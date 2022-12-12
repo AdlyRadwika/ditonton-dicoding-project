@@ -19,40 +19,42 @@ void main() {
     movieDetailBloc = MovieDetailBloc(mockGetMovieDetail);
   });
 
-  group('Movie detail bloc', () {
-    blocTest<MovieDetailBloc, MovieDetailState>(
-      'Should emit [Loading, Data] when get movie detail is success',
-      build: () {
-        when(mockGetMovieDetail.execute(testMovie.id))
-            .thenAnswer((_) async => Right(testMovieDetail));
-        return movieDetailBloc;
-      },
-      act: (bloc) => bloc.add(GetMovieDetailEvent(testMovie.id)),
-      expect: () => [
-        MovieDetailLoading(),
-        MovieDetailData(testMovieDetail),
-      ],
-      verify: (bloc) {
-        verify(mockGetMovieDetail.execute(testMovie.id));
-      },
-    );
+  group(
+    'Movie detail bloc',
+    () {
+      blocTest<MovieDetailBloc, MovieDetailState>(
+        'Should emit [Loading, Data] when get movie detail is success',
+        build: () {
+          when(mockGetMovieDetail.execute(testMovie.id))
+              .thenAnswer((_) async => Right(testMovieDetail));
+          return movieDetailBloc;
+        },
+        act: (bloc) => bloc.add(GetMovieDetailEvent(testMovie.id)),
+        expect: () => [
+          MovieDetailLoading(),
+          MovieDetailData(testMovieDetail),
+        ],
+        verify: (bloc) {
+          verify(mockGetMovieDetail.execute(testMovie.id));
+        },
+      );
 
-    blocTest<MovieDetailBloc, MovieDetailState>(
-      'Should emit [Loading, Error] when get movie detail is failed',
-      build: () {
-        when(mockGetMovieDetail.execute(testMovie.id))
-            .thenAnswer((_) async => Left(ServerFailure('Server Failure')));
-        return movieDetailBloc;
-      },
-      act: (bloc) => bloc.add(GetMovieDetailEvent(testMovie.id)),
-      expect: () => [
-        MovieDetailLoading(),
-        const MovieDetailError("Server Failure"),
-      ],
-      verify: (bloc) {
-        verify(mockGetMovieDetail.execute(testMovie.id));
-      },
-    );
+      blocTest<MovieDetailBloc, MovieDetailState>(
+        'Should emit [Loading, Error] when get movie detail is failed',
+        build: () {
+          when(mockGetMovieDetail.execute(testMovie.id))
+              .thenAnswer((_) async => Left(ServerFailure('Server Failure')));
+          return movieDetailBloc;
+        },
+        act: (bloc) => bloc.add(GetMovieDetailEvent(testMovie.id)),
+        expect: () => [
+          MovieDetailLoading(),
+          const MovieDetailError("Server Failure"),
+        ],
+        verify: (bloc) {
+          verify(mockGetMovieDetail.execute(testMovie.id));
+        },
+      );
     },
   );
 }

@@ -2,7 +2,7 @@ part of 'now_playing_movie_bloc.dart';
 
 abstract class NowPlayingMovieState extends Equatable {
   const NowPlayingMovieState();
-  
+
   @override
   List<Object> get props => [];
 }

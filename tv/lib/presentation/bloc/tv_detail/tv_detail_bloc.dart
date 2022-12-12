@@ -8,7 +8,6 @@ part 'tv_detail_state.dart';
 class TvDetailBloc extends Bloc<TvDetailEvent, TvDetailState> {
   final GetTvDetail _getTvDetail;
 
-
   TvDetailBloc(this._getTvDetail) : super(TvDetailInitial()) {
     on<GetTvDetailEvent>((event, emit) async {
       emit(TvDetailLoading());
@@ -25,4 +24,4 @@ class TvDetailBloc extends Bloc<TvDetailEvent, TvDetailState> {
       );
     });
   }
-  }
+}

@@ -91,8 +91,7 @@ void main() {
   });
 
   group('Popular Tvs', () {
-    test('should return Tv list when call to data source is success',
-        () async {
+    test('should return Tv list when call to data source is success', () async {
       // arrange
       when(mockRemoteDataSource.getPopularTvs())
           .thenAnswer((_) async => tTvModelList);
@@ -108,8 +107,7 @@ void main() {
         'should return server failure when call to data source is unsuccessful',
         () async {
       // arrange
-      when(mockRemoteDataSource.getPopularTvs())
-          .thenThrow(ServerException());
+      when(mockRemoteDataSource.getPopularTvs()).thenThrow(ServerException());
       // act
       final result = await repository.getPopularTvs();
       // assert
@@ -147,8 +145,7 @@ void main() {
     test('should return ServerFailure when call to data source is unsuccessful',
         () async {
       // arrange
-      when(mockRemoteDataSource.getTopRatedTvs())
-          .thenThrow(ServerException());
+      when(mockRemoteDataSource.getTopRatedTvs()).thenThrow(ServerException());
       // act
       final result = await repository.getTopRatedTvs();
       // assert
@@ -172,7 +169,10 @@ void main() {
   group('Get Tv Detail', () {
     const tId = 1;
     final tTvResponse = TvDetailResponse(
-      genres: [GenreModel(id: 18, name: 'Drama'), GenreModel(id: 80, name: 'Crime')],
+      genres: [
+        GenreModel(id: 18, name: 'Drama'),
+        GenreModel(id: 80, name: 'Crime')
+      ],
       id: 1,
       overview: 'overview',
       posterPath: 'posterPath',
@@ -199,8 +199,7 @@ void main() {
         'should return Server Failure when the call to remote data source is unsuccessful',
         () async {
       // arrange
-      when(mockRemoteDataSource.getTvDetail(tId))
-          .thenThrow(ServerException());
+      when(mockRemoteDataSource.getTvDetail(tId)).thenThrow(ServerException());
       // act
       final result = await repository.getTvDetail(tId);
       // assert
@@ -227,8 +226,7 @@ void main() {
     final tTvList = <TvModel>[];
     const tId = 1;
 
-    test('should return data (Tv list) when the call is successful',
-        () async {
+    test('should return data (Tv list) when the call is successful', () async {
       // arrange
       when(mockRemoteDataSource.getTvRecommendations(tId))
           .thenAnswer((_) async => tTvList);
@@ -288,8 +286,7 @@ void main() {
     test('should return ServerFailure when call to data source is unsuccessful',
         () async {
       // arrange
-      when(mockRemoteDataSource.searchTvs(tQuery))
-          .thenThrow(ServerException());
+      when(mockRemoteDataSource.searchTvs(tQuery)).thenThrow(ServerException());
       // act
       final result = await repository.searchTvs(tQuery);
       // assert

@@ -2,7 +2,7 @@ part of 'top_rated_tv_bloc.dart';
 
 abstract class TopRatedTvState extends Equatable {
   const TopRatedTvState();
-  
+
   @override
   List<Object> get props => [];
 }

@@ -16,26 +16,29 @@ void main() {
 
   setUp(() {
     mockGetMovieRecommendations = MockGetMovieRecommendations();
-    recommendationMoviesBloc = RecommendationMoviesBloc(mockGetMovieRecommendations);
+    recommendationMoviesBloc =
+        RecommendationMoviesBloc(mockGetMovieRecommendations);
   });
 
-  group('Movie recommendation bloc', () {
-    blocTest<RecommendationMoviesBloc, RecommendationMoviesState>(
-      'Should emit [Loading, HasData] when movies recommendation data is gotten successfully',
-      build: () {
-        when(mockGetMovieRecommendations.execute(testMovie.id))
-            .thenAnswer((_) async => Right(testMovieList));
-        return recommendationMoviesBloc;
-      },
-      act: (bloc) => bloc.add(GetRecommendationMovieEvent(testMovie.id)),
-      expect: () => [
-        RecommendationMoviesLoading(),
-        RecommendationMoviesData(testMovieList),
-      ],
-      verify: (bloc) {
-        verify(mockGetMovieRecommendations.execute(testMovie.id));
-      },
-    );
+  group(
+    'Movie recommendation bloc',
+    () {
+      blocTest<RecommendationMoviesBloc, RecommendationMoviesState>(
+        'Should emit [Loading, HasData] when movies recommendation data is gotten successfully',
+        build: () {
+          when(mockGetMovieRecommendations.execute(testMovie.id))
+              .thenAnswer((_) async => Right(testMovieList));
+          return recommendationMoviesBloc;
+        },
+        act: (bloc) => bloc.add(GetRecommendationMovieEvent(testMovie.id)),
+        expect: () => [
+          RecommendationMoviesLoading(),
+          RecommendationMoviesData(testMovieList),
+        ],
+        verify: (bloc) {
+          verify(mockGetMovieRecommendations.execute(testMovie.id));
+        },
+      );
 
       blocTest<RecommendationMoviesBloc, RecommendationMoviesState>(
         'Should emit [Loading, Empty] when movies recommendation data is empty',

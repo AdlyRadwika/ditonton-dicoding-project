@@ -2,7 +2,7 @@ part of 'recommendation_tvs_bloc.dart';
 
 abstract class RecommendationTvsState extends Equatable {
   const RecommendationTvsState();
-  
+
   @override
   List<Object> get props => [];
 }

@@ -15,7 +15,6 @@ import 'package:tv/domain/repositories/tv_repository.dart' as _i2;
 import 'package:tv/domain/usecases/get_tv_detail.dart' as _i4;
 import 'package:tv/domain/usecases/get_tv_recommendations.dart' as _i8;
 
-
 // ignore_for_file: avoid_redundant_argument_values
 // ignore_for_file: avoid_setters_without_getters
 // ignore_for_file: comment_references
@@ -43,9 +42,9 @@ class MockGetTvDetail extends _i1.Mock implements _i4.GetTvDetail {
   @override
   _i5.Future<_i3.Either<_i6.Failure, _i7.TvDetail>> execute(int? id) =>
       (super.noSuchMethod(Invocation.method(#execute, [id]),
-          returnValue: Future<_i3.Either<_i6.Failure, _i7.TvDetail>>.value(
-              _FakeEither_1<_i6.Failure, _i7.TvDetail>())) as _i5
-          .Future<_i3.Either<_i6.Failure, _i7.TvDetail>>);
+              returnValue: Future<_i3.Either<_i6.Failure, _i7.TvDetail>>.value(
+                  _FakeEither_1<_i6.Failure, _i7.TvDetail>()))
+          as _i5.Future<_i3.Either<_i6.Failure, _i7.TvDetail>>);
   @override
   String toString() => super.toString();
 }
@@ -66,9 +65,9 @@ class MockGetTvRecommendations extends _i1.Mock
   @override
   _i5.Future<_i3.Either<_i6.Failure, List<_i9.Tv>>> execute(dynamic id) =>
       (super.noSuchMethod(Invocation.method(#execute, [id]),
-          returnValue: Future<_i3.Either<_i6.Failure, List<_i9.Tv>>>.value(
-              _FakeEither_1<_i6.Failure, List<_i9.Tv>>())) as _i5
-          .Future<_i3.Either<_i6.Failure, List<_i9.Tv>>>);
+              returnValue: Future<_i3.Either<_i6.Failure, List<_i9.Tv>>>.value(
+                  _FakeEither_1<_i6.Failure, List<_i9.Tv>>()))
+          as _i5.Future<_i3.Either<_i6.Failure, List<_i9.Tv>>>);
   @override
   String toString() => super.toString();
 }

@@ -19,55 +19,59 @@ void main() {
     topRatedMovieBloc = TopRatedMovieBloc(mockGetTopRatedMovies);
   });
 
-  group('Top rated movies', () {
+  group(
+    'Top rated movies',
+    () {
       blocTest<TopRatedMovieBloc, TopRatedMovieState>(
-    'Should emit [Loading, HasData] when top rated movie data is gotten successfully',
-    build: () {
-      when(mockGetTopRatedMovies.execute())
-          .thenAnswer((_) async => Right(testMovieList));
-      return topRatedMovieBloc;
-    },
-    act: (bloc) => bloc.add(GetTopRatedMovieEvent()),
-    expect: () => [
-      TopRatedMovieLoading(),
-      TopRatedMovieHasData(testMovieList),
-    ],
-    verify: (bloc) {
-      verify(mockGetTopRatedMovies.execute());
-    },
-  );
+        'Should emit [Loading, HasData] when top rated movie data is gotten successfully',
+        build: () {
+          when(mockGetTopRatedMovies.execute())
+              .thenAnswer((_) async => Right(testMovieList));
+          return topRatedMovieBloc;
+        },
+        act: (bloc) => bloc.add(GetTopRatedMovieEvent()),
+        expect: () => [
+          TopRatedMovieLoading(),
+          TopRatedMovieHasData(testMovieList),
+        ],
+        verify: (bloc) {
+          verify(mockGetTopRatedMovies.execute());
+        },
+      );
 
-  blocTest<TopRatedMovieBloc, TopRatedMovieState>(
-    'Should emit [Loading, Empty] when top rated movie data is empty',
-    build: () {
-      when(mockGetTopRatedMovies.execute()).thenAnswer((_) async => Right([]));
-      return topRatedMovieBloc;
-    },
-    act: (bloc) => bloc.add(GetTopRatedMovieEvent()),
-    expect: () => [
-      TopRatedMovieLoading(),
-      TopRatedMovieEmpty(),
-    ],
-    verify: (bloc) {
-      verify(mockGetTopRatedMovies.execute());
-    },
-  );
+      blocTest<TopRatedMovieBloc, TopRatedMovieState>(
+        'Should emit [Loading, Empty] when top rated movie data is empty',
+        build: () {
+          when(mockGetTopRatedMovies.execute())
+              .thenAnswer((_) async => Right([]));
+          return topRatedMovieBloc;
+        },
+        act: (bloc) => bloc.add(GetTopRatedMovieEvent()),
+        expect: () => [
+          TopRatedMovieLoading(),
+          TopRatedMovieEmpty(),
+        ],
+        verify: (bloc) {
+          verify(mockGetTopRatedMovies.execute());
+        },
+      );
 
-  blocTest<TopRatedMovieBloc, TopRatedMovieState>(
-    'Should emit [Loading, Error] when get top rated movies is unsuccessful',
-    build: () {
-      when(mockGetTopRatedMovies.execute())
-          .thenAnswer((_) async => Left(ServerFailure('Server Failure')));
-      return topRatedMovieBloc;
-    },
-    act: (bloc) => bloc.add(GetTopRatedMovieEvent()),
-    expect: () => [
-      TopRatedMovieLoading(),
-      const TopRatedMovieError('Server Failure'),
-    ],
-    verify: (bloc) {
-      verify(mockGetTopRatedMovies.execute());
+      blocTest<TopRatedMovieBloc, TopRatedMovieState>(
+        'Should emit [Loading, Error] when get top rated movies is unsuccessful',
+        build: () {
+          when(mockGetTopRatedMovies.execute())
+              .thenAnswer((_) async => Left(ServerFailure('Server Failure')));
+          return topRatedMovieBloc;
+        },
+        act: (bloc) => bloc.add(GetTopRatedMovieEvent()),
+        expect: () => [
+          TopRatedMovieLoading(),
+          const TopRatedMovieError('Server Failure'),
+        ],
+        verify: (bloc) {
+          verify(mockGetTopRatedMovies.execute());
+        },
+      );
     },
   );
-  },);
 }

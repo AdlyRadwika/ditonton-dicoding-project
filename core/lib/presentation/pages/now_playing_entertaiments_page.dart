@@ -16,7 +16,8 @@ class NowPlayingEntertaimentsPage extends StatefulWidget {
       _NowPlayingEntertaimentsPageState();
 }
 
-class _NowPlayingEntertaimentsPageState extends State<NowPlayingEntertaimentsPage> {
+class _NowPlayingEntertaimentsPageState
+    extends State<NowPlayingEntertaimentsPage> {
   @override
   void initState() {
     super.initState();
@@ -29,14 +30,12 @@ class _NowPlayingEntertaimentsPageState extends State<NowPlayingEntertaimentsPag
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title:
-            Text(widget.isTV == true ? 'On The Air TV Shows' : 'Now Playing Movies'),
+        title: Text(
+            widget.isTV == true ? 'On The Air TV Shows' : 'Now Playing Movies'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: widget.isTV == true
-            ? buildTV()
-            : buildMovie(),
+        child: widget.isTV == true ? buildTV() : buildMovie(),
       ),
     );
   }
@@ -59,7 +58,9 @@ class _NowPlayingEntertaimentsPageState extends State<NowPlayingEntertaimentsPag
         } else {
           return Center(
             key: Key('error_message'),
-            child: Text(data is NowPlayingMovieError ? data.message : 'There is something wrong!'),
+            child: Text(data is NowPlayingMovieError
+                ? data.message
+                : 'There is something wrong!'),
           );
         }
       },
@@ -87,7 +88,9 @@ class _NowPlayingEntertaimentsPageState extends State<NowPlayingEntertaimentsPag
         } else {
           return Center(
             key: Key('error_message'),
-            child: Text(state is NowPlayingTvError ? state.message : 'There is something wrong!'),
+            child: Text(state is NowPlayingTvError
+                ? state.message
+                : 'There is something wrong!'),
           );
         }
       },

@@ -2,7 +2,7 @@ part of 'watchlist_tv_bloc.dart';
 
 abstract class WatchlistTvState extends Equatable {
   const WatchlistTvState();
-  
+
   @override
   List<Object> get props => [];
 }

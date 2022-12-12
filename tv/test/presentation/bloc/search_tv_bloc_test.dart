@@ -7,7 +7,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
-import 'search_tv_bloc_test.mocks.dart'; 
+import 'search_tv_bloc_test.mocks.dart';
 
 @GenerateMocks([SearchTvs])
 void main() {
@@ -29,47 +29,48 @@ void main() {
   );
   final tTvList = <Tv>[tTvModel];
   final tQuery = 'lisa';
-  
-  group('Search Tv with bloc', () {
 
-  test('initial state should be empty', () {
-    expect(searchTvBloc.state, SearchTvEmpty());
-  });
-  blocTest<SearchTvBloc, SearchTVState>(
-    'Should emit [Loading, HasData] when data is gotten successfully',
-    build: () {
-      when(mockSearchTvs.execute(tQuery))
-          .thenAnswer((_) async => Right(tTvList));
-      return searchTvBloc;
-    },
-    act: (bloc) => bloc.add(OnTvQueryChanged(tQuery)),
-    wait: const Duration(milliseconds: 500),
-    expect: () => [
-      SearchTvLoading(),
-      SearchTvHasData(tTvList),
-    ],
-    verify: (bloc) {
-      verify(mockSearchTvs.execute(tQuery));
+  group(
+    'Search Tv with bloc',
+    () {
+      test('initial state should be empty', () {
+        expect(searchTvBloc.state, SearchTvEmpty());
+      });
+      blocTest<SearchTvBloc, SearchTVState>(
+        'Should emit [Loading, HasData] when data is gotten successfully',
+        build: () {
+          when(mockSearchTvs.execute(tQuery))
+              .thenAnswer((_) async => Right(tTvList));
+          return searchTvBloc;
+        },
+        act: (bloc) => bloc.add(OnTvQueryChanged(tQuery)),
+        wait: const Duration(milliseconds: 500),
+        expect: () => [
+          SearchTvLoading(),
+          SearchTvHasData(tTvList),
+        ],
+        verify: (bloc) {
+          verify(mockSearchTvs.execute(tQuery));
+        },
+      );
+
+      blocTest<SearchTvBloc, SearchTVState>(
+        'Should emit [Loading, Error] when get search is unsuccessful',
+        build: () {
+          when(mockSearchTvs.execute(tQuery))
+              .thenAnswer((_) async => Left(ServerFailure('Server Failure')));
+          return searchTvBloc;
+        },
+        act: (bloc) => bloc.add(OnTvQueryChanged(tQuery)),
+        wait: const Duration(milliseconds: 500),
+        expect: () => [
+          SearchTvLoading(),
+          SearchTvError('Server Failure'),
+        ],
+        verify: (bloc) {
+          verify(mockSearchTvs.execute(tQuery));
+        },
+      );
     },
   );
-
-  blocTest<SearchTvBloc, SearchTVState>(
-    'Should emit [Loading, Error] when get search is unsuccessful',
-    build: () {
-      when(mockSearchTvs.execute(tQuery))
-          .thenAnswer((_) async => Left(ServerFailure('Server Failure')));
-      return searchTvBloc;
-    },
-    act: (bloc) => bloc.add(OnTvQueryChanged(tQuery)),
-      wait: const Duration(milliseconds: 500),
-    expect: () => [
-      SearchTvLoading(),
-      SearchTvError('Server Failure'),
-    ],
-    verify: (bloc) {
-      verify(mockSearchTvs.execute(tQuery));
-    },
-  );
-
-  },);
 }

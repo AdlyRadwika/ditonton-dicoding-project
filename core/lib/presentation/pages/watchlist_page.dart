@@ -13,15 +13,14 @@ class WatchlistPage extends StatefulWidget {
   _WatchlistPageState createState() => _WatchlistPageState();
 }
 
-class _WatchlistPageState extends State<WatchlistPage>
-    with RouteAware {
+class _WatchlistPageState extends State<WatchlistPage> with RouteAware {
   @override
   void initState() {
     super.initState();
-    Future.microtask(() =>
-      context.read<WatchlistMovieBloc>().add(GetWatchlistMovie()));
-    Future.microtask(() =>
-      context.read<WatchlistTvBloc>().add(GetWatchlistTv()));
+    Future.microtask(
+        () => context.read<WatchlistMovieBloc>().add(GetWatchlistMovie()));
+    Future.microtask(
+        () => context.read<WatchlistTvBloc>().add(GetWatchlistTv()));
   }
 
   @override
@@ -87,7 +86,10 @@ class _WatchlistPageState extends State<WatchlistPage>
             itemCount: state.movies.length,
             itemBuilder: (context, index) {
               final movie = state.movies[index];
-              return EntertaimentCard(movie: movie, isTV: false,);
+              return EntertaimentCard(
+                movie: movie,
+                isTV: false,
+              );
             },
           );
         } else if (state is GetWatchlistMovieError) {
@@ -95,7 +97,7 @@ class _WatchlistPageState extends State<WatchlistPage>
             key: Key('error_message'),
             child: Text("${state.message}"),
           );
-        }else {
+        } else {
           return const Text('There is something wrong.');
         }
       },
@@ -114,7 +116,10 @@ class _WatchlistPageState extends State<WatchlistPage>
             itemCount: state.tvs.length,
             itemBuilder: (context, index) {
               final tv = state.tvs[index];
-              return EntertaimentCard(tv: tv, isTV: true,);
+              return EntertaimentCard(
+                tv: tv,
+                isTV: true,
+              );
             },
           );
         } else if (state is GetWatchlistTvError) {
@@ -122,7 +127,7 @@ class _WatchlistPageState extends State<WatchlistPage>
             key: Key('error_message'),
             child: Text("${state.message}"),
           );
-        }else {
+        } else {
           return const Text('There is something wrong.');
         }
       },

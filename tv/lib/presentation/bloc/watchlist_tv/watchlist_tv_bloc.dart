@@ -11,7 +11,9 @@ class WatchlistTvBloc extends Bloc<WatchlistTvEvent, WatchlistTvState> {
   final GetTvWatchlistStatus _getWatchListStatus;
   final GetWatchlistTvs _getWatchlistTvs;
 
-  WatchlistTvBloc(this._saveWatchlist, this._removeWatchlist, this._getWatchListStatus, this._getWatchlistTvs) : super(WatchlistTvInitial()) {
+  WatchlistTvBloc(this._saveWatchlist, this._removeWatchlist,
+      this._getWatchListStatus, this._getWatchlistTvs)
+      : super(WatchlistTvInitial()) {
     on<SaveWatchlistTv>((event, emit) async {
       emit(SaveWatchlistTvLoading());
       final result = await _saveWatchlist.execute(event.tvDetail);
@@ -28,20 +30,20 @@ class WatchlistTvBloc extends Bloc<WatchlistTvEvent, WatchlistTvState> {
     });
 
     on<RemoveWatchlistTv>((event, emit) async {
-        emit(RemoveWatchlistTvLoading());
-        final result = await _removeWatchlist.execute(event.tvDetail);
+      emit(RemoveWatchlistTvLoading());
+      final result = await _removeWatchlist.execute(event.tvDetail);
 
-        result.fold(
-          (failure) {
-            emit(RemoveWatchlistTvError(failure.message));
-          },
-          (tvData) {
-            emit(RemoveWatchlistTvSuccess(tvData));
-            emit(const GetWatchlistTvStatusData(false));
-          },
-        );
-      });
-    
+      result.fold(
+        (failure) {
+          emit(RemoveWatchlistTvError(failure.message));
+        },
+        (tvData) {
+          emit(RemoveWatchlistTvSuccess(tvData));
+          emit(const GetWatchlistTvStatusData(false));
+        },
+      );
+    });
+
     on<GetWatchlistTvStatus>((event, emit) async {
       emit(GetWatchlistTvStatusLoading());
 

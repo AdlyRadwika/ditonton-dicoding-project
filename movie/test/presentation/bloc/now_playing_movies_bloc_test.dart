@@ -19,57 +19,59 @@ void main() {
     nowPlayingMovieBloc = NowPlayingMovieBloc(mockGetNowPlayingMovies);
   });
 
-  group('Now playing movie bloc', () {
+  group(
+    'Now playing movie bloc',
+    () {
       blocTest<NowPlayingMovieBloc, NowPlayingMovieState>(
-    'Should emit [Loading, HasData] when now playing movie data is gotten successfully',
-    build: () {
-      when(mockGetNowPlayingMovies.execute())
-          .thenAnswer((_) async => Right(testMovieList));
-      return nowPlayingMovieBloc;
-    },
-    act: (bloc) => bloc.add(GetNowPlayingMovieEvent()),
-    expect: () => [
-      NowPlayingMovieLoading(),
-      NowPlayingMovieHasData(testMovieList),
-    ],
-    verify: (bloc) {
-      verify(mockGetNowPlayingMovies.execute());
+        'Should emit [Loading, HasData] when now playing movie data is gotten successfully',
+        build: () {
+          when(mockGetNowPlayingMovies.execute())
+              .thenAnswer((_) async => Right(testMovieList));
+          return nowPlayingMovieBloc;
+        },
+        act: (bloc) => bloc.add(GetNowPlayingMovieEvent()),
+        expect: () => [
+          NowPlayingMovieLoading(),
+          NowPlayingMovieHasData(testMovieList),
+        ],
+        verify: (bloc) {
+          verify(mockGetNowPlayingMovies.execute());
+        },
+      );
+
+      blocTest<NowPlayingMovieBloc, NowPlayingMovieState>(
+        'Should emit [Loading, Empty] when now playing movie data is empty',
+        build: () {
+          when(mockGetNowPlayingMovies.execute())
+              .thenAnswer((_) async => Right([]));
+          return nowPlayingMovieBloc;
+        },
+        act: (bloc) => bloc.add(GetNowPlayingMovieEvent()),
+        expect: () => [
+          NowPlayingMovieLoading(),
+          NowPlayingMovieEmpty(),
+        ],
+        verify: (bloc) {
+          verify(mockGetNowPlayingMovies.execute());
+        },
+      );
+
+      blocTest<NowPlayingMovieBloc, NowPlayingMovieState>(
+        'Should emit [Loading, Error] when get now playing movies is unsuccessful',
+        build: () {
+          when(mockGetNowPlayingMovies.execute())
+              .thenAnswer((_) async => Left(ServerFailure('Server Failure')));
+          return nowPlayingMovieBloc;
+        },
+        act: (bloc) => bloc.add(GetNowPlayingMovieEvent()),
+        expect: () => [
+          NowPlayingMovieLoading(),
+          const NowPlayingMovieError('Server Failure'),
+        ],
+        verify: (bloc) {
+          verify(mockGetNowPlayingMovies.execute());
+        },
+      );
     },
   );
-
-  blocTest<NowPlayingMovieBloc, NowPlayingMovieState>(
-    'Should emit [Loading, Empty] when now playing movie data is empty',
-    build: () {
-      when(mockGetNowPlayingMovies.execute())
-          .thenAnswer((_) async => Right([]));
-      return nowPlayingMovieBloc;
-    },
-    act: (bloc) => bloc.add(GetNowPlayingMovieEvent()),
-    expect: () => [
-      NowPlayingMovieLoading(),
-      NowPlayingMovieEmpty(),
-    ],
-    verify: (bloc) {
-      verify(mockGetNowPlayingMovies.execute());
-    },
-  );
-
-  blocTest<NowPlayingMovieBloc, NowPlayingMovieState>(
-    'Should emit [Loading, Error] when get now playing movies is unsuccessful',
-    build: () {
-      when(mockGetNowPlayingMovies.execute())
-          .thenAnswer((_) async => Left(ServerFailure('Server Failure')));
-      return nowPlayingMovieBloc;
-    },
-    act: (bloc) => bloc.add(GetNowPlayingMovieEvent()),
-    expect: () => [
-      NowPlayingMovieLoading(),
-      const NowPlayingMovieError('Server Failure'),
-    ],
-    verify: (bloc) {
-      verify(mockGetNowPlayingMovies.execute());
-    },
-  );
-
-  },);
 }

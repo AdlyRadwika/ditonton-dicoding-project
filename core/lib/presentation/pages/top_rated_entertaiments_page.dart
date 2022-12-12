@@ -61,7 +61,9 @@ class _TopRatedEntertaimentsPageState extends State<TopRatedEntertaimentsPage> {
         } else {
           return Center(
             key: Key('error_message'),
-            child: Text(state is TopRatedMovieError ? state.message : 'There is something wrong'),
+            child: Text(state is TopRatedMovieError
+                ? state.message
+                : 'There is something wrong'),
           );
         }
       },
@@ -89,11 +91,12 @@ class _TopRatedEntertaimentsPageState extends State<TopRatedEntertaimentsPage> {
         } else {
           return Center(
             key: Key('error_message'),
-            child: Text(state is TopRatedTvError ? state.message : 'There is something wrong'),
+            child: Text(state is TopRatedTvError
+                ? state.message
+                : 'There is something wrong'),
           );
         }
       },
     );
   }
-
 }

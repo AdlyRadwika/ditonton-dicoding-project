@@ -6,10 +6,12 @@ import 'package:equatable/equatable.dart';
 part 'recommendation_tvs_event.dart';
 part 'recommendation_tvs_state.dart';
 
-class RecommendationTvsBloc extends Bloc<RecommendationTvsEvent, RecommendationTvsState> {
+class RecommendationTvsBloc
+    extends Bloc<RecommendationTvsEvent, RecommendationTvsState> {
   final GetTvRecommendations _getTvRecommendations;
 
-  RecommendationTvsBloc(this._getTvRecommendations) : super(RecommendationTvsInitial()) {
+  RecommendationTvsBloc(this._getTvRecommendations)
+      : super(RecommendationTvsInitial()) {
     on<GetRecommendationTvEvent>((event, emit) async {
       emit(RecommendationTvsLoading());
       final recommendationResult =

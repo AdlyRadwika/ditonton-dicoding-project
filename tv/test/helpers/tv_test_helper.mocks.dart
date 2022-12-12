@@ -4,11 +4,9 @@ import 'dart:typed_data' as _i19;
 
 import 'package:dartz/dartz.dart' as _i2;
 import 'package:core/utils/failure.dart' as _i8;
-import 'package:tv/data/datasources/db/tv_database_helper.dart'
-    as _i15;
+import 'package:tv/data/datasources/db/tv_database_helper.dart' as _i15;
 import 'package:tv/data/datasources/tv_local_data_source.dart' as _i13;
-import 'package:tv/data/datasources/tv_remote_data_source.dart'
-    as _i11;
+import 'package:tv/data/datasources/tv_remote_data_source.dart' as _i11;
 import 'package:tv/data/models/tv_detail_model.dart' as _i3;
 import 'package:tv/data/models/tv_model.dart' as _i12;
 import 'package:tv/data/models/tv_table.dart' as _i14;

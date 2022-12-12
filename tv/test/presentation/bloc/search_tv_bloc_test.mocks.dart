@@ -40,9 +40,9 @@ class MockSearchTvs extends _i1.Mock implements _i4.SearchTvs {
   @override
   _i5.Future<_i3.Either<_i6.Failure, List<_i7.Tv>>> execute(String? query) =>
       (super.noSuchMethod(Invocation.method(#execute, [query]),
-          returnValue: Future<_i3.Either<_i6.Failure, List<_i7.Tv>>>.value(
-              _FakeEither_1<_i6.Failure, List<_i7.Tv>>())) as _i5
-          .Future<_i3.Either<_i6.Failure, List<_i7.Tv>>>);
+              returnValue: Future<_i3.Either<_i6.Failure, List<_i7.Tv>>>.value(
+                  _FakeEither_1<_i6.Failure, List<_i7.Tv>>()))
+          as _i5.Future<_i3.Either<_i6.Failure, List<_i7.Tv>>>);
   @override
   String toString() => super.toString();
 }

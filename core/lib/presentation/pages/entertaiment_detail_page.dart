@@ -26,26 +26,32 @@ class _EntertaimentDetailPageState extends State<EntertaimentDetailPage> {
     widget.isTV == true
         ? Future.microtask(() {
             context.read<TvDetailBloc>().add(GetTvDetailEvent(widget.id));
-            context.read<RecommendationTvsBloc>().add(GetRecommendationTvEvent(widget.id));
-            context.read<WatchlistTvBloc>().add(GetWatchlistTvStatus(widget.id));
+            context
+                .read<RecommendationTvsBloc>()
+                .add(GetRecommendationTvEvent(widget.id));
+            context
+                .read<WatchlistTvBloc>()
+                .add(GetWatchlistTvStatus(widget.id));
           })
         : Future.microtask(() {
             context.read<MovieDetailBloc>().add(GetMovieDetailEvent(widget.id));
-            context.read<RecommendationMoviesBloc>().add(GetRecommendationMovieEvent(widget.id));
-            context.read<WatchlistMovieBloc>().add(GetWatchlistMovieStatus(widget.id));
+            context
+                .read<RecommendationMoviesBloc>()
+                .add(GetRecommendationMovieEvent(widget.id));
+            context
+                .read<WatchlistMovieBloc>()
+                .add(GetWatchlistMovieStatus(widget.id));
           });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: widget.isTV == true 
-        ? buildTvDetailBody()
-        : buildMovieDetailBody(),
+      body: widget.isTV == true ? buildTvDetailBody() : buildMovieDetailBody(),
     );
   }
 
-BlocBuilder<MovieDetailBloc, MovieDetailState> buildMovieDetailBody() {
+  BlocBuilder<MovieDetailBloc, MovieDetailState> buildMovieDetailBody() {
     return BlocBuilder<MovieDetailBloc, MovieDetailState>(
       builder: (context, state) {
         if (state is MovieDetailLoading) {
@@ -56,7 +62,9 @@ BlocBuilder<MovieDetailBloc, MovieDetailState> buildMovieDetailBody() {
           final movie = state.movieDetail;
           return BlocBuilder<WatchlistMovieBloc, WatchlistMovieState>(
             builder: (context, state) {
-              bool isAdded = state is GetWatchlistMovieStatusData ? state.isAddedWatchlist : false;
+              bool isAdded = state is GetWatchlistMovieStatusData
+                  ? state.isAddedWatchlist
+                  : false;
               return SafeArea(
                 child: DetailContent(
                   isTV: false,
@@ -67,10 +75,10 @@ BlocBuilder<MovieDetailBloc, MovieDetailState> buildMovieDetailBody() {
             },
           );
         } else {
-          return state is MovieDetailError 
-            ? Center(child: Text(state.message)) 
-            : Center(child: Text('There is something wrong'));
-        } 
+          return state is MovieDetailError
+              ? Center(child: Text(state.message))
+              : Center(child: Text('There is something wrong'));
+        }
       },
     );
   }
@@ -87,7 +95,9 @@ BlocBuilder<TvDetailBloc, TvDetailState> buildTvDetailBody() {
         final tv = state.tvDetail;
         return BlocBuilder<WatchlistTvBloc, WatchlistTvState>(
           builder: (context, state) {
-            bool isAdded = state is GetWatchlistTvStatusData ? state.isAddedWatchlist : false;
+            bool isAdded = state is GetWatchlistTvStatusData
+                ? state.isAddedWatchlist
+                : false;
             return SafeArea(
               child: DetailContent(
                 isTV: true,
@@ -98,9 +108,9 @@ BlocBuilder<TvDetailBloc, TvDetailState> buildTvDetailBody() {
           },
         );
       } else {
-        return state is TvDetailError 
-          ? Center(child: Text(state.message)) 
-          : Center(child: Text('There is something wrong'));
+        return state is TvDetailError
+            ? Center(child: Text(state.message))
+            : Center(child: Text('There is something wrong'));
       }
     },
   );
@@ -159,9 +169,9 @@ class DetailContent extends StatelessWidget {
                               isTV == true ? tv!.name : movie!.title,
                               style: kHeading5,
                             ),
-                            isTV == true 
-                              ? _buildWatchlistTvButton() 
-                              : _buildWatchlistMovieButton(),
+                            isTV == true
+                                ? _buildWatchlistTvButton()
+                                : _buildWatchlistMovieButton(),
                             Text(
                               _showGenres(
                                   isTV == true ? tv!.genres : movie!.genres),
@@ -246,63 +256,75 @@ class DetailContent extends StatelessWidget {
     return BlocBuilder<WatchlistTvBloc, WatchlistTvState>(
       builder: (context, state) {
         return ElevatedButton(
-          onPressed: () async {
-            if (state is GetWatchlistTvStatusData) {
-              if (!state.isAddedWatchlist) {
-                context.read<WatchlistTvBloc>().add(SaveWatchlistTv(tv!));
-                ScaffoldMessenger.of(context).showSnackBar( SnackBar(content: Text('Added to Tv watchlist')));
-              } else {
-                context.read<WatchlistTvBloc>().add(RemoveWatchlistTv(tv!));
-                context.read<WatchlistTvBloc>().add(GetWatchlistTvStatus(tv!.id));
-                ScaffoldMessenger.of(context).showSnackBar( SnackBar(content: Text('Removed from Tv watchlist')));
+            onPressed: () async {
+              if (state is GetWatchlistTvStatusData) {
+                if (!state.isAddedWatchlist) {
+                  context.read<WatchlistTvBloc>().add(SaveWatchlistTv(tv!));
+                  ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(content: Text('Added to Tv watchlist')));
+                } else {
+                  context.read<WatchlistTvBloc>().add(RemoveWatchlistTv(tv!));
+                  context
+                      .read<WatchlistTvBloc>()
+                      .add(GetWatchlistTvStatus(tv!.id));
+                  ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(content: Text('Removed from Tv watchlist')));
+                }
               }
-            }
-          },
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              isAddedToWatchlist == true
-              ? Icon(Icons.check)
-              : Icon(Icons.add),
-              Text('Watchlist'),
-            ],
-          )
-        );
+            },
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                isAddedToWatchlist == true
+                    ? Icon(Icons.check)
+                    : Icon(Icons.add),
+                Text('Watchlist'),
+              ],
+            ));
       },
     );
   }
 
-  BlocBuilder<WatchlistMovieBloc, WatchlistMovieState> _buildWatchlistMovieButton() {
+  BlocBuilder<WatchlistMovieBloc, WatchlistMovieState>
+      _buildWatchlistMovieButton() {
     return BlocBuilder<WatchlistMovieBloc, WatchlistMovieState>(
       builder: (context, state) {
         return ElevatedButton(
-          onPressed: () async {
-            if (state is GetWatchlistMovieStatusData) {
-              if (!state.isAddedWatchlist) {
-                context.read<WatchlistMovieBloc>().add(SaveWatchlistMovie(movie!));
-                ScaffoldMessenger.of(context).showSnackBar( SnackBar(content: Text('Added to movie watchlist')));
-              } else {
-                context.read<WatchlistMovieBloc>().add(RemoveWatchlistMovie(movie!));
-                context.read<WatchlistMovieBloc>().add(GetWatchlistMovieStatus(movie!.id));
-                ScaffoldMessenger.of(context).showSnackBar( SnackBar(content: Text('Removed from movie watchlist')));
+            onPressed: () async {
+              if (state is GetWatchlistMovieStatusData) {
+                if (!state.isAddedWatchlist) {
+                  context
+                      .read<WatchlistMovieBloc>()
+                      .add(SaveWatchlistMovie(movie!));
+                  ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(content: Text('Added to movie watchlist')));
+                } else {
+                  context
+                      .read<WatchlistMovieBloc>()
+                      .add(RemoveWatchlistMovie(movie!));
+                  context
+                      .read<WatchlistMovieBloc>()
+                      .add(GetWatchlistMovieStatus(movie!.id));
+                  ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(content: Text('Removed from movie watchlist')));
+                }
               }
-            }
-          },
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              isAddedToWatchlist == true
-              ? Icon(Icons.check)
-              : Icon(Icons.add),
-              Text('Watchlist'),
-            ],
-          )
-        );
+            },
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                isAddedToWatchlist == true
+                    ? Icon(Icons.check)
+                    : Icon(Icons.add),
+                Text('Watchlist'),
+              ],
+            ));
       },
     );
   }
 
-  BlocBuilder<RecommendationMoviesBloc, RecommendationMoviesState> buildMovieRecommendations() {
+  BlocBuilder<RecommendationMoviesBloc, RecommendationMoviesState>
+      buildMovieRecommendations() {
     return BlocBuilder<RecommendationMoviesBloc, RecommendationMoviesState>(
       builder: (context, data) {
         if (data is RecommendationMoviesLoading) {
@@ -355,7 +377,8 @@ class DetailContent extends StatelessWidget {
     );
   }
 
-  BlocBuilder<RecommendationTvsBloc, RecommendationTvsState> buildTvRecommendations() {
+  BlocBuilder<RecommendationTvsBloc, RecommendationTvsState>
+      buildTvRecommendations() {
     return BlocBuilder<RecommendationTvsBloc, RecommendationTvsState>(
       builder: (context, state) {
         if (state is RecommendationTvsLoading) {

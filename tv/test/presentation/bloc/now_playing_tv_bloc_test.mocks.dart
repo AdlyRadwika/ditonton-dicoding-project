@@ -28,8 +28,7 @@ class _FakeEither_1<L, R> extends _i1.Fake implements _i3.Either<L, R> {}
 /// A class which mocks [GetNowPlayingTvs].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockGetNowPlayingTvs extends _i1.Mock
-    implements _i4.GetNowPlayingTvs {
+class MockGetNowPlayingTvs extends _i1.Mock implements _i4.GetNowPlayingTvs {
   MockGetNowPlayingTvs() {
     _i1.throwOnMissingStub(this);
   }
@@ -41,9 +40,9 @@ class MockGetNowPlayingTvs extends _i1.Mock
   @override
   _i5.Future<_i3.Either<_i6.Failure, List<_i7.Tv>>> execute() =>
       (super.noSuchMethod(Invocation.method(#execute, []),
-          returnValue: Future<_i3.Either<_i6.Failure, List<_i7.Tv>>>.value(
-              _FakeEither_1<_i6.Failure, List<_i7.Tv>>())) as _i5
-          .Future<_i3.Either<_i6.Failure, List<_i7.Tv>>>);
+              returnValue: Future<_i3.Either<_i6.Failure, List<_i7.Tv>>>.value(
+                  _FakeEither_1<_i6.Failure, List<_i7.Tv>>()))
+          as _i5.Future<_i3.Either<_i6.Failure, List<_i7.Tv>>>);
   @override
   String toString() => super.toString();
 }

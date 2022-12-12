@@ -19,56 +19,59 @@ void main() {
     popularMovieBloc = PopularMovieBloc(mockGetPopularMovies);
   });
 
-  group('Popular movie bloc', () {
+  group(
+    'Popular movie bloc',
+    () {
       blocTest<PopularMovieBloc, PopularMovieState>(
-    'Should emit [Loading, HasData] when popular movie data is gotten successfully',
-    build: () {
-      when(mockGetPopularMovies.execute())
-          .thenAnswer((_) async => Right(testMovieList));
-      return popularMovieBloc;
-    },
-    act: (bloc) => bloc.add(GetPopularMovieEvent()),
-    expect: () => [
-      PopularMovieLoading(),
-      PopularMovieHasData(testMovieList),
-    ],
-    verify: (bloc) {
-      verify(mockGetPopularMovies.execute());
-    },
-  );
+        'Should emit [Loading, HasData] when popular movie data is gotten successfully',
+        build: () {
+          when(mockGetPopularMovies.execute())
+              .thenAnswer((_) async => Right(testMovieList));
+          return popularMovieBloc;
+        },
+        act: (bloc) => bloc.add(GetPopularMovieEvent()),
+        expect: () => [
+          PopularMovieLoading(),
+          PopularMovieHasData(testMovieList),
+        ],
+        verify: (bloc) {
+          verify(mockGetPopularMovies.execute());
+        },
+      );
 
-  blocTest<PopularMovieBloc, PopularMovieState>(
-    'Should emit [Loading, Empty] when popular movie data is empty',
-    build: () {
-      when(mockGetPopularMovies.execute())
-          .thenAnswer((_) async => Right([]));
-      return popularMovieBloc;
-    },
-    act: (bloc) => bloc.add(GetPopularMovieEvent()),
-    expect: () => [
-      PopularMovieLoading(),
-      PopularMovieEmpty(),
-    ],
-    verify: (bloc) {
-      verify(mockGetPopularMovies.execute());
-    },
-  );
+      blocTest<PopularMovieBloc, PopularMovieState>(
+        'Should emit [Loading, Empty] when popular movie data is empty',
+        build: () {
+          when(mockGetPopularMovies.execute())
+              .thenAnswer((_) async => Right([]));
+          return popularMovieBloc;
+        },
+        act: (bloc) => bloc.add(GetPopularMovieEvent()),
+        expect: () => [
+          PopularMovieLoading(),
+          PopularMovieEmpty(),
+        ],
+        verify: (bloc) {
+          verify(mockGetPopularMovies.execute());
+        },
+      );
 
-  blocTest<PopularMovieBloc, PopularMovieState>(
-    'Should emit [Loading, Error] when get popular movies is unsuccessful',
-    build: () {
-      when(mockGetPopularMovies.execute())
-          .thenAnswer((_) async => Left(ServerFailure('Server Failure')));
-      return popularMovieBloc;
-    },
-    act: (bloc) => bloc.add(GetPopularMovieEvent()),
-    expect: () => [
-      PopularMovieLoading(),
-      const PopularMovieError('Server Failure'),
-    ],
-    verify: (bloc) {
-      verify(mockGetPopularMovies.execute());
+      blocTest<PopularMovieBloc, PopularMovieState>(
+        'Should emit [Loading, Error] when get popular movies is unsuccessful',
+        build: () {
+          when(mockGetPopularMovies.execute())
+              .thenAnswer((_) async => Left(ServerFailure('Server Failure')));
+          return popularMovieBloc;
+        },
+        act: (bloc) => bloc.add(GetPopularMovieEvent()),
+        expect: () => [
+          PopularMovieLoading(),
+          const PopularMovieError('Server Failure'),
+        ],
+        verify: (bloc) {
+          verify(mockGetPopularMovies.execute());
+        },
+      );
     },
   );
-  },);
 }

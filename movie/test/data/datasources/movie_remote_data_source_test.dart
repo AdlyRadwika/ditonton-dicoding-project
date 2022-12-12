@@ -32,8 +32,8 @@ void main() {
       // arrange
       when(mockHttpClient
               .get(Uri.parse('$BASE_URL/movie/now_playing?$API_KEY')))
-          .thenAnswer((_) async => http.Response(
-              readJson('data/dummy_data/now_playing.json'), 200));
+          .thenAnswer((_) async =>
+              http.Response(readJson('data/dummy_data/now_playing.json'), 200));
       // act
       final result = await dataSource.getNowPlayingMovies();
       // assert
@@ -141,8 +141,8 @@ void main() {
   });
 
   group('get movie recommendations', () {
-    final tMovieList = MovieResponse.fromJson(json
-            .decode(readJson('data/dummy_data/movie_recommendations.json')))
+    final tMovieList = MovieResponse.fromJson(
+            json.decode(readJson('data/dummy_data/movie_recommendations.json')))
         .movieList;
     final tId = 1;
 

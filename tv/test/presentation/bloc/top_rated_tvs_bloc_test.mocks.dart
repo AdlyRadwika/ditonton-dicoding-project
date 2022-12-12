@@ -40,9 +40,9 @@ class MockGetTopRatedTvs extends _i1.Mock implements _i4.GetTopRatedTvs {
   @override
   _i5.Future<_i3.Either<_i6.Failure, List<_i7.Tv>>> execute() =>
       (super.noSuchMethod(Invocation.method(#execute, []),
-          returnValue: Future<_i3.Either<_i6.Failure, List<_i7.Tv>>>.value(
-              _FakeEither_1<_i6.Failure, List<_i7.Tv>>())) as _i5
-          .Future<_i3.Either<_i6.Failure, List<_i7.Tv>>>);
+              returnValue: Future<_i3.Either<_i6.Failure, List<_i7.Tv>>>.value(
+                  _FakeEither_1<_i6.Failure, List<_i7.Tv>>()))
+          as _i5.Future<_i3.Either<_i6.Failure, List<_i7.Tv>>>);
   @override
   String toString() => super.toString();
 }

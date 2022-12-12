@@ -35,9 +35,7 @@ class _PopularEntertaimentsPageState extends State<PopularEntertaimentsPage> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: widget.isTV == true
-            ? buildPopularTvs()
-            : buildPopularMovies(),
+        child: widget.isTV == true ? buildPopularTvs() : buildPopularMovies(),
       ),
     );
   }
@@ -60,7 +58,9 @@ class _PopularEntertaimentsPageState extends State<PopularEntertaimentsPage> {
         } else {
           return Center(
             key: Key('error_message'),
-            child: Text(state is PopularMovieError ? state.message : 'There is something wrong'),
+            child: Text(state is PopularMovieError
+                ? state.message
+                : 'There is something wrong'),
           );
         }
       },
@@ -85,7 +85,9 @@ class _PopularEntertaimentsPageState extends State<PopularEntertaimentsPage> {
         } else {
           return Center(
             key: Key('error_message'),
-            child: Text(state is PopularTvError ? state.message : 'There is something wrong'),
+            child: Text(state is PopularTvError
+                ? state.message
+                : 'There is something wrong'),
           );
         }
       },

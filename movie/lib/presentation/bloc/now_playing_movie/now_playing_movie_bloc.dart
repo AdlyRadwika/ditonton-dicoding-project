@@ -5,10 +5,12 @@ import 'package:movie/movie.dart';
 part 'now_playing_movie_event.dart';
 part 'now_playing_movie_state.dart';
 
-class NowPlayingMovieBloc extends Bloc<NowPlayingMovieEvent, NowPlayingMovieState> {
+class NowPlayingMovieBloc
+    extends Bloc<NowPlayingMovieEvent, NowPlayingMovieState> {
   final GetNowPlayingMovies _getNowPlayingMovies;
 
-  NowPlayingMovieBloc(this._getNowPlayingMovies) : super(NowPlayingMovieInitial()) {
+  NowPlayingMovieBloc(this._getNowPlayingMovies)
+      : super(NowPlayingMovieInitial()) {
     on<NowPlayingMovieEvent>((event, emit) async {
       emit(NowPlayingMovieLoading());
 

@@ -31,12 +31,10 @@ class _SearchPageState extends State<SearchPage> {
           title: buildSearchTextField(context),
           bottom: buildTabBar(),
         ),
-        body: TabBarView(
-          children: [
-            buildMovieSearch(),
-            buildTvSearch(),
-          ]
-        ),
+        body: TabBarView(children: [
+          buildMovieSearch(),
+          buildTvSearch(),
+        ]),
       ),
     );
   }
@@ -87,8 +85,8 @@ class _SearchPageState extends State<SearchPage> {
           if (result.isEmpty) {
             return Center(
               child: Text(
-            "The movie you're looking for couldn't be found",
-            style: kBodyText,
+                "The movie you're looking for couldn't be found",
+                style: kBodyText,
               ),
             );
           }
@@ -127,8 +125,8 @@ class _SearchPageState extends State<SearchPage> {
           if (result.isEmpty) {
             return Center(
               child: Text(
-            "The TV Show you're looking for couldn't be found",
-            style: kBodyText,
+                "The TV Show you're looking for couldn't be found",
+                style: kBodyText,
               ),
             );
           }

@@ -21,56 +21,58 @@ void main() {
     popularTvBloc = PopularTvBloc(mockGetPopularTvs);
   });
 
-  group('Popular Tv bloc', () {
+  group(
+    'Popular Tv bloc',
+    () {
       blocTest<PopularTvBloc, PopularTvState>(
-    'Should emit [Loading, HasData] when popular Tv data is gotten successfully',
-    build: () {
-      when(mockGetPopularTvs.execute())
-          .thenAnswer((_) async => Right(testTvList));
-      return popularTvBloc;
-    },
-    act: (bloc) => bloc.add(GetPopularTvEvent()),
-    expect: () => [
-      PopularTvLoading(),
-      PopularTvHasData(testTvList),
-    ],
-    verify: (bloc) {
-      verify(mockGetPopularTvs.execute());
-    },
-  );
+        'Should emit [Loading, HasData] when popular Tv data is gotten successfully',
+        build: () {
+          when(mockGetPopularTvs.execute())
+              .thenAnswer((_) async => Right(testTvList));
+          return popularTvBloc;
+        },
+        act: (bloc) => bloc.add(GetPopularTvEvent()),
+        expect: () => [
+          PopularTvLoading(),
+          PopularTvHasData(testTvList),
+        ],
+        verify: (bloc) {
+          verify(mockGetPopularTvs.execute());
+        },
+      );
 
-  blocTest<PopularTvBloc, PopularTvState>(
-    'Should emit [Loading, Empty] when popular Tv data is empty',
-    build: () {
-      when(mockGetPopularTvs.execute())
-          .thenAnswer((_) async => Right([]));
-      return popularTvBloc;
-    },
-    act: (bloc) => bloc.add(GetPopularTvEvent()),
-    expect: () => [
-      PopularTvLoading(),
-      PopularTvEmpty(),
-    ],
-    verify: (bloc) {
-      verify(mockGetPopularTvs.execute());
-    },
-  );
+      blocTest<PopularTvBloc, PopularTvState>(
+        'Should emit [Loading, Empty] when popular Tv data is empty',
+        build: () {
+          when(mockGetPopularTvs.execute()).thenAnswer((_) async => Right([]));
+          return popularTvBloc;
+        },
+        act: (bloc) => bloc.add(GetPopularTvEvent()),
+        expect: () => [
+          PopularTvLoading(),
+          PopularTvEmpty(),
+        ],
+        verify: (bloc) {
+          verify(mockGetPopularTvs.execute());
+        },
+      );
 
-  blocTest<PopularTvBloc, PopularTvState>(
-    'Should emit [Loading, Error] when get popular Tvs is unsuccessful',
-    build: () {
-      when(mockGetPopularTvs.execute())
-          .thenAnswer((_) async => Left(ServerFailure('Server Failure')));
-      return popularTvBloc;
-    },
-    act: (bloc) => bloc.add(GetPopularTvEvent()),
-    expect: () => [
-      PopularTvLoading(),
-      const PopularTvError('Server Failure'),
-    ],
-    verify: (bloc) {
-      verify(mockGetPopularTvs.execute());
+      blocTest<PopularTvBloc, PopularTvState>(
+        'Should emit [Loading, Error] when get popular Tvs is unsuccessful',
+        build: () {
+          when(mockGetPopularTvs.execute())
+              .thenAnswer((_) async => Left(ServerFailure('Server Failure')));
+          return popularTvBloc;
+        },
+        act: (bloc) => bloc.add(GetPopularTvEvent()),
+        expect: () => [
+          PopularTvLoading(),
+          const PopularTvError('Server Failure'),
+        ],
+        verify: (bloc) {
+          verify(mockGetPopularTvs.execute());
+        },
+      );
     },
   );
-  },);
 }

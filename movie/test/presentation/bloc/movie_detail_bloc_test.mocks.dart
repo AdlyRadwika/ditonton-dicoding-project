@@ -15,7 +15,6 @@ import 'package:movie/domain/repositories/movie_repository.dart' as _i2;
 import 'package:movie/domain/usecases/get_movie_detail.dart' as _i4;
 import 'package:movie/domain/usecases/get_movie_recommendations.dart' as _i8;
 
-
 // ignore_for_file: avoid_redundant_argument_values
 // ignore_for_file: avoid_setters_without_getters
 // ignore_for_file: comment_references

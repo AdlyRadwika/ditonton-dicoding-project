@@ -81,9 +81,9 @@ void main() {
   });
 
   group('get Top Rated tvs', () {
-    final ttvList = TvResponse.fromJson(
-            json.decode(readJson('dummy_data/top_rated.json')))
-        .tvList;
+    final ttvList =
+        TvResponse.fromJson(json.decode(readJson('dummy_data/top_rated.json')))
+            .tvList;
 
     test('should return list of tvs when response code is 200 ', () async {
       // arrange
@@ -177,8 +177,8 @@ void main() {
       // arrange
       when(mockHttpClient
               .get(Uri.parse('$BASE_URL/search/tv?$API_KEY&query=$tQuery')))
-          .thenAnswer((_) async => http.Response(
-              readJson('dummy_data/search_lisa_tv.json'), 200));
+          .thenAnswer((_) async =>
+              http.Response(readJson('dummy_data/search_lisa_tv.json'), 200));
       // act
       final result = await dataSource.searchTvs(tQuery);
       // assert
