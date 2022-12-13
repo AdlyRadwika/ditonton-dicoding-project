@@ -2,9 +2,11 @@ import 'dart:io';
 
 String readJson(String name) {
   var dir = Directory.current.path;
-//TODO: CHANGE 'tv/test' TO 'test' if running the tv test from the tv folder with "flutter test --coverage"
-  if (dir.endsWith('tv/test')) {
-    dir = dir.replaceAll('tv/test', '');
+  if (dir.endsWith('/test')) {
+    dir = dir.replaceAll('/test', '');
+  }
+  if (dir.endsWith('tv')) {
+    return File('$dir/test/$name').readAsStringSync();
   }
   return File('$dir/tv/test/$name').readAsStringSync();
 }
