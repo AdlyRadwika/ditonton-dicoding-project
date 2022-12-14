@@ -83,7 +83,7 @@ class _TopRatedEntertaimentsPageState extends State<TopRatedEntertaimentsPage> {
               final tv = state.topRatedTv[index];
               return EntertaimentCard(
                 tv: tv,
-                isTV: false,
+                isTV: true,
               );
             },
             itemCount: state.topRatedTv.length,
