@@ -101,10 +101,8 @@ class _SearchPageState extends State<SearchPage> {
               },
               itemCount: result.length >= 1 ? result.length : 1);
         } else if (state is SearchError) {
-          return Expanded(
-            child: Center(
-              child: Text(state.message),
-            ),
+          return Center(
+            child: Text(state.message),
           );
         } else {
           return Container();
@@ -140,10 +138,12 @@ class _SearchPageState extends State<SearchPage> {
                 );
               },
               itemCount: result.length >= 1 ? result.length : 1);
-        } else {
-          return Expanded(
-            child: Container(),
+        } else if (state is SearchTvError) {
+          return Center(
+            child: Text(state.message),
           );
+        } else {
+          return Container();
         }
       },
     );
